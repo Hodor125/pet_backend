@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hodor.dao.UserDao">
+    <resultMap id="UserMap" type="com.hodor.pojo.User">
+        <id property="id" column="id"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="password" column="password"/>
+        <result property="power" column="power"/>
+        <result property="tel" column="tel"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <!--查询所有文章-->
+    <select id="getUserByUserNameAndPassWord" resultMap="UserMap">
+        select * from t_user where id=#{id} and password=#{passWord}
+    </select>
+</mapper>
