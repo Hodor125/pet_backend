@@ -3112,3 +3112,50 @@ org.apache.ibatis.reflection.ReflectionException: There is no setter for propert
 2021-10-17 02:32:32.090  INFO 38321 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-10-17 02:32:32.092  INFO 38321 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-10-17 02:32:32.098  INFO 38321 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-10-17 02:41:52.709  INFO 38645 --- [restartedMain] com.hodor.PetApplication                 : Starting PetApplication on hodordeMacBook-Air.local with PID 38645 (/Users/hodor/Documents/study/zyy/pet_backend/target/classes started by hodor in /Users/hodor/Documents/study/zyy/pet_backend)
+2021-10-17 02:41:52.713 DEBUG 38645 --- [restartedMain] com.hodor.PetApplication                 : Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2021-10-17 02:41:52.713  INFO 38645 --- [restartedMain] com.hodor.PetApplication                 : The following profiles are active: dev
+2021-10-17 02:41:52.762  INFO 38645 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-10-17 02:41:52.762  INFO 38645 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-10-17 02:41:53.209  INFO 38645 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-17 02:41:53.210  INFO 38645 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-17 02:41:53.220  INFO 38645 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5ms. Found 0 repository interfaces.
+2021-10-17 02:41:53.229  INFO 38645 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-17 02:41:53.230  INFO 38645 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-17 02:41:53.238  INFO 38645 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1ms. Found 0 repository interfaces.
+2021-10-17 02:41:53.514  INFO 38645 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$75549264] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-17 02:41:53.913  INFO 38645 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-10-17 02:41:53.931  INFO 38645 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-10-17 02:41:53.932  INFO 38645 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2021-10-17 02:41:54.006  INFO 38645 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-10-17 02:41:54.007  INFO 38645 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1244 ms
+2021-10-17 02:41:54.154  INFO 38645 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-10-17 02:41:54.156  WARN 38645 --- [restartedMain] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-10-17 02:41:54.842  INFO 38645 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-10-17 02:41:54.915  INFO 38645 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-10-17 02:41:54.962  INFO 38645 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.12.Final}
+2021-10-17 02:41:54.963  INFO 38645 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2021-10-17 02:41:55.081  INFO 38645 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-10-17 02:41:55.189  INFO 38645 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-10-17 02:41:55.341  INFO 38645 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-10-17 02:41:55.886  INFO 38645 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-10-17 02:41:55.963  WARN 38645 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-10-17 02:41:56.685  INFO 38645 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-10-17 02:41:56.736  INFO 38645 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-10-17 02:41:56.739  INFO 38645 --- [restartedMain] com.hodor.PetApplication                 : Started PetApplication in 24.439 seconds (JVM running for 24.771)
+2021-10-17 02:42:39.513  INFO 38645 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-17 02:42:39.515  INFO 38645 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-10-17 02:42:39.528  INFO 38645 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2021-10-17 02:42:39.637  INFO 38645 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/login', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.login', args=[10000000, 123456]}
+2021-10-17 02:42:39.637  INFO 38645 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-17 02:42:39.711 DEBUG 38645 --- [http-nio-8080-exec-2] c.h.d.U.getUserByUserNameAndPassWord     : ==>  Preparing: select * from t_user where id=? and password=? 
+2021-10-17 02:42:39.737 DEBUG 38645 --- [http-nio-8080-exec-2] c.h.d.U.getUserByUserNameAndPassWord     : ==> Parameters: 10000000(Long), 123456(String)
+2021-10-17 02:42:39.810 DEBUG 38645 --- [http-nio-8080-exec-2] c.h.d.U.getUserByUserNameAndPassWord     : <==      Total: 1
+2021-10-17 02:42:39.811  INFO 38645 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-17 02:42:39.811  INFO 38645 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@3959a99d
+2021-10-17 02:42:53.482  INFO 38645 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-10-17 02:42:53.483  INFO 38645 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-10-17 02:42:53.485  INFO 38645 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-10-17 02:42:53.491  INFO 38645 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

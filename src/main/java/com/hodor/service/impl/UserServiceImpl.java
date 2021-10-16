@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     public JsonResult<User> getUserByUserNameAndPassWord(Long id, String passWord) {
         User userByUserNameAndPassWord = userMapper.getUserByUserNameAndPassWord(id, passWord);
         if(userByUserNameAndPassWord != null) {
-            Meta meta = new Meta("success", 10000L);
+            Meta meta = new Meta("登陆成功", 200L);
             return new JsonResult<User>().setMeta(meta).setData(userByUserNameAndPassWord);
         }
         return null;
