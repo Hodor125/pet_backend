@@ -30,19 +30,19 @@ public class UserController {
     /**
      * 获取用户列表
      * @param query
-     * @param pageno
+     * @param pagenum
      * @param pagesize
      * @return
      */
-    @GetMapping("/user")
+    @GetMapping("/user/users")
     public JsonResult<List<UserListVO>> getUserListByQuery(@RequestParam(required = false) String query,
-                                                           @RequestParam(required = false, defaultValue = "1") Long pageno,
+                                                           @RequestParam(required = false, defaultValue = "1") Long pagenum,
                                                            @RequestParam(required = false, defaultValue = "10") Long pagesize) {
-        JsonResult<List<UserListVO>> userListByQuery = userService.getUserListByQuery(query, pageno, pagesize);
+        JsonResult<List<UserListVO>> userListByQuery = userService.getUserListByQuery(query, pagenum, pagesize);
         return userListByQuery;
     }
 
-    @PostMapping("/user")
+    @PostMapping("/user/users")
     public JsonResult<UserAddVO> addUser(@RequestBody UserAddDTO userAddDTO) {
         JsonResult<UserAddVO> userAddVOJsonResult = userService.addUser(userAddDTO);
         return userAddVOJsonResult;

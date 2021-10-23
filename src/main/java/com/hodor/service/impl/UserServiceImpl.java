@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户信息相关
@@ -47,16 +49,20 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public JsonResult<List<UserListVO>> getUserListByQuery(String query, Long pageno, Long pagesize) {
+        Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
-            return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 400L)).setData(new ArrayList<>());
+            map.put("total", 0);
+            map.put("pagenum", pageno);
+            map.put("users", new ArrayList<>());
+            return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 400L)).setData(map);
         }
-        List<User> userListByQuery = userMapper.getUserListByQuery(query, pageno - 1, pagesize);
+        List<User> userListByQuery = userMapper.getUserListByQuery(query, (pageno - 1) * 10, pagesize);
         Meta meta = new Meta("获取成功", 200L);
-        if(userListByQuery.size() == 0) {
-            return new JsonResult<List<UserListVO>>().setMeta(meta).setData(new ArrayList<>());
-        }
         List<UserListVO> userListVOS = transUserToUserListVO(userListByQuery);
-        return new JsonResult<List<UserListVO>>().setMeta(meta).setData(userListVOS);
+        map.put("total", userListByQuery.size());
+        map.put("pagenum", pageno);
+        map.put("users", userListVOS);
+        return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
     }
 
     @Override
