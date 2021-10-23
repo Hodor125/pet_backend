@@ -1,5 +1,6 @@
 package com.hodor.web;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2021/10/17
  */
 @RestController
+@CrossOrigin
 public class TestController {
 
     @GetMapping("/test")

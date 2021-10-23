@@ -1,30 +1,24 @@
-package com.hodor.pojo;
+package com.hodor.dto;
 
 import java.util.Date;
 
 /**
  * @Author limingli006
- * @Date 2021/10/17
+ * @Date 2021/10/23
  */
-public class User {
+public class UserAddDTO {
 
-    private Long id;
+    private String username;
 
-    private String nickName;
+    private String nickname;
 
     private String password;
-
-    private Long power;
 
     private String email;
 
     private String tel;
 
-    private Date createTime;
-
     private String pId;
-
-    private String pImage;
 
     private String address;
 
@@ -32,24 +26,20 @@ public class User {
 
     private String sex;
 
-    private String name;
-
-    private Integer state;
-
-    public Long getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {
@@ -58,14 +48,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Long getPower() {
-        return power;
-    }
-
-    public void setPower(Long power) {
-        this.power = power;
     }
 
     public String getEmail() {
@@ -84,28 +66,12 @@ public class User {
         this.tel = tel;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public String getpId() {
         return pId;
     }
 
     public void setpId(String pId) {
         this.pId = pId;
-    }
-
-    public String getpImage() {
-        return pImage;
-    }
-
-    public void setpImage(String pImage) {
-        this.pImage = pImage;
     }
 
     public String getAddress() {
@@ -130,21 +96,5 @@ public class User {
 
     public void setSex(String sex) {
         this.sex = sex;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
     }
 }
