@@ -1240,3 +1240,189 @@ java.lang.NumberFormatException: For input string: "false"
 2021-10-24 20:44:26.985  INFO 42488 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-10-24 20:44:26.987  INFO 42488 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-10-24 20:44:26.993  INFO 42488 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-10-24 22:19:41.759  INFO 43476 --- [restartedMain] com.hodor.PetApplication                 : Starting PetApplication on bogon with PID 43476 (/Users/hodor/Documents/study/zyy/pet_backend/target/classes started by hodor in /Users/hodor/Documents/study/zyy/pet_backend)
+2021-10-24 22:19:41.760 DEBUG 43476 --- [restartedMain] com.hodor.PetApplication                 : Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2021-10-24 22:19:41.760  INFO 43476 --- [restartedMain] com.hodor.PetApplication                 : The following profiles are active: dev
+2021-10-24 22:19:41.805  INFO 43476 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-10-24 22:19:41.805  INFO 43476 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-10-24 22:19:42.301  INFO 43476 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 22:19:42.302  INFO 43476 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 22:19:42.311  INFO 43476 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5ms. Found 0 repository interfaces.
+2021-10-24 22:19:42.320  INFO 43476 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 22:19:42.321  INFO 43476 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 22:19:42.329  INFO 43476 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2ms. Found 0 repository interfaces.
+2021-10-24 22:19:42.586  INFO 43476 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9ecf7e29] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-24 22:19:42.956  INFO 43476 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-10-24 22:19:42.975  INFO 43476 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-10-24 22:19:42.975  INFO 43476 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2021-10-24 22:19:43.041  INFO 43476 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-10-24 22:19:43.041  INFO 43476 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1236 ms
+2021-10-24 22:19:43.182  INFO 43476 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-10-24 22:19:43.184  WARN 43476 --- [restartedMain] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-10-24 22:19:44.088  INFO 43476 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-10-24 22:19:44.154  INFO 43476 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-10-24 22:19:44.201  INFO 43476 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.12.Final}
+2021-10-24 22:19:44.201  INFO 43476 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2021-10-24 22:19:44.306  INFO 43476 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-10-24 22:19:44.397  INFO 43476 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-10-24 22:19:44.520  INFO 43476 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 22:19:45.000  INFO 43476 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-10-24 22:19:45.068  WARN 43476 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-10-24 22:19:45.676  INFO 43476 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-10-24 22:19:45.721  INFO 43476 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-10-24 22:19:45.723  INFO 43476 --- [restartedMain] com.hodor.PetApplication                 : Started PetApplication in 4.338 seconds (JVM running for 4.671)
+2021-10-24 22:22:16.031  INFO 43476 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-24 22:22:16.032  INFO 43476 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-10-24 22:22:16.041  INFO 43476 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2021-10-24 22:22:16.128  INFO 43476 --- [http-nio-8080-exec-1] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[, null, 1, 5]}
+2021-10-24 22:22:16.128  INFO 43476 --- [http-nio-8080-exec-1] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 22:22:18.584 DEBUG 43476 --- [http-nio-8080-exec-1] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user limit ?,? 
+2021-10-24 22:22:18.629 DEBUG 43476 --- [http-nio-8080-exec-1] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 0(Long), 5(Long)
+2021-10-24 22:22:22.811 DEBUG 43476 --- [http-nio-8080-exec-1] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 5
+2021-10-24 22:22:22.813 DEBUG 43476 --- [http-nio-8080-exec-1] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user 
+2021-10-24 22:22:22.813 DEBUG 43476 --- [http-nio-8080-exec-1] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 
+2021-10-24 22:22:25.186 DEBUG 43476 --- [http-nio-8080-exec-1] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 9
+2021-10-24 22:22:25.191  INFO 43476 --- [http-nio-8080-exec-1] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 22:22:25.192  INFO 43476 --- [http-nio-8080-exec-1] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@69bf5e6d
+2021-10-24 22:59:40.480  INFO 43476 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-10-24 22:59:40.481  INFO 43476 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 22:59:40.483  INFO 43476 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-10-24 22:59:40.485  INFO 43476 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-10-24 22:59:44.939  INFO 44031 --- [restartedMain] com.hodor.PetApplication                 : Starting PetApplication on bogon with PID 44031 (/Users/hodor/Documents/study/zyy/pet_backend/target/classes started by hodor in /Users/hodor/Documents/study/zyy/pet_backend)
+2021-10-24 22:59:44.941 DEBUG 44031 --- [restartedMain] com.hodor.PetApplication                 : Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2021-10-24 22:59:44.941  INFO 44031 --- [restartedMain] com.hodor.PetApplication                 : The following profiles are active: dev
+2021-10-24 22:59:44.992  INFO 44031 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-10-24 22:59:44.992  INFO 44031 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-10-24 22:59:45.456  INFO 44031 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 22:59:45.457  INFO 44031 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 22:59:45.466  INFO 44031 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5ms. Found 0 repository interfaces.
+2021-10-24 22:59:45.475  INFO 44031 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 22:59:45.476  INFO 44031 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 22:59:45.482  INFO 44031 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1ms. Found 0 repository interfaces.
+2021-10-24 22:59:45.734  INFO 44031 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1b9a70b6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-24 22:59:46.083  INFO 44031 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-10-24 22:59:46.100  INFO 44031 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-10-24 22:59:46.100  INFO 44031 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2021-10-24 22:59:46.161  INFO 44031 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-10-24 22:59:46.161  INFO 44031 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1169 ms
+2021-10-24 22:59:46.289  INFO 44031 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-10-24 22:59:46.291  WARN 44031 --- [restartedMain] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-10-24 22:59:48.182  INFO 44031 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-10-24 22:59:48.259  INFO 44031 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-10-24 22:59:48.305  INFO 44031 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.12.Final}
+2021-10-24 22:59:48.305  INFO 44031 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2021-10-24 22:59:48.393  INFO 44031 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-10-24 22:59:48.482  INFO 44031 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-10-24 22:59:48.609  INFO 44031 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 22:59:49.102  INFO 44031 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-10-24 22:59:49.167  WARN 44031 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-10-24 22:59:49.782  INFO 44031 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-10-24 22:59:49.831  INFO 44031 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-10-24 22:59:49.833  INFO 44031 --- [restartedMain] com.hodor.PetApplication                 : Started PetApplication in 5.293 seconds (JVM running for 5.606)
+2021-10-24 23:03:55.381  INFO 44031 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-24 23:03:55.381  INFO 44031 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-10-24 23:03:55.393  INFO 44031 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2021-10-24 23:03:55.411  WARN 44031 --- [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2021-10-24 23:04:02.471  INFO 44031 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users/10000002/state/1', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.updateUser', args=[10000002, 1]}
+2021-10-24 23:04:02.473  INFO 44031 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 23:04:02.588 DEBUG 44031 --- [http-nio-8080-exec-4] com.hodor.dao.UserDao.updateUser         : ==>  Preparing: update t_user SET state=? where id=? 
+2021-10-24 23:04:02.604 DEBUG 44031 --- [http-nio-8080-exec-4] com.hodor.dao.UserDao.updateUser         : ==> Parameters: 1(Integer), 10000002(Long)
+2021-10-24 23:04:02.728 DEBUG 44031 --- [http-nio-8080-exec-4] com.hodor.dao.UserDao.updateUser         : <==    Updates: 1
+2021-10-24 23:04:02.730  INFO 44031 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 23:04:02.730  INFO 44031 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@1e8c1d70
+2021-10-24 23:04:52.322  INFO 44031 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users/10000002/state/0', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.updateUser', args=[10000002, 0]}
+2021-10-24 23:04:52.322  INFO 44031 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 23:04:52.397 DEBUG 44031 --- [http-nio-8080-exec-3] com.hodor.dao.UserDao.updateUser         : ==>  Preparing: update t_user where id=? 
+2021-10-24 23:04:52.397 DEBUG 44031 --- [http-nio-8080-exec-3] com.hodor.dao.UserDao.updateUser         : ==> Parameters: 10000002(Long)
+2021-10-24 23:04:52.583  INFO 44031 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 23:04:52.584  INFO 44031 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@11998c19
+2021-10-24 23:05:23.956  INFO 44031 --- [http-nio-8080-exec-5] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users/10000002/state/0', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.updateUser', args=[10000002, 0]}
+2021-10-24 23:05:23.957  INFO 44031 --- [http-nio-8080-exec-5] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 23:05:24.044 DEBUG 44031 --- [http-nio-8080-exec-5] com.hodor.dao.UserDao.updateUser         : ==>  Preparing: update t_user where id=? 
+2021-10-24 23:05:24.045 DEBUG 44031 --- [http-nio-8080-exec-5] com.hodor.dao.UserDao.updateUser         : ==> Parameters: 10000002(Long)
+2021-10-24 23:06:12.835  INFO 44031 --- [http-nio-8080-exec-5] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 23:06:12.836  INFO 44031 --- [http-nio-8080-exec-5] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@21978701
+2021-10-24 23:06:12.836  WARN 44031 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s517ms).
+2021-10-24 23:06:19.806  INFO 44031 --- [http-nio-8080-exec-6] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users/10000002/state/1', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.updateUser', args=[10000002, 1]}
+2021-10-24 23:06:19.807  INFO 44031 --- [http-nio-8080-exec-6] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 23:06:19.876 DEBUG 44031 --- [http-nio-8080-exec-6] com.hodor.dao.UserDao.updateUser         : ==>  Preparing: update t_user SET state=? where id=? 
+2021-10-24 23:06:19.877 DEBUG 44031 --- [http-nio-8080-exec-6] com.hodor.dao.UserDao.updateUser         : ==> Parameters: 1(Integer), 10000002(Long)
+2021-10-24 23:06:20.095 DEBUG 44031 --- [http-nio-8080-exec-6] com.hodor.dao.UserDao.updateUser         : <==    Updates: 1
+2021-10-24 23:06:20.096  INFO 44031 --- [http-nio-8080-exec-6] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 23:06:20.097  INFO 44031 --- [http-nio-8080-exec-6] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@54196570
+2021-10-24 23:06:45.871  INFO 44031 --- [http-nio-8080-exec-7] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users/10000002/state/0', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.updateUser', args=[10000002, 0]}
+2021-10-24 23:06:45.871  INFO 44031 --- [http-nio-8080-exec-7] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 23:06:45.958 DEBUG 44031 --- [http-nio-8080-exec-7] com.hodor.dao.UserDao.updateUser         : ==>  Preparing: update t_user where id=? 
+2021-10-24 23:06:45.958 DEBUG 44031 --- [http-nio-8080-exec-7] com.hodor.dao.UserDao.updateUser         : ==> Parameters: 10000002(Long)
+2021-10-24 23:07:29.507  WARN 44031 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=46s666ms).
+2021-10-24 23:07:29.508  INFO 44031 --- [http-nio-8080-exec-7] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 23:07:29.508  INFO 44031 --- [http-nio-8080-exec-7] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@71e41bde
+2021-10-24 23:07:45.184  INFO 44031 --- [http-nio-8080-exec-8] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users/10000002/state/0', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.updateUser', args=[10000002, 0]}
+2021-10-24 23:07:45.184  INFO 44031 --- [http-nio-8080-exec-8] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 23:08:18.131  WARN 44031 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=48s624ms).
+2021-10-24 23:08:18.237 DEBUG 44031 --- [http-nio-8080-exec-8] com.hodor.dao.UserDao.updateUser         : ==>  Preparing: update t_user where id=? 
+2021-10-24 23:08:18.238 DEBUG 44031 --- [http-nio-8080-exec-8] com.hodor.dao.UserDao.updateUser         : ==> Parameters: 10000002(Long)
+2021-10-24 23:08:20.491  INFO 44031 --- [http-nio-8080-exec-8] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 23:08:20.492  INFO 44031 --- [http-nio-8080-exec-8] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@8be922
+2021-10-24 23:08:31.037  INFO 44031 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-10-24 23:08:31.037  INFO 44031 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 23:08:31.042  INFO 44031 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-10-24 23:08:31.047  INFO 44031 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-10-24 23:08:34.565  INFO 44150 --- [restartedMain] com.hodor.PetApplication                 : Starting PetApplication on bogon with PID 44150 (/Users/hodor/Documents/study/zyy/pet_backend/target/classes started by hodor in /Users/hodor/Documents/study/zyy/pet_backend)
+2021-10-24 23:08:34.566 DEBUG 44150 --- [restartedMain] com.hodor.PetApplication                 : Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2021-10-24 23:08:34.566  INFO 44150 --- [restartedMain] com.hodor.PetApplication                 : The following profiles are active: dev
+2021-10-24 23:08:34.612  INFO 44150 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-10-24 23:08:34.612  INFO 44150 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-10-24 23:08:35.078  INFO 44150 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 23:08:35.079  INFO 44150 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 23:08:35.088  INFO 44150 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5ms. Found 0 repository interfaces.
+2021-10-24 23:08:35.096  INFO 44150 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 23:08:35.097  INFO 44150 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 23:08:35.104  INFO 44150 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1ms. Found 0 repository interfaces.
+2021-10-24 23:08:35.361  INFO 44150 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a0b9ccc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-24 23:08:35.740  INFO 44150 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-10-24 23:08:35.758  INFO 44150 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-10-24 23:08:35.758  INFO 44150 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2021-10-24 23:08:35.817  INFO 44150 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-10-24 23:08:35.817  INFO 44150 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1205 ms
+2021-10-24 23:08:35.947  INFO 44150 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-10-24 23:08:35.952  WARN 44150 --- [restartedMain] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-10-24 23:08:36.725  INFO 44150 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-10-24 23:08:36.792  INFO 44150 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-10-24 23:08:36.834  INFO 44150 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.12.Final}
+2021-10-24 23:08:36.835  INFO 44150 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2021-10-24 23:08:36.914  INFO 44150 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-10-24 23:08:36.995  INFO 44150 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-10-24 23:08:37.122  INFO 44150 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 23:08:37.611  INFO 44150 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-10-24 23:08:37.670  WARN 44150 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-10-24 23:08:38.275  INFO 44150 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-10-24 23:08:38.323  INFO 44150 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-10-24 23:08:38.325  INFO 44150 --- [restartedMain] com.hodor.PetApplication                 : Started PetApplication in 4.116 seconds (JVM running for 4.442)
+2021-10-24 23:08:43.442  INFO 44150 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-24 23:08:43.442  INFO 44150 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-10-24 23:08:43.452  INFO 44150 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2021-10-24 23:08:43.539  INFO 44150 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users/10000002/state/0', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.updateUser', args=[10000002, 0]}
+2021-10-24 23:08:43.539  INFO 44150 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 23:08:48.559 DEBUG 44150 --- [http-nio-8080-exec-2] com.hodor.dao.UserDao.updateUser         : ==>  Preparing: update t_user SET state=? where id=? 
+2021-10-24 23:08:48.579 DEBUG 44150 --- [http-nio-8080-exec-2] com.hodor.dao.UserDao.updateUser         : ==> Parameters: 0(Integer), 10000002(Long)
+2021-10-24 23:08:48.722 DEBUG 44150 --- [http-nio-8080-exec-2] com.hodor.dao.UserDao.updateUser         : <==    Updates: 1
+2021-10-24 23:08:48.723  INFO 44150 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 23:08:48.723  INFO 44150 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@e5e52d3
+2021-10-24 23:09:23.233  INFO 44150 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users/10000002/state/1', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.updateUser', args=[10000002, 1]}
+2021-10-24 23:09:23.234  INFO 44150 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 23:09:25.802 DEBUG 44150 --- [http-nio-8080-exec-3] com.hodor.dao.UserDao.updateUser         : ==>  Preparing: update t_user SET state=? where id=? 
+2021-10-24 23:09:25.803 DEBUG 44150 --- [http-nio-8080-exec-3] com.hodor.dao.UserDao.updateUser         : ==> Parameters: 1(Integer), 10000002(Long)
+2021-10-24 23:09:26.137 DEBUG 44150 --- [http-nio-8080-exec-3] com.hodor.dao.UserDao.updateUser         : <==    Updates: 1
+2021-10-24 23:09:26.138  INFO 44150 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 23:09:26.138  INFO 44150 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@49f036c7
+2021-10-24 23:09:36.831  INFO 44150 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-10-24 23:09:36.831  INFO 44150 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 23:09:36.833  INFO 44150 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-10-24 23:09:36.837  INFO 44150 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

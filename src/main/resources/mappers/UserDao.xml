@@ -51,4 +51,47 @@
         insert into t_user(nick_name,`password`,power,email,tel,p_id,p_img,address,age,sex,`name`,state)
         values (#{nickName},#{password},#{power},#{email},#{tel},#{pId},#{pImage},#{address},#{age},#{sex},#{name},#{state})
     </insert>
+
+    <update id="updateUser">
+        update t_user
+        <set>
+            <if test="nickName != null and nickName != ''">
+                nick_name=#{nickName},
+            </if>
+            <if test="password != null and password != ''">
+                password=#{password},
+            </if>
+            <if test="power != null">
+                power=#{power},
+            </if>
+            <if test="tel != null and tel != ''">
+                tel=#{tel},
+            </if>
+            <if test="email != null and email != ''">
+                email=#{email},
+            </if>
+            <if test="pId != null and pId != ''">
+                p_id=#{pId},
+            </if>
+            <if test="pImage != null and pImage != ''">
+                p_image=#{pImage},
+            </if>
+            <if test="address != null and address != ''">
+                address=#{address},
+            </if>
+            <if test="age != null">
+                age=#{age},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex=#{sex},
+            </if>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>

@@ -1,11 +1,13 @@
 package com.hodor.web;
 
 import com.hodor.constants.JsonResult;
+import com.hodor.constants.Meta;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.pojo.User;
 import com.hodor.service.UserService;
 import com.hodor.vo.user.UserAddVO;
 import com.hodor.vo.user.UserListVO;
+import com.hodor.vo.user.UserUpdateStateVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,9 +46,24 @@ public class UserController {
         return userListByQuery;
     }
 
+    /**
+     * 添加用户
+     * @param userAddDTO
+     * @return
+     */
     @PostMapping("/user/users")
     public JsonResult<UserAddVO> addUser(@RequestBody UserAddDTO userAddDTO) {
         JsonResult<UserAddVO> userAddVOJsonResult = userService.addUser(userAddDTO);
         return userAddVOJsonResult;
+    }
+
+    @PutMapping("/user/users/{uId}/state/{state}")
+    public JsonResult updateUser(@PathVariable Long uId, @PathVariable Integer state) {
+        try {
+            JsonResult<UserUpdateStateVO> userUpdateStateVOJsonResult = userService.updateUserState(uId, state);
+            return userUpdateStateVOJsonResult;
+        } catch (Exception e) {
+            return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改失败", 400L)).setData(new UserUpdateStateVO());
+        }
     }
 }

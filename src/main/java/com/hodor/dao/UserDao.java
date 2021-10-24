@@ -25,4 +25,6 @@ public interface UserDao {
                                   @Param("power") Long power);
 
     Integer addUser(User user);
+
+    Integer updateUser(User user);
 }

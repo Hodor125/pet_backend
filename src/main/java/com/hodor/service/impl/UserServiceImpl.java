@@ -9,6 +9,7 @@ import com.hodor.service.UserService;
 import com.hodor.vo.user.UserAddVO;
 import com.hodor.vo.user.UserListVO;
 import com.hodor.vo.user.UserLoginVO;
+import com.hodor.vo.user.UserUpdateStateVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,13 +80,22 @@ public class UserServiceImpl implements UserService {
                 .setData(new UserAddVO(user.getId(), user.getName()));
     }
 
+    @Override
+    public JsonResult<UserUpdateStateVO> updateUserState(Long id, Integer state) {
+        User user = new User();
+        user.setId(id);
+        user.setState(state);
+        userMapper.updateUser(user);
+        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 200L))
+                .setData(new UserUpdateStateVO().setId(id).setState(state));
+    }
+
     private List<UserListVO> transUserToUserListVO(List<User> users) {
         List<UserListVO> userListVOS = new ArrayList<>();
         for (User user : users) {
             UserListVO userListVO = new UserListVO();
             userListVO.setId(user.getId());
             userListVO.setNick_name(user.getNickName());
-//            userListVO.setPsw(user.getPassword());
             userListVO.setName(user.getName());
             userListVO.setP_id(user.getpId());
             userListVO.setP_image(user.getpImage());

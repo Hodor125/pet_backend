@@ -4,9 +4,8 @@ import com.hodor.constants.JsonResult;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.pojo.User;
 import com.hodor.vo.user.UserAddVO;
-import com.hodor.vo.user.UserListVO;
+import com.hodor.vo.user.UserUpdateStateVO;
 
-import java.util.List;
 import java.util.Map;
 
 public interface UserService {
@@ -22,4 +21,6 @@ public interface UserService {
     JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Long pageno, Long pagesize);
 
     JsonResult<UserAddVO> addUser(UserAddDTO userAddDTO);
+
+    JsonResult<UserUpdateStateVO> updateUserState(Long id, Integer state);
 }
