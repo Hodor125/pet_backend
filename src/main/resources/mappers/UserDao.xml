@@ -18,12 +18,11 @@
         <result property="state" column="state"/>
     </resultMap>
 
-    <!--查询所有文章-->
     <select id="getUserByUserNameAndPassWord" resultMap="UserMap">
         select * from t_user where id=#{id} and password=#{passWord}
     </select>
 
-    <select id="getUserListByQuery" resultMap="UserMap">
+    <select id="getUserListByQueryLimit" resultMap="UserMap">
         select * from t_user
         <where>
             <if test="query != null and query != ''">
@@ -31,6 +30,15 @@
             </if>
         </where>
         limit #{start},#{size}
+    </select>
+
+    <select id="getUserListByQuery" resultMap="UserMap">
+        select id from t_user
+        <where>
+            <if test="query != null and query != ''">
+                nick_name like concat('%', #{query}, '%' )
+            </if>
+        </where>
     </select>
 
     <insert id="addUser" useGeneratedKeys="true" keyProperty="id">

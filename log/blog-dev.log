@@ -92,3 +92,218 @@
 2021-10-24 00:16:04.365  INFO 39403 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-10-24 00:16:04.367  INFO 39403 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-10-24 00:16:04.373  INFO 39403 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-10-24 14:38:09.972  INFO 40310 --- [restartedMain] com.hodor.PetApplication                 : Starting PetApplication on 192.168.1.6 with PID 40310 (/Users/hodor/Documents/study/zyy/pet_backend/target/classes started by hodor in /Users/hodor/Documents/study/zyy/pet_backend)
+2021-10-24 14:38:09.974 DEBUG 40310 --- [restartedMain] com.hodor.PetApplication                 : Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2021-10-24 14:38:09.975  INFO 40310 --- [restartedMain] com.hodor.PetApplication                 : The following profiles are active: dev
+2021-10-24 14:38:10.036  INFO 40310 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-10-24 14:38:10.038  INFO 40310 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-10-24 14:38:11.272  INFO 40310 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 14:38:11.273  INFO 40310 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 14:38:11.288  INFO 40310 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 repository interfaces.
+2021-10-24 14:38:11.440  INFO 40310 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 14:38:11.444  INFO 40310 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 14:38:11.457  INFO 40310 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4ms. Found 0 repository interfaces.
+2021-10-24 14:38:12.408  INFO 40310 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$85cde100] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-24 14:38:13.470  INFO 40310 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-10-24 14:38:13.625  INFO 40310 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3586 ms
+2021-10-24 14:38:20.818  INFO 40315 --- [restartedMain] com.hodor.PetApplication                 : Starting PetApplication on 192.168.1.6 with PID 40315 (/Users/hodor/Documents/study/zyy/pet_backend/target/classes started by hodor in /Users/hodor/Documents/study/zyy/pet_backend)
+2021-10-24 14:38:20.819 DEBUG 40315 --- [restartedMain] com.hodor.PetApplication                 : Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2021-10-24 14:38:20.819  INFO 40315 --- [restartedMain] com.hodor.PetApplication                 : The following profiles are active: dev
+2021-10-24 14:38:20.864  INFO 40315 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-10-24 14:38:20.865  INFO 40315 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-10-24 14:38:21.370  INFO 40315 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 14:38:21.370  INFO 40315 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 14:38:21.383  INFO 40315 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5ms. Found 0 repository interfaces.
+2021-10-24 14:38:21.391  INFO 40315 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 14:38:21.392  INFO 40315 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 14:38:21.398  INFO 40315 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2ms. Found 0 repository interfaces.
+2021-10-24 14:38:21.660  INFO 40315 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fc188d98] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-24 14:38:22.027  INFO 40315 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-10-24 14:38:22.047  INFO 40315 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-10-24 14:38:22.047  INFO 40315 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2021-10-24 14:38:22.124  INFO 40315 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-10-24 14:38:22.125  INFO 40315 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1260 ms
+2021-10-24 14:38:22.259  INFO 40315 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-10-24 14:38:22.261  WARN 40315 --- [restartedMain] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-10-24 14:38:22.759  INFO 40315 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-10-24 14:38:22.841  INFO 40315 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-10-24 14:38:22.886  INFO 40315 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.12.Final}
+2021-10-24 14:38:22.887  INFO 40315 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2021-10-24 14:38:22.981  INFO 40315 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-10-24 14:38:23.065  INFO 40315 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-10-24 14:38:23.200  INFO 40315 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 14:38:23.716  INFO 40315 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-10-24 14:38:23.780  WARN 40315 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-10-24 14:38:24.401  INFO 40315 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-10-24 14:38:24.447  INFO 40315 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-10-24 14:38:24.449  INFO 40315 --- [restartedMain] com.hodor.PetApplication                 : Started PetApplication in 3.925 seconds (JVM running for 4.613)
+2021-10-24 14:40:00.369  INFO 40315 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-24 14:40:00.369  INFO 40315 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-10-24 14:40:00.378  INFO 40315 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2021-10-24 14:40:00.456  INFO 40315 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[, 1, 5]}
+2021-10-24 14:40:00.456  INFO 40315 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:40:00.537 DEBUG 40315 --- [http-nio-8080-exec-2] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user limit ?,? 
+2021-10-24 14:40:00.554 DEBUG 40315 --- [http-nio-8080-exec-2] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 0(Long), 5(Long)
+2021-10-24 14:40:00.599 DEBUG 40315 --- [http-nio-8080-exec-2] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 5
+2021-10-24 14:40:00.601 DEBUG 40315 --- [http-nio-8080-exec-2] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user 
+2021-10-24 14:40:00.601 DEBUG 40315 --- [http-nio-8080-exec-2] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 
+2021-10-24 14:40:00.636 DEBUG 40315 --- [http-nio-8080-exec-2] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 8
+2021-10-24 14:40:04.899  INFO 40315 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:40:04.899  INFO 40315 --- [http-nio-8080-exec-2] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@2c819d91
+2021-10-24 14:40:18.662  INFO 40315 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[, 2, 5]}
+2021-10-24 14:40:18.663  INFO 40315 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:40:18.694 DEBUG 40315 --- [http-nio-8080-exec-3] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user limit ?,? 
+2021-10-24 14:40:18.695 DEBUG 40315 --- [http-nio-8080-exec-3] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 10(Long), 5(Long)
+2021-10-24 14:40:18.752 DEBUG 40315 --- [http-nio-8080-exec-3] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 0
+2021-10-24 14:40:18.753 DEBUG 40315 --- [http-nio-8080-exec-3] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user 
+2021-10-24 14:40:18.754 DEBUG 40315 --- [http-nio-8080-exec-3] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 
+2021-10-24 14:40:18.791 DEBUG 40315 --- [http-nio-8080-exec-3] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 8
+2021-10-24 14:40:18.792  INFO 40315 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:40:18.792  INFO 40315 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@34d1505a
+2021-10-24 14:40:29.444  INFO 40315 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[, 2, 5]}
+2021-10-24 14:40:29.445  INFO 40315 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:40:29.475 DEBUG 40315 --- [http-nio-8080-exec-4] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user limit ?,? 
+2021-10-24 14:40:29.476 DEBUG 40315 --- [http-nio-8080-exec-4] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 10(Long), 5(Long)
+2021-10-24 14:40:29.510 DEBUG 40315 --- [http-nio-8080-exec-4] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 0
+2021-10-24 14:40:29.511 DEBUG 40315 --- [http-nio-8080-exec-4] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user 
+2021-10-24 14:40:29.512 DEBUG 40315 --- [http-nio-8080-exec-4] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 
+2021-10-24 14:40:29.557 DEBUG 40315 --- [http-nio-8080-exec-4] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 8
+2021-10-24 14:41:25.803  WARN 40315 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m2s937ms).
+2021-10-24 14:41:25.803  INFO 40315 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:41:25.804  INFO 40315 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@7448992f
+2021-10-24 14:41:25.865  INFO 40315 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-10-24 14:41:25.865  INFO 40315 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 14:41:25.867  INFO 40315 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-10-24 14:41:25.875  INFO 40315 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-10-24 14:41:35.144  INFO 40372 --- [restartedMain] com.hodor.PetApplication                 : Starting PetApplication on 192.168.1.6 with PID 40372 (/Users/hodor/Documents/study/zyy/pet_backend/target/classes started by hodor in /Users/hodor/Documents/study/zyy/pet_backend)
+2021-10-24 14:41:35.145 DEBUG 40372 --- [restartedMain] com.hodor.PetApplication                 : Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2021-10-24 14:41:35.145  INFO 40372 --- [restartedMain] com.hodor.PetApplication                 : The following profiles are active: dev
+2021-10-24 14:41:35.171  INFO 40372 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-10-24 14:41:35.172  INFO 40372 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-10-24 14:41:35.650  INFO 40372 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 14:41:35.651  INFO 40372 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 14:41:35.662  INFO 40372 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4ms. Found 0 repository interfaces.
+2021-10-24 14:41:35.669  INFO 40372 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-24 14:41:35.670  INFO 40372 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-24 14:41:35.676  INFO 40372 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2ms. Found 0 repository interfaces.
+2021-10-24 14:41:35.921  INFO 40372 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7496b3b0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-24 14:41:36.283  INFO 40372 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-10-24 14:41:36.310  INFO 40372 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-10-24 14:41:36.310  INFO 40372 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2021-10-24 14:41:36.390  INFO 40372 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-10-24 14:41:36.390  INFO 40372 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1218 ms
+2021-10-24 14:41:36.513  INFO 40372 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-10-24 14:41:36.515  WARN 40372 --- [restartedMain] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-10-24 14:41:38.433  INFO 40372 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-10-24 14:41:38.513  INFO 40372 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-10-24 14:41:38.551  INFO 40372 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.12.Final}
+2021-10-24 14:41:38.552  INFO 40372 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2021-10-24 14:41:38.630  INFO 40372 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-10-24 14:41:38.713  INFO 40372 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-10-24 14:41:38.841  INFO 40372 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 14:41:39.347  INFO 40372 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-10-24 14:41:39.396  WARN 40372 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-10-24 14:41:39.986  INFO 40372 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-10-24 14:41:40.030  INFO 40372 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-10-24 14:41:40.032  INFO 40372 --- [restartedMain] com.hodor.PetApplication                 : Started PetApplication in 5.261 seconds (JVM running for 5.609)
+2021-10-24 14:41:58.048  INFO 40372 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-24 14:41:58.049  INFO 40372 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-10-24 14:41:58.060  INFO 40372 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2021-10-24 14:41:58.148  INFO 40372 --- [http-nio-8080-exec-1] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[, 2, 5]}
+2021-10-24 14:41:58.149  INFO 40372 --- [http-nio-8080-exec-1] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:41:58.245 DEBUG 40372 --- [http-nio-8080-exec-1] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user limit ?,? 
+2021-10-24 14:41:58.263 DEBUG 40372 --- [http-nio-8080-exec-1] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 5(Long), 5(Long)
+2021-10-24 14:41:58.334 DEBUG 40372 --- [http-nio-8080-exec-1] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 3
+2021-10-24 14:41:58.334 DEBUG 40372 --- [http-nio-8080-exec-1] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user 
+2021-10-24 14:41:58.334 DEBUG 40372 --- [http-nio-8080-exec-1] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 
+2021-10-24 14:41:58.410 DEBUG 40372 --- [http-nio-8080-exec-1] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 8
+2021-10-24 14:42:00.767  INFO 40372 --- [http-nio-8080-exec-1] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:42:00.767  INFO 40372 --- [http-nio-8080-exec-1] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@20f7ab5a
+2021-10-24 14:42:13.361  INFO 40372 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[, 3, 5]}
+2021-10-24 14:42:13.361  INFO 40372 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:42:13.405 DEBUG 40372 --- [http-nio-8080-exec-4] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user limit ?,? 
+2021-10-24 14:42:13.406 DEBUG 40372 --- [http-nio-8080-exec-4] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 10(Long), 5(Long)
+2021-10-24 14:42:13.465 DEBUG 40372 --- [http-nio-8080-exec-4] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 0
+2021-10-24 14:42:13.466 DEBUG 40372 --- [http-nio-8080-exec-4] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user 
+2021-10-24 14:42:13.466 DEBUG 40372 --- [http-nio-8080-exec-4] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 
+2021-10-24 14:42:13.549 DEBUG 40372 --- [http-nio-8080-exec-4] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 8
+2021-10-24 14:42:13.550  INFO 40372 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:42:13.550  INFO 40372 --- [http-nio-8080-exec-4] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@595371cb
+2021-10-24 14:42:21.606  INFO 40372 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[, 1, 5]}
+2021-10-24 14:42:21.606  INFO 40372 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:42:21.664 DEBUG 40372 --- [http-nio-8080-exec-3] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user limit ?,? 
+2021-10-24 14:42:21.665 DEBUG 40372 --- [http-nio-8080-exec-3] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 0(Long), 5(Long)
+2021-10-24 14:42:21.754 DEBUG 40372 --- [http-nio-8080-exec-3] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 5
+2021-10-24 14:42:21.755 DEBUG 40372 --- [http-nio-8080-exec-3] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user 
+2021-10-24 14:42:21.755 DEBUG 40372 --- [http-nio-8080-exec-3] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 
+2021-10-24 14:42:21.915 DEBUG 40372 --- [http-nio-8080-exec-3] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 8
+2021-10-24 14:42:21.916  INFO 40372 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:42:21.916  INFO 40372 --- [http-nio-8080-exec-3] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@789d53d1
+2021-10-24 14:42:34.499  INFO 40372 --- [http-nio-8080-exec-5] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[李明利, 1, 5]}
+2021-10-24 14:42:34.499  INFO 40372 --- [http-nio-8080-exec-5] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:42:34.536 DEBUG 40372 --- [http-nio-8080-exec-5] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user WHERE nick_name like concat('%', ?, '%' ) limit ?,? 
+2021-10-24 14:42:34.537 DEBUG 40372 --- [http-nio-8080-exec-5] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 李明利(String), 0(Long), 5(Long)
+2021-10-24 14:42:34.573 DEBUG 40372 --- [http-nio-8080-exec-5] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 1
+2021-10-24 14:42:34.574 DEBUG 40372 --- [http-nio-8080-exec-5] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user WHERE nick_name like concat('%', ?, '%' ) 
+2021-10-24 14:42:34.575 DEBUG 40372 --- [http-nio-8080-exec-5] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 李明利(String)
+2021-10-24 14:42:34.609 DEBUG 40372 --- [http-nio-8080-exec-5] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 1
+2021-10-24 14:42:34.610  INFO 40372 --- [http-nio-8080-exec-5] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:42:34.610  INFO 40372 --- [http-nio-8080-exec-5] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@39e4986d
+2021-10-24 14:42:42.711  INFO 40372 --- [http-nio-8080-exec-6] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[李明利, 2, 5]}
+2021-10-24 14:42:42.711  INFO 40372 --- [http-nio-8080-exec-6] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:42:42.744 DEBUG 40372 --- [http-nio-8080-exec-6] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user WHERE nick_name like concat('%', ?, '%' ) limit ?,? 
+2021-10-24 14:42:42.745 DEBUG 40372 --- [http-nio-8080-exec-6] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 李明利(String), 5(Long), 5(Long)
+2021-10-24 14:42:42.781 DEBUG 40372 --- [http-nio-8080-exec-6] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 0
+2021-10-24 14:42:42.782 DEBUG 40372 --- [http-nio-8080-exec-6] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user WHERE nick_name like concat('%', ?, '%' ) 
+2021-10-24 14:42:42.783 DEBUG 40372 --- [http-nio-8080-exec-6] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 李明利(String)
+2021-10-24 14:42:42.816 DEBUG 40372 --- [http-nio-8080-exec-6] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 1
+2021-10-24 14:42:42.817  INFO 40372 --- [http-nio-8080-exec-6] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:42:42.817  INFO 40372 --- [http-nio-8080-exec-6] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@6590f295
+2021-10-24 14:42:56.952  INFO 40372 --- [http-nio-8080-exec-7] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[李明利, 1, 5]}
+2021-10-24 14:42:56.952  INFO 40372 --- [http-nio-8080-exec-7] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:42:56.984 DEBUG 40372 --- [http-nio-8080-exec-7] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user WHERE nick_name like concat('%', ?, '%' ) limit ?,? 
+2021-10-24 14:42:56.985 DEBUG 40372 --- [http-nio-8080-exec-7] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 李明利(String), 0(Long), 5(Long)
+2021-10-24 14:42:57.040 DEBUG 40372 --- [http-nio-8080-exec-7] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 1
+2021-10-24 14:42:57.041 DEBUG 40372 --- [http-nio-8080-exec-7] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user WHERE nick_name like concat('%', ?, '%' ) 
+2021-10-24 14:42:57.041 DEBUG 40372 --- [http-nio-8080-exec-7] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 李明利(String)
+2021-10-24 14:42:57.082 DEBUG 40372 --- [http-nio-8080-exec-7] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 1
+2021-10-24 14:42:57.083  INFO 40372 --- [http-nio-8080-exec-7] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:42:57.083  INFO 40372 --- [http-nio-8080-exec-7] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@d4f9d19
+2021-10-24 14:43:02.293  INFO 40372 --- [http-nio-8080-exec-8] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[国王, 1, 5]}
+2021-10-24 14:43:02.293  INFO 40372 --- [http-nio-8080-exec-8] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:43:02.326 DEBUG 40372 --- [http-nio-8080-exec-8] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user WHERE nick_name like concat('%', ?, '%' ) limit ?,? 
+2021-10-24 14:43:02.327 DEBUG 40372 --- [http-nio-8080-exec-8] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 国王(String), 0(Long), 5(Long)
+2021-10-24 14:43:02.360 DEBUG 40372 --- [http-nio-8080-exec-8] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 0
+2021-10-24 14:43:02.361 DEBUG 40372 --- [http-nio-8080-exec-8] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user WHERE nick_name like concat('%', ?, '%' ) 
+2021-10-24 14:43:02.361 DEBUG 40372 --- [http-nio-8080-exec-8] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 国王(String)
+2021-10-24 14:43:02.396 DEBUG 40372 --- [http-nio-8080-exec-8] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 0
+2021-10-24 14:43:02.397  INFO 40372 --- [http-nio-8080-exec-8] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:43:02.397  INFO 40372 --- [http-nio-8080-exec-8] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@28203aaa
+2021-10-24 14:43:35.990  INFO 40372 --- [http-nio-8080-exec-9] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[游戏, 1, 5]}
+2021-10-24 14:43:35.991  INFO 40372 --- [http-nio-8080-exec-9] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:43:36.027 DEBUG 40372 --- [http-nio-8080-exec-9] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user WHERE nick_name like concat('%', ?, '%' ) limit ?,? 
+2021-10-24 14:43:36.028 DEBUG 40372 --- [http-nio-8080-exec-9] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 游戏(String), 0(Long), 5(Long)
+2021-10-24 14:43:36.061 DEBUG 40372 --- [http-nio-8080-exec-9] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 2
+2021-10-24 14:43:36.062 DEBUG 40372 --- [http-nio-8080-exec-9] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user WHERE nick_name like concat('%', ?, '%' ) 
+2021-10-24 14:43:36.062 DEBUG 40372 --- [http-nio-8080-exec-9] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 游戏(String)
+2021-10-24 14:43:36.099 DEBUG 40372 --- [http-nio-8080-exec-9] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 2
+2021-10-24 14:43:36.100  INFO 40372 --- [http-nio-8080-exec-9] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:43:36.100  INFO 40372 --- [http-nio-8080-exec-9] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@74ef2a20
+2021-10-24 14:43:43.852  INFO 40372 --- [http-nio-8080-exec-10] com.hodor.aspect.LogAspect               : request : Requesting{url='http://localhost:8080/user/users', ip='0:0:0:0:0:0:0:1', classMethod='com.hodor.web.UserController.getUserListByQuery', args=[游戏, 2, 5]}
+2021-10-24 14:43:43.852  INFO 40372 --- [http-nio-8080-exec-10] com.hodor.aspect.LogAspect               : --------doBefore--------
+2021-10-24 14:43:43.892 DEBUG 40372 --- [http-nio-8080-exec-10] c.h.dao.UserDao.getUserListByQueryLimit  : ==>  Preparing: select * from t_user WHERE nick_name like concat('%', ?, '%' ) limit ?,? 
+2021-10-24 14:43:43.893 DEBUG 40372 --- [http-nio-8080-exec-10] c.h.dao.UserDao.getUserListByQueryLimit  : ==> Parameters: 游戏(String), 5(Long), 5(Long)
+2021-10-24 14:43:43.931 DEBUG 40372 --- [http-nio-8080-exec-10] c.h.dao.UserDao.getUserListByQueryLimit  : <==      Total: 0
+2021-10-24 14:43:43.932 DEBUG 40372 --- [http-nio-8080-exec-10] c.hodor.dao.UserDao.getUserListByQuery   : ==>  Preparing: select id from t_user WHERE nick_name like concat('%', ?, '%' ) 
+2021-10-24 14:43:43.932 DEBUG 40372 --- [http-nio-8080-exec-10] c.hodor.dao.UserDao.getUserListByQuery   : ==> Parameters: 游戏(String)
+2021-10-24 14:43:43.967 DEBUG 40372 --- [http-nio-8080-exec-10] c.hodor.dao.UserDao.getUserListByQuery   : <==      Total: 2
+2021-10-24 14:43:43.968  INFO 40372 --- [http-nio-8080-exec-10] com.hodor.aspect.LogAspect               : ----------doAfter-----------
+2021-10-24 14:43:43.968  INFO 40372 --- [http-nio-8080-exec-10] com.hodor.aspect.LogAspect               : result : com.hodor.constants.JsonResult@48d66f4c
+2021-10-24 14:43:48.933  INFO 40372 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-10-24 14:43:48.933  INFO 40372 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-10-24 14:43:48.936  INFO 40372 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-10-24 14:43:48.943  INFO 40372 --- [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

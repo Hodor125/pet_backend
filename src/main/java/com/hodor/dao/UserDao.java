@@ -16,9 +16,11 @@ public interface UserDao {
 
     User getUserByUserNameAndPassWord(Long id, String passWord);
 
-    List<User> getUserListByQuery(@Param("query") String query,
+    List<User> getUserListByQueryLimit(@Param("query") String query,
                            @Param("start") Long pageno,
                            @Param("size") Long pagesize);
+
+    List<User> getUserListByQuery(@Param("query") String query);
 
     Integer addUser(User user);
 }

@@ -56,9 +56,10 @@ public class UserServiceImpl implements UserService {
             map.put("users", new ArrayList<>());
             return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 400L)).setData(map);
         }
-        List<User> userListByQuery = userMapper.getUserListByQuery(query, (pageno - 1) * 10, pagesize);
+        List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, (pageno - 1) * pagesize, pagesize);
+        List<User> userListByQuery = userMapper.getUserListByQuery(query);
         Meta meta = new Meta("获取成功", 200L);
-        List<UserListVO> userListVOS = transUserToUserListVO(userListByQuery);
+        List<UserListVO> userListVOS = transUserToUserListVO(userListByQueryLimit);
         map.put("total", userListByQuery.size());
         map.put("pagenum", pageno);
         map.put("users", userListVOS);
