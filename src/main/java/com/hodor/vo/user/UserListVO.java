@@ -28,7 +28,7 @@ public class UserListVO {
 
     private String sex;
 
-    private Integer state;
+    private Boolean state;
 
     public UserListVO() {
     }
@@ -127,11 +127,11 @@ public class UserListVO {
         this.sex = sex;
     }
 
-    public Integer getState() {
+    public Boolean getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(Boolean state) {
         this.state = state;
     }
 }

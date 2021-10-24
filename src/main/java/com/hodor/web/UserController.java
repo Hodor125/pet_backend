@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author limingli006
@@ -35,10 +36,11 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/users")
-    public JsonResult<List<UserListVO>> getUserListByQuery(@RequestParam(required = false) String query,
+    public JsonResult<Map<String, Object>> getUserListByQuery(@RequestParam(required = false) String query,
+                                                              @RequestParam(required = false) Long power,
                                                            @RequestParam(required = false, defaultValue = "1") Long pagenum,
                                                            @RequestParam(required = false, defaultValue = "10") Long pagesize) {
-        JsonResult<List<UserListVO>> userListByQuery = userService.getUserListByQuery(query, pagenum, pagesize);
+        JsonResult<Map<String, Object>> userListByQuery = userService.getUserListByQuery(query, power, pagenum, pagesize);
         return userListByQuery;
     }
 

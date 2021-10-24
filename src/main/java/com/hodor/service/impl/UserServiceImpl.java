@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public JsonResult<List<UserListVO>> getUserListByQuery(String query, Long pageno, Long pagesize) {
+    public JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Long pageno, Long pagesize) {
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -56,8 +56,8 @@ public class UserServiceImpl implements UserService {
             map.put("users", new ArrayList<>());
             return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 400L)).setData(map);
         }
-        List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, (pageno - 1) * pagesize, pagesize);
-        List<User> userListByQuery = userMapper.getUserListByQuery(query);
+        List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, power, (pageno - 1) * pagesize, pagesize);
+        List<User> userListByQuery = userMapper.getUserListByQuery(query, power);
         Meta meta = new Meta("获取成功", 200L);
         List<UserListVO> userListVOS = transUserToUserListVO(userListByQueryLimit);
         map.put("total", userListByQuery.size());
@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
             userListVO.setAge(user.getAge());
             userListVO.setSex(user.getSex());
             userListVOS.add(userListVO);
-            userListVO.setState(user.getState());
+            userListVO.setState(user.getState() == 0 ? false : true);
         }
         return userListVOS;
     }

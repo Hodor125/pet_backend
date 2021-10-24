@@ -28,6 +28,9 @@
             <if test="query != null and query != ''">
                 nick_name like concat('%', #{query}, '%' )
             </if>
+            <if test="power != null">
+                power=#{power}
+            </if>
         </where>
         limit #{start},#{size}
     </select>
@@ -37,6 +40,9 @@
         <where>
             <if test="query != null and query != ''">
                 nick_name like concat('%', #{query}, '%' )
+            </if>
+            <if test="power != null">
+                power=#{power}
             </if>
         </where>
     </select>
