@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @description ：
  * @version: 1.0
  */
-//对应到路径错误，从error文件夹下找到页面并显示
-@ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException {
     public NotFoundException() {
     }

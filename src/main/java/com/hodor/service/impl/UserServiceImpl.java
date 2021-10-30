@@ -4,8 +4,10 @@ import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dao.UserDao;
 import com.hodor.dto.UserAddDTO;
+import com.hodor.exception.PetBackendException;
 import com.hodor.pojo.User;
 import com.hodor.service.UserService;
+import com.hodor.util.IdCardUtils;
 import com.hodor.vo.user.UserAddVO;
 import com.hodor.vo.user.UserListVO;
 import com.hodor.vo.user.UserLoginVO;
@@ -31,11 +33,11 @@ public class UserServiceImpl implements UserService {
     private UserDao userMapper;
 
     @Override
-    public JsonResult<User> getUserByUserNameAndPassWord(Long id, String passWord) {
+    public JsonResult<UserLoginVO> getUserByUserNameAndPassWord(Long id, String passWord) {
         User user = userMapper.getUserByUserNameAndPassWord(id, passWord);
         if(user != null) {
             Meta meta = new Meta("登陆成功", 200L);
-            UserLoginVO userLoginVO = new UserLoginVO(user.getId(), user.getPower(), user.getNickName(), "");
+            UserLoginVO userLoginVO = new UserLoginVO(user.getId(), user.getPower(), user.getName(), "");
             return new JsonResult<User>().setMeta(meta).setData(userLoginVO);
         }
         return null;
@@ -77,7 +79,7 @@ public class UserServiceImpl implements UserService {
         }
         Integer id = userMapper.addUser(user);
         return new JsonResult<List<UserListVO>>().setMeta(new Meta("添加成功", 200L))
-                .setData(new UserAddVO(user.getId(), user.getName()));
+                .setData(new UserAddVO(user.getId(), user.getNickName(), user.getAge(), user.getSex()));
     }
 
     @Override
@@ -112,18 +114,27 @@ public class UserServiceImpl implements UserService {
     private User transUserAddToUser(UserAddDTO userAddDTO) {
 
         User user = new User();
-        user.setNickName(userAddDTO.getNickname());
+        user.setNickName(userAddDTO.getNick_name());
         user.setPassword(userAddDTO.getPassword());
         user.setPower(0L);
-        user.setEmail(userAddDTO.getEmail());
-        user.setEmail(userAddDTO.getEmail());
+        user.setEmail("");
         user.setTel(userAddDTO.getTel());
-        user.setpId(userAddDTO.getpId());
-        user.setpImage("");
+        user.setpId(userAddDTO.getP_id());
+        user.setpImage(userAddDTO.getP_image());
         user.setAddress(userAddDTO.getAddress());
-        user.setAge(userAddDTO.getAge());
-        user.setSex(userAddDTO.getSex());
-        user.setName(userAddDTO.getUsername());
+        //设置年龄和性别
+        Integer age = null;
+        String gender = null;
+        try {
+            age = IdCardUtils.getAge(user.getpId());
+            gender = IdCardUtils.getGender(user.getpId());
+        } catch (Exception e) {
+            throw new PetBackendException("身份证信息错误");
+        }
+        user.setAge(age);
+        user.setSex(gender.equals("1") ? "男" : "女");
+        user.setName(userAddDTO.getName());
+        user.setpImage("");
         user.setState(0);
         return user;
     }
@@ -133,29 +144,23 @@ public class UserServiceImpl implements UserService {
         if(userAddDTO.getPassword() == null || userAddDTO.getPassword().equals("")) {
             return "密码为空";
         }
-        if(userAddDTO.getEmail() == null || userAddDTO.getEmail().equals("")) {
-            return "邮箱为空";
-        }
         if(userAddDTO.getTel() == null || userAddDTO.getTel().equals("")) {
             return "手机号为空";
         }
-        if(userAddDTO.getpId() == null || userAddDTO.getpId().equals("")) {
+        if(userAddDTO.getP_id() == null || userAddDTO.getP_id().equals("")) {
             return "身份证为空";
         }
         if(userAddDTO.getAddress() == null || userAddDTO.getAddress().equals("")) {
             return "地址为空";
         }
-        if(userAddDTO.getAge() == null) {
-            return "年龄为空";
-        }
-        if(userAddDTO.getSex() == null || userAddDTO.getSex().equals("")) {
-            return "性别为空";
-        }
-        if(userAddDTO.getUsername() == null || userAddDTO.getUsername().equals("")) {
+        if(userAddDTO.getName() == null || userAddDTO.getName().equals("")) {
             return "姓名为空";
         }
-        if(userAddDTO.getNickname() == null || userAddDTO.getNickname().equals("")) {
-            return "姓名为空";
+        if(userAddDTO.getNick_name() == null || userAddDTO.getNick_name().equals("")) {
+            return "昵称为空";
+        }
+        if(userAddDTO.getAddress() == null || userAddDTO.getAddress().equals("")) {
+            return "地址为空";
         }
         return "";
     }

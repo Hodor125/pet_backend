@@ -10,12 +10,18 @@ public class UserAddVO {
 
     private String nick_name;
 
+    private Integer age;
+
+    private String sex;
+
     public UserAddVO() {
     }
 
-    public UserAddVO(Long id, String nick_name) {
+    public UserAddVO(Long id, String nick_name, Integer age, String sex) {
         this.id = id;
         this.nick_name = nick_name;
+        this.age = age;
+        this.sex = sex;
     }
 
     public Long getId() {
@@ -32,5 +38,21 @@ public class UserAddVO {
 
     public void setNick_name(String nick_name) {
         this.nick_name = nick_name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

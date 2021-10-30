@@ -14,6 +14,9 @@ public class User {
 
     private String password;
 
+    /**
+     * 权限
+     */
     private Long power;
 
     private String email;

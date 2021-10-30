@@ -12,17 +12,17 @@ public class UserLoginVO {
 
     private Long power;
 
-    private String nickName;
+    private String name;
 
     private String token;
 
     public UserLoginVO() {
     }
 
-    public UserLoginVO(Long id, Long power, String nickName, String token) {
+    public UserLoginVO(Long id, Long power, String name, String token) {
         this.id = id;
         this.power = power;
-        this.nickName = nickName;
+        this.name = name;
         this.token = token;
     }
 
@@ -42,12 +42,12 @@ public class UserLoginVO {
         this.power = power;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getName() {
+        return name;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getToken() {

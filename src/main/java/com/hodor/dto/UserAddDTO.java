@@ -8,38 +8,39 @@ import java.util.Date;
  */
 public class UserAddDTO {
 
-    private String username;
-
-    private String nickname;
+    private String name;
 
     private String password;
 
-    private String email;
+    private String nick_name;
 
     private String tel;
 
-    private String pId;
+    private String p_id;
+
+    private String p_image;
 
     private String address;
 
-    private Integer age;
-
-    private String sex;
-
-    public String getUsername() {
-        return username;
+    public UserAddDTO() {
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public UserAddDTO(String name, String password, String nick_name, String tel, String p_id, String p_image, String address) {
+        this.name = name;
+        this.password = password;
+        this.nick_name = nick_name;
+        this.tel = tel;
+        this.p_id = p_id;
+        this.p_image = p_image;
+        this.address = address;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getName() {
+        return name;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -50,12 +51,12 @@ public class UserAddDTO {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getNick_name() {
+        return nick_name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNick_name(String nick_name) {
+        this.nick_name = nick_name;
     }
 
     public String getTel() {
@@ -66,12 +67,20 @@ public class UserAddDTO {
         this.tel = tel;
     }
 
-    public String getpId() {
-        return pId;
+    public String getP_id() {
+        return p_id;
     }
 
-    public void setpId(String pId) {
-        this.pId = pId;
+    public void setP_id(String p_id) {
+        this.p_id = p_id;
+    }
+
+    public String getP_image() {
+        return p_image;
+    }
+
+    public void setP_image(String p_image) {
+        this.p_image = p_image;
     }
 
     public String getAddress() {
@@ -80,21 +89,5 @@ public class UserAddDTO {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 }

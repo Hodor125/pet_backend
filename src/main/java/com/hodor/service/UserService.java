@@ -4,6 +4,7 @@ import com.hodor.constants.JsonResult;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.pojo.User;
 import com.hodor.vo.user.UserAddVO;
+import com.hodor.vo.user.UserLoginVO;
 import com.hodor.vo.user.UserUpdateStateVO;
 
 import java.util.Map;
@@ -16,7 +17,7 @@ public interface UserService {
      * @param passWord
      * @return
      */
-    JsonResult<User> getUserByUserNameAndPassWord(Long id, String passWord);
+    JsonResult<UserLoginVO> getUserByUserNameAndPassWord(Long id, String passWord);
 
     JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Long pageno, Long pagesize);
 

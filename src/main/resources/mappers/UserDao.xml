@@ -26,10 +26,10 @@
         select * from t_user
         <where>
             <if test="query != null and query != ''">
-                nick_name like concat('%', #{query}, '%' )
+                and nick_name like concat('%', #{query}, '%' )
             </if>
             <if test="power != null">
-                power=#{power}
+                and power=#{power}
             </if>
         </where>
         limit #{start},#{size}
@@ -39,10 +39,10 @@
         select id from t_user
         <where>
             <if test="query != null and query != ''">
-                nick_name like concat('%', #{query}, '%' )
+                and nick_name like concat('%', #{query}, '%' )
             </if>
             <if test="power != null">
-                power=#{power}
+                and power=#{power}
             </if>
         </where>
     </select>

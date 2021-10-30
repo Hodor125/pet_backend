@@ -7,6 +7,7 @@ import com.hodor.pojo.User;
 import com.hodor.service.UserService;
 import com.hodor.vo.user.UserAddVO;
 import com.hodor.vo.user.UserListVO;
+import com.hodor.vo.user.UserLoginVO;
 import com.hodor.vo.user.UserUpdateStateVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user/login")
-    public JsonResult<User> login(@RequestParam Long id, @RequestParam String password) {
-        JsonResult<User> userByUserNameAndPassWord = userService.getUserByUserNameAndPassWord(id, password);
+    public JsonResult<UserLoginVO> login(@RequestParam Long id, @RequestParam String password) {
+        JsonResult<UserLoginVO> userByUserNameAndPassWord = userService.getUserByUserNameAndPassWord(id, password);
         return userByUserNameAndPassWord;
     }
 
