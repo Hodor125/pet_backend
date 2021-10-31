@@ -10,7 +10,7 @@
         <result property="email" column="email"/>
         <result property="createTime" column="create_time"/>
         <result property="pId" column="p_id"/>
-        <result property="pImage" column="p_image"/>
+        <result property="pImage" column="p_img"/>
         <result property="address" column="address"/>
         <result property="age" column="age"/>
         <result property="sex" column="sex"/>
@@ -26,7 +26,8 @@
         select * from t_user
         <where>
             <if test="query != null and query != ''">
-                and nick_name like concat('%', #{query}, '%' )
+                and (nick_name like concat('%', #{query}, '%' )
+                or name like concat('%', #{query}, '%' ))
             </if>
             <if test="power != null">
                 and power=#{power}
@@ -39,7 +40,8 @@
         select id from t_user
         <where>
             <if test="query != null and query != ''">
-                and nick_name like concat('%', #{query}, '%' )
+                and (nick_name like concat('%', #{query}, '%' )
+                or name like concat('%', #{query}, '%' ))
             </if>
             <if test="power != null">
                 and power=#{power}
@@ -74,7 +76,7 @@
                 p_id=#{pId},
             </if>
             <if test="pImage != null and pImage != ''">
-                p_image=#{pImage},
+                p_img=#{pImage},
             </if>
             <if test="address != null and address != ''">
                 address=#{address},
@@ -94,4 +96,12 @@
         </set>
         where id=#{id}
     </update>
+
+    <delete id="deleteById">
+        delete from t_user where id=#{id}
+    </delete>
+
+    <select id="getUserListById" resultMap="UserMap">
+        select * from t_user where id=#{id}
+    </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.hodor.dao;
 
+import com.hodor.constants.JsonResult;
 import com.hodor.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,7 +25,11 @@ public interface UserDao {
     List<User> getUserListByQuery(@Param("query") String query,
                                   @Param("power") Long power);
 
+    User getUserListById(@Param("id") Long id);
+
     Integer addUser(User user);
 
     Integer updateUser(User user);
+
+    Integer deleteById(Long id);
 }

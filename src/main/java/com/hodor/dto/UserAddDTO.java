@@ -18,21 +18,11 @@ public class UserAddDTO {
 
     private String p_id;
 
-    private String p_image;
+    private String p_img;
 
     private String address;
 
     public UserAddDTO() {
-    }
-
-    public UserAddDTO(String name, String password, String nick_name, String tel, String p_id, String p_image, String address) {
-        this.name = name;
-        this.password = password;
-        this.nick_name = nick_name;
-        this.tel = tel;
-        this.p_id = p_id;
-        this.p_image = p_image;
-        this.address = address;
     }
 
     public String getName() {
@@ -75,12 +65,12 @@ public class UserAddDTO {
         this.p_id = p_id;
     }
 
-    public String getP_image() {
-        return p_image;
+    public String getP_img() {
+        return p_img;
     }
 
-    public void setP_image(String p_image) {
-        this.p_image = p_image;
+    public void setP_img(String p_img) {
+        this.p_img = p_img;
     }
 
     public String getAddress() {

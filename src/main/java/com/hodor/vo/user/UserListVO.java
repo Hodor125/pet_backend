@@ -12,13 +12,13 @@ public class UserListVO {
 
     private String nick_name;
 
-    private String psw;
+    private String password;
 
     private String name;
 
     private String p_id;
 
-    private String p_image;
+    private String p_img;
 
     private String tel;
 
@@ -31,20 +31,6 @@ public class UserListVO {
     private Boolean state;
 
     public UserListVO() {
-    }
-
-    public UserListVO(Long id, String nick_name, String psw, String name, String p_id, String p_image,
-                      String tel, String address, Integer age, String sex) {
-        this.id = id;
-        this.nick_name = nick_name;
-        this.psw = psw;
-        this.name = name;
-        this.p_id = p_id;
-        this.p_image = p_image;
-        this.tel = tel;
-        this.address = address;
-        this.age = age;
-        this.sex = sex;
     }
 
     public Long getId() {
@@ -63,12 +49,12 @@ public class UserListVO {
         this.nick_name = nick_name;
     }
 
-    public String getPsw() {
-        return psw;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPsw(String psw) {
-        this.psw = psw;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -87,12 +73,12 @@ public class UserListVO {
         this.p_id = p_id;
     }
 
-    public String getP_image() {
-        return p_image;
+    public String getP_img() {
+        return p_img;
     }
 
-    public void setP_image(String p_image) {
-        this.p_image = p_image;
+    public void setP_img(String p_img) {
+        this.p_img = p_img;
     }
 
     public String getTel() {

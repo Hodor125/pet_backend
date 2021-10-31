@@ -8,18 +8,11 @@ import com.hodor.exception.PetBackendException;
 import com.hodor.pojo.User;
 import com.hodor.service.UserService;
 import com.hodor.util.IdCardUtils;
-import com.hodor.vo.user.UserAddVO;
-import com.hodor.vo.user.UserListVO;
-import com.hodor.vo.user.UserLoginVO;
-import com.hodor.vo.user.UserUpdateStateVO;
-import org.apache.ibatis.annotations.Param;
+import com.hodor.vo.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 用户信息相关
@@ -69,6 +62,19 @@ public class UserServiceImpl implements UserService {
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
     }
 
+
+
+    @Override
+    public JsonResult<UserListVO> getUserListById(Long id) {
+        User userListById = userMapper.getUserListById(id);
+        if(userListById == null) {
+            throw new PetBackendException("用户不存在");
+        }
+        Meta meta = new Meta("获取成功", 200L);
+        List<UserListVO> userListVOS = transUserToUserListVO(Arrays.asList(userListById));
+        return new JsonResult<List<UserListVO>>().setMeta(meta).setData(userListVOS.get(0));
+    }
+
     @Override
     public JsonResult<UserAddVO> addUser(UserAddDTO userAddDTO) {
         String s = validUserAdd(userAddDTO);
@@ -83,13 +89,35 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JsonResult<UserUpdateStateVO> updateUserState(Long id, Integer state) {
+    public JsonResult<UserUpdateStateVO> updateUserState(Long id, Boolean state) {
         User user = new User();
         user.setId(id);
-        user.setState(state);
+        user.setState(state ? 1 : 0);
         userMapper.updateUser(user);
         return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 200L))
-                .setData(new UserUpdateStateVO().setId(id).setState(state));
+                .setData(new UserUpdateStateVO().setId(id).setState(state ? 1 : 0));
+    }
+
+    @Override
+    public JsonResult deleteById(Long id) {
+        Integer integer = userMapper.deleteById(id);
+        return new JsonResult().setMeta(new Meta("删除成功", 200L)).setData(null);
+    }
+
+    @Override
+    public JsonResult<UserUpdateVO> updateUser(Long id, UserAddDTO userAddDTO) {
+        if(id == null) {
+            throw new PetBackendException("id为空");
+        }
+        User user = transUserUpdateToUser(userAddDTO);
+        user.setId(id);
+        userMapper.updateUser(user);
+        User userListById = userMapper.getUserListById(id);
+        if(userListById == null) {
+            throw new PetBackendException("用户不存在");
+        }
+        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 200L))
+                .setData(new UserUpdateVO(id, userListById.getNickName()));
     }
 
     private List<UserListVO> transUserToUserListVO(List<User> users) {
@@ -100,7 +128,7 @@ public class UserServiceImpl implements UserService {
             userListVO.setNick_name(user.getNickName());
             userListVO.setName(user.getName());
             userListVO.setP_id(user.getpId());
-            userListVO.setP_image(user.getpImage());
+            userListVO.setP_img(user.getpImage());
             userListVO.setTel(user.getTel());
             userListVO.setAddress(user.getAddress());
             userListVO.setAge(user.getAge());
@@ -120,7 +148,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail("");
         user.setTel(userAddDTO.getTel());
         user.setpId(userAddDTO.getP_id());
-        user.setpImage(userAddDTO.getP_image());
+        user.setpImage(userAddDTO.getP_img());
         user.setAddress(userAddDTO.getAddress());
         //设置年龄和性别
         Integer age = null;
@@ -134,8 +162,45 @@ public class UserServiceImpl implements UserService {
         user.setAge(age);
         user.setSex(gender.equals("1") ? "男" : "女");
         user.setName(userAddDTO.getName());
-        user.setpImage("");
         user.setState(0);
+        return user;
+    }
+
+    private User transUserUpdateToUser(UserAddDTO userAddDTO) {
+
+        User user = new User();
+        if(userAddDTO.getNick_name() != null && !"".equals(userAddDTO.getNick_name())) {
+            user.setNickName(userAddDTO.getNick_name());
+        }
+        if(userAddDTO.getPassword() != null && !"".equals(userAddDTO.getPassword())) {
+            user.setPassword(userAddDTO.getPassword());
+        }
+        if(userAddDTO.getTel() != null && !"".equals(userAddDTO.getTel())) {
+            user.setTel(userAddDTO.getTel());
+        }
+        if(userAddDTO.getP_id() != null && !"".equals(userAddDTO.getP_id())) {
+            user.setpId(userAddDTO.getP_id());
+            //设置年龄和性别
+            Integer age = null;
+            String gender = null;
+            try {
+                age = IdCardUtils.getAge(user.getpId());
+                gender = IdCardUtils.getGender(user.getpId());
+            } catch (Exception e) {
+                throw new PetBackendException("身份证信息错误");
+            }
+            user.setAge(age);
+            user.setSex(gender.equals("1") ? "男" : "女");
+        }
+        if(userAddDTO.getP_img() != null && !"".equals(userAddDTO.getP_img())) {
+            user.setpImage(userAddDTO.getP_img());
+        }
+        if(userAddDTO.getAddress() != null && !"".equals(userAddDTO.getAddress())) {
+            user.setAddress(userAddDTO.getAddress());
+        }
+        if(userAddDTO.getName() != null && !"".equals(userAddDTO.getName())) {
+            user.setName(userAddDTO.getName());
+        }
         return user;
     }
 
