@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hodor.dao.PetDao">
+    <resultMap id="PetMap" type="com.hodor.pojo.Pet">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="weight" column="weight"/>
+        <result property="kind" column="kind"/>
+        <result property="img" column="img"/>
+        <result property="immunity" column="immunity"/>
+        <result property="healthy" column="healthy"/>
+        <result property="character" column="character"/>
+        <result property="createTime" column="create_time"/>
+        <result property="state" column="state"/>
+        <result property="worm" column="worm"/>
+    </resultMap>
+
+
+    <select id="getPetListByQueryLimit" resultMap="PetMap">
+        select * from t_pet
+        <where>
+            <if test="query != null and query != ''">
+                and (name like concat('%', #{query}, '%')
+                or kind like concat('%', #{query}, '%'))
+            </if>
+        </where>
+        limit #{start},#{size}
+    </select>
+
+    <select id="getPetListByQuery" resultMap="PetMap">
+        select id from t_pet
+        <where>
+            <if test="query != null and query != ''">
+                and (name like concat('%', #{query}, '%')
+                or kind like concat('%', #{query}, '%'))
+            </if>
+        </where>
+    </select>
+
+    <insert id="addPet" useGeneratedKeys="true" keyProperty="id">
+        insert into t_pet(`name`,age,sex,weight,kind,img,immunity,healthy,`character`,state,worm)
+        values (#{name},#{age},#{sex},#{weight},#{kind},#{img},#{immunity},#{healthy},#{character},#{state},#{worm})
+    </insert>
+
+    <update id="updatePet">
+        update t_pet
+        <set>
+            <if test="name != null and name != ''">
+                `name`=#{name},
+            </if>
+            <if test="age != null">
+                age=#{age},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex=#{sex},
+            </if>
+            <if test="weight != null">
+                weight=#{weight},
+            </if>
+            <if test="kind != null and kind != ''">
+                kind=#{kind},
+            </if>
+            <if test="img != null and img != ''">
+                img=#{img},
+            </if>
+            <if test="immunity != null and immunity != ''">
+                immunity=#{immunity},
+            </if>
+            <if test="healthy != null and healthy != ''">
+                healthy=#{healthy},
+            </if>
+            <if test="character != null and character != ''">
+                `character`=#{character},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="worm != null and worm != ''">
+                worm=#{worm},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="getPetById" resultMap="PetMap">
+        select * from t_pet where id=#{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from t_pet where id=#{id}
+    </delete>
+</mapper>

@@ -1,18 +1,18 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://81.69.20.5:3307/pet-backend?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&AutoReconnect=true
+    url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&AutoReconnect=true
     username: root
-    password: zyylml
+    password: 123
 
 #日志级别
 logging:
   level:
     #自定义日志级别
-    root: info
-    com.hodor: debug
+    root: warn
+    com.hodor: info
     #指定日志文件路径
-  file: log/blog-dev.log
+  file: log/blog-pro.log
 
 server:
   port: 8080

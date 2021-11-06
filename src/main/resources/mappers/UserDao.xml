@@ -33,6 +33,7 @@
                 and power=#{power}
             </if>
         </where>
+        order by state asc,id desc
         limit #{start},#{size}
     </select>
 
@@ -47,6 +48,7 @@
                 and power=#{power}
             </if>
         </where>
+        order by state asc,id desc
     </select>
 
     <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
