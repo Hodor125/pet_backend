@@ -16,15 +16,16 @@
         select * from t_pet_activity
         <where>
             <if test="query != null and query != ''">
-                and nick_name like concat('%', #{query}, '%')
+                and (title like concat('%', #{query}, '%')
+                or content like concat('%', #{query}, '%'))
             </if>
         </where>
         <if test="order != null and order != ''">
             <if test="order == 'up'">
-                order by starttime asc
+                order by start_time asc
             </if>
             <if test="order == 'down'">
-                order by starttime desc
+                order by start_time desc
             </if>
         </if>
         limit #{start},#{size}
@@ -34,7 +35,8 @@
         select id from t_pet_activity
         <where>
             <if test="query != null and query != ''">
-                and nick_name like concat('%', #{query}, '%')
+                and (title like concat('%', #{query}, '%')
+                or content like concat('%', #{query}, '%'))
             </if>
         </where>
     </select>
@@ -73,7 +75,7 @@
     </update>
 
     <delete id="deleteById">
-        delete from t_user where id=#{id}
+        delete from t_pet_activity where id=#{id}
     </delete>
 
     <select id="getActivityById" resultMap="ActivityMap">

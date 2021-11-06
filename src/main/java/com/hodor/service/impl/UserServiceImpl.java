@@ -77,12 +77,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public JsonResult<UserAddVO> addUser(UserAddDTO userAddDTO) {
-        String s = validUserAdd(userAddDTO);
+        validUserAdd(userAddDTO);
         User user = transUserAddToUser(userAddDTO);
-        if("".equals(s)) {
-            new JsonResult<List<UserListVO>>().setMeta(new Meta("添加失败", 400L))
-                    .setData(new UserAddVO());
-        }
         Integer id = userMapper.addUser(user);
         return new JsonResult<List<UserListVO>>().setMeta(new Meta("添加成功", 200L))
                 .setData(new UserAddVO(user.getId(), user.getNickName(), user.getAge(), user.getSex()));
@@ -204,29 +200,28 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    private String validUserAdd(UserAddDTO userAddDTO) {
+    private void validUserAdd(UserAddDTO userAddDTO) {
 
         if(userAddDTO.getPassword() == null || userAddDTO.getPassword().equals("")) {
-            return "密码为空";
+            throw new PetBackendException("密码为空");
         }
         if(userAddDTO.getTel() == null || userAddDTO.getTel().equals("")) {
-            return "手机号为空";
+            throw new PetBackendException("手机号为空");
         }
         if(userAddDTO.getP_id() == null || userAddDTO.getP_id().equals("")) {
-            return "身份证为空";
+            throw new PetBackendException("身份证为空");
         }
         if(userAddDTO.getAddress() == null || userAddDTO.getAddress().equals("")) {
-            return "地址为空";
+            throw new PetBackendException("地址为空");
         }
         if(userAddDTO.getName() == null || userAddDTO.getName().equals("")) {
-            return "姓名为空";
+            throw new PetBackendException("姓名为空");
         }
         if(userAddDTO.getNick_name() == null || userAddDTO.getNick_name().equals("")) {
-            return "昵称为空";
+            throw new PetBackendException("昵称为空");
         }
         if(userAddDTO.getAddress() == null || userAddDTO.getAddress().equals("")) {
-            return "地址为空";
+            throw new PetBackendException("地址为空");
         }
-        return "";
     }
 }
