@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hodor.dao.ActivityDao">
+    <resultMap id="ActivityMap" type="com.hodor.pojo.Activity">
+        <id property="id" column="id"/>
+        <id property="title" column="title"/>
+        <id property="img" column="img"/>
+        <id property="starttime" column="start_time"/>
+        <id property="endtime" column="end_time"/>
+        <id property="content" column="content"/>
+        <id property="num" column="num"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <select id="getActivityListByQueryLimit" resultMap="ActivityMap">
+        select * from t_pet_activity
+        <where>
+            <if test="query != null and query != ''">
+                and nick_name like concat('%', #{query}, '%')
+            </if>
+        </where>
+        <if test="order != null and order != ''">
+            <if test="order == 'up'">
+                order by starttime asc
+            </if>
+            <if test="order == 'down'">
+                order by starttime desc
+            </if>
+        </if>
+        limit #{start},#{size}
+    </select>
+
+    <select id="getActivityListByQuery" resultMap="ActivityMap">
+        select id from t_pet_activity
+        <where>
+            <if test="query != null and query != ''">
+                and nick_name like concat('%', #{query}, '%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="addActivity" useGeneratedKeys="true" keyProperty="id">
+        insert into t_pet_activity(title,img,start_time,end_time,content,num,state)
+        values (#{title},#{img},#{starttime},#{endtime},#{content},#{num},#{state})
+    </insert>
+
+    <update id="updateActivity">
+        update t_pet_activity
+        <set>
+            <if test="title != null and title != ''">
+                title=#{title},
+            </if>
+            <if test="img != null and img != ''">
+                img=#{img},
+            </if>
+            <if test="starttime != null">
+                start_time=#{starttime},
+            </if>
+            <if test="endtime != null">
+                end_time=#{endtime},
+            </if>
+            <if test="content != null and content != ''">
+                content=#{content},
+            </if>
+            <if test="num != null">
+                num=#{num},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from t_user where id=#{id}
+    </delete>
+
+    <select id="getActivityById" resultMap="ActivityMap">
+        select * from t_pet_activity where id=#{id}
+    </select>
+</mapper>

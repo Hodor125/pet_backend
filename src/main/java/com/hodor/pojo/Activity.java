@@ -1,5 +1,7 @@
 package com.hodor.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -14,9 +16,17 @@ public class Activity {
 
     private String img;
 
-    private Date startTime;
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date starttime;
 
-    private Date endTime;
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date endtime;
 
     private String content;
 
@@ -48,20 +58,20 @@ public class Activity {
         this.img = img;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public Date getStarttime() {
+        return starttime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
     }
 
-    public Date getEndTime() {
-        return endTime;
+    public Date getEndtime() {
+        return endtime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
     }
 
     public String getContent() {
