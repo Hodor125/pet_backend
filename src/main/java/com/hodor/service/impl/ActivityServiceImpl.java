@@ -5,7 +5,6 @@ import com.hodor.constants.Meta;
 import com.hodor.dao.ActivityDao;
 import com.hodor.exception.PetBackendException;
 import com.hodor.pojo.Activity;
-import com.hodor.pojo.User;
 import com.hodor.service.ActivityService;
 import com.hodor.vo.activity.ActivityUpdateVO;
 import com.hodor.vo.activity.ActivityVO;
@@ -61,7 +60,7 @@ public class ActivityServiceImpl implements ActivityService {
         }
         Meta meta = new Meta("获取成功", 200L);
 
-        return new JsonResult<List<UserListVO>>().setMeta(meta).setData(activityById)
+        return new JsonResult<List<UserListVO>>().setMeta(meta).setData(activityById);
     }
 
     @Override

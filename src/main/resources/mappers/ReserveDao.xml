@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hodor.dao.ReserveDao">
+    <resultMap id="ReservationMap" type="com.hodor.pojo.Reservation">
+        <id property="id" column="id"/>
+        <id property="p_id" column="p_id"/>
+        <id property="u_id" column="u_id"/>
+        <id property="time" column="time"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+
+    <select id="getReserveListByQueryLimit" resultMap="ReservationMap">
+        select * from t_reservation
+        <where>
+            <if test="query != null and query != ''">
+                and ((p_id = #{query})
+                or (u_id = #{query})
+                or (id = #{query}))
+            </if>
+        </where>
+        order by state desc,id desc
+        limit #{start},#{size}
+    </select>
+
+    <select id="getReserveListByQuery" resultMap="ReservationMap">
+        select id from t_reservation
+        <where>
+            <if test="query != null and query != ''">
+                and ((p_id = #{query})
+                or (u_id = #{query})
+                or (id = #{query}))
+            </if>
+        </where>
+    </select>
+
+    <insert id="addReserve" useGeneratedKeys="true" keyProperty="id">
+        insert into t_reservation(p_id,u_id,`time`,state)
+        values (#{p_id},#{u_id},#{time},#{state})
+    </insert>
+
+    <update id="updateReserve">
+        update t_reservation
+        <set>
+            <if test="p_id != null">
+                p_id=#{p_id},
+            </if>
+            <if test="u_id != null">
+                u_id=#{u_id},
+            </if>
+            <if test="time != null">
+                `time`=#{time},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="getReserveById" resultMap="ReservationMap">
+        select * from t_reservation where id=#{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from t_reservation where id=#{id}
+    </delete>
+
+    <select id="getReserveByPid" resultMap="ReservationMap">
+        select * from t_reservation where p_id=#{pId} and state=1
+    </select>
+</mapper>
