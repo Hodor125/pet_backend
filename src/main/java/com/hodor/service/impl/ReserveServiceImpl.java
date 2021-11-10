@@ -1,5 +1,7 @@
 package com.hodor.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dao.ReserveDao;
@@ -33,7 +35,7 @@ public class ReserveServiceImpl implements ReserveService {
 
 
     @Override
-    public JsonResult<Map<String, Object>> getReserveListByQuery(String query, Long pageno, Long pagesize) {
+    public JsonResult<Map<String, Object>> getReserveListByQuery(String query, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -41,13 +43,14 @@ public class ReserveServiceImpl implements ReserveService {
             map.put("applies", new ArrayList<>());
             return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 400L)).setData(map);
         }
-        List<Reservation> reserveListByQueryLimit = reserveMapper.getReserveListByQueryLimit(query, (pageno - 1) * pagesize, pagesize);
+        PageHelper.startPage(pageno, pagesize);
+        List<Reservation> reserveListByQueryLimit = reserveMapper.getReserveListByQueryLimit(query);
+        PageInfo pageRes = new PageInfo(reserveListByQueryLimit);
         List<ReservationDTO> res = new ArrayList<>();
         reserveListByQueryLimit.stream().forEach(r -> res.add(transReserveDOtoDTO(r)));
-        List<Reservation> reserveListByQuery = reserveMapper.getReserveListByQuery(query);
         Meta meta = new Meta("获取成功", 200L);
-        map.put("total", reserveListByQuery.size());
-        map.put("pagenum", pageno);
+        map.put("total", pageRes.getTotal());
+        map.put("pagenum", pageRes.getPageNum());
         map.put("applies", reserveListByQueryLimit);
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
     }

@@ -10,12 +10,18 @@ logging:
   level:
     #自定义日志级别
     root: warn
-    com.hodor: info
+    com.hodor: debug
     #指定日志文件路径
   file: log/blog-pro.log
 
 server:
   port: 8080
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 mybatis:
   mapper-locations: classpath:mappers/*.xml

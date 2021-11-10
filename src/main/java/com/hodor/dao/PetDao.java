@@ -16,9 +16,7 @@ import java.util.List;
 @Mapper
 public interface PetDao {
 
-    List<Pet> getPetListByQueryLimit(@Param("query") String query,
-                                     @Param("start") Long pageno,
-                                     @Param("size") Long pagesize);
+    List<Pet> getPetListByQueryLimit(@Param("query") String query);
 
     List<Pet> getPetListByQuery(@Param("query") String query);
 

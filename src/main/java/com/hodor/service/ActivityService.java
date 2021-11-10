@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface ActivityService {
 
-    JsonResult<Map<String, Object>> getActivityListByQuery(String query, Long pageno, Long pagesize, String order);
+    JsonResult<Map<String, Object>> getActivityListByQuery(String query, Integer pageno, Integer pagesize, String order);
 
     JsonResult<Activity> getActivityById(Long id);
 

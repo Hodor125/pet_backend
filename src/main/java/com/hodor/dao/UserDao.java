@@ -18,9 +18,7 @@ public interface UserDao {
     User getUserByUserNameAndPassWord(Long id, String passWord);
 
     List<User> getUserListByQueryLimit(@Param("query") String query,
-                                       @Param("power") Long power,
-                           @Param("start") Long pageno,
-                           @Param("size") Long pagesize);
+                                       @Param("power") Long power);
 
     List<User> getUserListByQuery(@Param("query") String query,
                                   @Param("power") Long power);

@@ -1,5 +1,7 @@
 package com.hodor.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dao.ActivityDao;
@@ -27,7 +29,7 @@ public class ActivityServiceImpl implements ActivityService {
 
 
     @Override
-    public JsonResult<Map<String, Object>> getActivityListByQuery(String query, Long pageno, Long pagesize, String order) {
+    public JsonResult<Map<String, Object>> getActivityListByQuery(String query, Integer pageno, Integer pagesize, String order) {
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -35,11 +37,13 @@ public class ActivityServiceImpl implements ActivityService {
             map.put("activitys", new ArrayList<>());
             return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 500L)).setData(map);
         }
-        List<Activity> activityListByQueryLimit = activityMapper.getActivityListByQueryLimit(query, (pageno - 1) * pagesize, pagesize, order);
+        PageHelper.startPage(pageno, pagesize);
+        List<Activity> activityListByQueryLimit = activityMapper.getActivityListByQueryLimit(query, order);
+        PageInfo pageRes = new PageInfo(activityListByQueryLimit);
         List<Activity> activityListByQuery = activityMapper.getActivityListByQuery(query);
         Meta meta = new Meta("获取成功", 200L);
-        map.put("total", activityListByQuery.size());
-        map.put("pagenum", pageno);
+        map.put("total", pageRes.getTotal());
+        map.put("pagenum", pageRes.getPageNum());
         map.put("activities", activityListByQueryLimit);
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
     }

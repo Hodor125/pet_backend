@@ -15,8 +15,6 @@ import java.util.List;
 public interface ActivityDao {
 
     List<Activity> getActivityListByQueryLimit(@Param("query") String query,
-                           @Param("start") Long pageno,
-                           @Param("size") Long pagesize,
                            @Param("order") String order);
 
     List<Activity> getActivityListByQuery(@Param("query") String query);

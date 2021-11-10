@@ -16,7 +16,7 @@ public interface UserService {
      */
     JsonResult<UserLoginVO> getUserByUserNameAndPassWord(Long id, String passWord);
 
-    JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Long pageno, Long pagesize);
+    JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Integer pageno, Integer pagesize);
 
     JsonResult<UserListVO> getUserListById(Long id);
 

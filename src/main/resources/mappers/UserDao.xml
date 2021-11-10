@@ -34,7 +34,6 @@
             </if>
         </where>
         order by state asc,id desc
-        limit #{start},#{size}
     </select>
 
     <select id="getUserListByQuery" resultMap="UserMap">

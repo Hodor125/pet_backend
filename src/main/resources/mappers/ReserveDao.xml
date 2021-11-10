@@ -19,8 +19,6 @@
                 or (id = #{query}))
             </if>
         </where>
-        order by state desc,id desc
-        limit #{start},#{size}
     </select>
 
     <select id="getReserveListByQuery" resultMap="ReservationMap">

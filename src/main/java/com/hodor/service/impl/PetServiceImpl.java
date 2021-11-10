@@ -1,5 +1,7 @@
 package com.hodor.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dao.PetDao;
@@ -32,7 +34,7 @@ public class PetServiceImpl implements PetService {
 
 
     @Override
-    public JsonResult<Map<String, Object>> getPetListByQuery(String query, Long pageno, Long pagesize) {
+    public JsonResult<Map<String, Object>> getPetListByQuery(String query, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -40,13 +42,15 @@ public class PetServiceImpl implements PetService {
             map.put("pets", new ArrayList<>());
             return new JsonResult<List<Pet>>().setMeta(new Meta("获取失败", 400L)).setData(map);
         }
-        List<Pet> petListByQueryLimit = petMapper.getPetListByQueryLimit(query, (pageno - 1) * pagesize, pagesize);
+        PageHelper.startPage(pageno, pagesize);
+        List<Pet> petListByQueryLimit = petMapper.getPetListByQueryLimit(query);
+        PageInfo pageRes = new PageInfo(petListByQueryLimit);
         List<Pet> petListByQuery = petMapper.getPetListByQuery(query);
 
         Meta meta = new Meta("获取成功", 200L);
 
-        map.put("total", petListByQuery.size());
-        map.put("pagenum", pageno);
+        map.put("total", pageRes.getTotal());
+        map.put("pagenum", pageRes.getPageNum());
         map.put("pets", petListByQueryLimit);
         return new JsonResult<List<Pet>>().setMeta(meta).setData(map);
     }

@@ -15,9 +15,7 @@ import java.util.List;
 @Mapper
 public interface ReserveDao {
 
-    List<Reservation> getReserveListByQueryLimit(@Param("query") String query,
-                                                 @Param("start") Long pageno,
-                                                 @Param("size") Long pagesize);
+    List<Reservation> getReserveListByQueryLimit(@Param("query") String query);
 
     List<Reservation> getReserveListByQuery(@Param("query") String query);
 

@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface ReserveService {
 
-    JsonResult<Map<String, Object>> getReserveListByQuery(String query, Long pageno, Long pagesize);
+    JsonResult<Map<String, Object>> getReserveListByQuery(String query, Integer pageno, Integer pagesize);
 
     JsonResult<ReservationDTO> getReserveListById(Long id);
 

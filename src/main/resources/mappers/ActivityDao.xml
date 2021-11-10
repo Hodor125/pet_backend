@@ -28,7 +28,6 @@
                 order by start_time desc
             </if>
         </if>
-        limit #{start},#{size}
     </select>
 
     <select id="getActivityListByQuery" resultMap="ActivityMap">

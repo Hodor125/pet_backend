@@ -43,8 +43,8 @@ public class UserController {
     @GetMapping("/user/users")
     public JsonResult<Map<String, Object>> getUserListByQuery(@RequestParam(required = false) String query,
                                                               @RequestParam(required = false) Long power,
-                                                           @RequestParam(required = false, defaultValue = "1") Long pagenum,
-                                                           @RequestParam(required = false, defaultValue = "10") Long pagesize) {
+                                                           @RequestParam(required = false, defaultValue = "1") Integer pagenum,
+                                                           @RequestParam(required = false, defaultValue = "10") Integer pagesize) {
         try {
             JsonResult<Map<String, Object>> userListByQuery = userService.getUserListByQuery(query, power, pagenum, pagesize);
             return userListByQuery;

@@ -26,7 +26,6 @@
                 or kind like concat('%', #{query}, '%'))
             </if>
         </where>
-        limit #{start},#{size}
     </select>
 
     <select id="getPetListByQuery" resultMap="PetMap">

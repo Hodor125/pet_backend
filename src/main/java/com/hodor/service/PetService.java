@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface PetService {
 
-    JsonResult<Map<String, Object>> getPetListByQuery(String query, Long pageno, Long pagesize);
+    JsonResult<Map<String, Object>> getPetListByQuery(String query, Integer pageno, Integer pagesize);
 
     JsonResult<PetAddVO> addPet(Pet pet);
 

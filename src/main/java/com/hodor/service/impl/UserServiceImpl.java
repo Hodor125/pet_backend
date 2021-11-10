@@ -1,5 +1,7 @@
 package com.hodor.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dao.UserDao;
@@ -44,7 +46,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Long pageno, Long pagesize) {
+    public JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -52,12 +54,13 @@ public class UserServiceImpl implements UserService {
             map.put("users", new ArrayList<>());
             return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 400L)).setData(map);
         }
-        List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, power, (pageno - 1) * pagesize, pagesize);
-        List<User> userListByQuery = userMapper.getUserListByQuery(query, power);
+        PageHelper.startPage(pageno, pagesize);
+        List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, power);
+        PageInfo pageRes = new PageInfo(userListByQueryLimit);
         Meta meta = new Meta("获取成功", 200L);
         List<UserListVO> userListVOS = transUserToUserListVO(userListByQueryLimit);
-        map.put("total", userListByQuery.size());
-        map.put("pagenum", pageno);
+        map.put("total", pageRes.getTotal());
+        map.put("pagenum", pageRes.getPageNum());
         map.put("users", userListVOS);
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
     }

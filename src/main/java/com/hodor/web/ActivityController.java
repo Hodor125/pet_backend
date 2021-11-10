@@ -35,8 +35,8 @@ public class ActivityController {
      */
     @GetMapping("/user/activities")
     public JsonResult<Map<String, Object>> getUserListByQuery(@RequestParam(required = false) String query,
-                                                              @RequestParam(required = false, defaultValue = "1") Long pagenum,
-                                                              @RequestParam(required = false, defaultValue = "10") Long pagesize,
+                                                              @RequestParam(required = false, defaultValue = "1") Integer pagenum,
+                                                              @RequestParam(required = false, defaultValue = "10") Integer pagesize,
                                                               @RequestParam(required = false) String order) {
         try {
             JsonResult<Map<String, Object>> activityListByQuery = activityService.getActivityListByQuery(query, pagenum, pagesize, order);
