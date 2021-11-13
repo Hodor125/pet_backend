@@ -3,6 +3,7 @@ package com.hodor.service;
 import com.hodor.constants.JsonResult;
 import com.hodor.dto.ReservationDTO;
 import com.hodor.dto.UserAddDTO;
+import com.hodor.pojo.Reservation;
 import com.hodor.vo.reserve.ReserveUpdateVO;
 import com.hodor.vo.user.*;
 
@@ -12,13 +13,13 @@ public interface ReserveService {
 
     JsonResult<Map<String, Object>> getReserveListByQuery(String query, Integer pageno, Integer pagesize);
 
-    JsonResult<ReservationDTO> getReserveListById(Long id);
+    JsonResult<Reservation> getReserveListById(Long id);
 
-    JsonResult<ReservationDTO> addReserve(ReservationDTO reservationDTO);
+    JsonResult<Reservation> addReserve(Reservation reservation);
 
-    JsonResult<ReserveUpdateVO> updateReserveState(Long id, Boolean state);
+    JsonResult<ReserveUpdateVO> updateReserveState(Long id, Integer state);
 
     JsonResult deleteById(Long id);
 
-    JsonResult<ReservationDTO> updateReserve(Long id, ReservationDTO reservationDTO);
+    JsonResult<Reservation> updateReserve(Long id, Reservation reservation);
 }

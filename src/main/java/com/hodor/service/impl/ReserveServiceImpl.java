@@ -49,18 +49,16 @@ public class ReserveServiceImpl implements ReserveService {
             map.put("total", 0);
             map.put("pagenum", pageno);
             map.put("applies", new ArrayList<>());
-            return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 400L)).setData(map);
+            return new JsonResult<Map<String, Object>>().setMeta(new Meta("获取失败", 500L)).setData(map);
         }
         PageHelper.startPage(pageno, pagesize);
         List<Reservation> reserveListByQueryLimit = reserveMapper.getReserveListByQueryLimit(query);
         PageInfo pageRes = new PageInfo(reserveListByQueryLimit);
-        List<ReservationDTO> res = new ArrayList<>();
-        reserveListByQueryLimit.stream().forEach(r -> res.add(transReserveDOtoDTO(r)));
         Meta meta = new Meta("获取成功", 200L);
         map.put("total", pageRes.getTotal());
         map.put("pagenum", pageRes.getPageNum());
-        map.put("applies", res);
-        return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
+        map.put("applies", reserveListByQueryLimit);
+        return new JsonResult<Map<String, Object>>().setMeta(meta).setData(map);
     }
 
     /**
@@ -69,36 +67,33 @@ public class ReserveServiceImpl implements ReserveService {
      * @return
      */
     @Override
-    public JsonResult<ReservationDTO> getReserveListById(Long id) {
+    public JsonResult<Reservation> getReserveListById(Long id) {
         Reservation reserveById = reserveMapper.getReserveById(id);
         if(reserveById == null) {
             throw new PetBackendException("预约不存在");
         }
         Meta meta = new Meta("获取成功", 200L);
-        ReservationDTO reservationDTO = transReserveDOtoDTO(reserveById);
-        return new JsonResult<ReservationDTO>().setMeta(meta).setData(reservationDTO);
+        return new JsonResult<Reservation>().setMeta(meta).setData(reserveById);
     }
 
     /**
      * 添加预约信息
-     * @param reservationDTO
+     * @param reservation
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public JsonResult<ReservationDTO> addReserve(ReservationDTO reservationDTO) {
-        validReserveAdd(reservationDTO);
+    public JsonResult<Reservation> addReserve(Reservation reservation) {
+        validReserveAdd(reservation);
 
-        Reservation reservation = transReserveDTOtoDO(reservationDTO);
         Reservation reserveByPid = reserveMapper.getReserveByPid(reservation.getP_id());
-        if(reservationDTO.getState() != null && reservationDTO.getState() && reserveByPid != null)
-            throw new PetBackendException("这个宠物已经预约审核通过");
-        if(reservationDTO.getAdopt() != null && reservationDTO.getAdopt())
+        if(reservation.getState() != null && reservation.getState() == 1 && reserveByPid != null)
+            throw new PetBackendException("这个宠物已经预约审核通过，预约人：" + reserveByPid.getU_id());
+        if(reservation.getAdopt() != null && reservation.getAdopt() == 1)
             throw new PetBackendException("新增的记录不能为线下审核通过");
         reserveMapper.addReserve(reservation);
-        ReservationDTO reservationDTO1 = transReserveDOtoDTO(reservation);
         return new JsonResult<List<UserListVO>>().setMeta(new Meta("添加成功", 201L))
-                .setData(reservationDTO1);
+                .setData(reservation);
     }
 
     /**
@@ -108,18 +103,18 @@ public class ReserveServiceImpl implements ReserveService {
      * @return
      */
     @Override
-    public JsonResult<ReserveUpdateVO> updateReserveState(Long id, Boolean state) {
+    public JsonResult<ReserveUpdateVO> updateReserveState(Long id, Integer state) {
         Reservation reserveById = reserveMapper.getReserveById(id);
         if(reserveById == null)
             throw new PetBackendException("预约记录不存在");
         Reservation reserveByPid = reserveMapper.getReserveByPid(reserveById.getP_id());
-        if(state && reserveByPid != null) {
-            throw new PetBackendException("这个宠物已经预约审核通过");
+        if(state != null && state == 1 && reserveByPid != null) {
+            throw new PetBackendException("这个宠物已经预约审核通过，预约人：" + reserveByPid.getU_id());
         }
-        reserveById.setState(state ? 1 : 0);
+        reserveById.setState(state);
         reserveMapper.updateReserve(reserveById);
         return new JsonResult<ReserveUpdateVO>().setMeta(new Meta("修改成功", 201L))
-                .setData(new ReserveUpdateVO().setId(id).setState(state ? 1 : 0));
+                .setData(new ReserveUpdateVO().setId(id).setState(state));
     }
 
     /**
@@ -135,30 +130,30 @@ public class ReserveServiceImpl implements ReserveService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public JsonResult<ReservationDTO> updateReserve(Long id, ReservationDTO reservationDTO) {
+    public JsonResult<Reservation> updateReserve(Long id, Reservation reservation) {
         if(id == null) {
             throw new PetBackendException("id为空");
         }
 
+        Integer adopt = reservation.getAdopt();
         //更新线上预约
-        Reservation reserveByPid = reserveMapper.getReserveByPid(reservationDTO.getP_id());
-        if(reservationDTO.getState() != null && reservationDTO.getState() && reserveByPid != null)
-            throw new PetBackendException("这个宠物已经预约审核通过");
-        Reservation reservation = transReserveDTOtoDO(reservationDTO);
+        Reservation reserveByPid = reserveMapper.getReserveByPid(reservation.getP_id());
+        if(reservation.getState() != null && reservation.getState() == 1 && reserveByPid != null)
+            throw new PetBackendException("这个宠物已经预约审核通过，预约人：" + reserveByPid.getU_id());
         reservation.setId(id);
         reservation.setAdopt(null);
         reserveMapper.updateReserve(reservation);
 
         //更新线下预约
-        Reservation reserveByPid2 = reserveMapper.getReserveByPid(reservationDTO.getP_id());
-        Reservation reserveByPidAndAdopt = reserveMapper.getReserveByPidAndAdopt(reservationDTO.getP_id());
-        if(reservationDTO.getAdopt() != null && reservationDTO.getAdopt()) {
+        reservation.setAdopt(adopt);
+        Reservation reserveByPid2 = reserveMapper.getReserveByPid(reservation.getP_id());
+        Reservation reserveByPidAndAdopt = reserveMapper.getReserveByPidAndAdopt(reservation.getP_id());
+        if(reservation.getAdopt() != null && reservation.getAdopt() == 1) {
             if(reserveByPidAndAdopt != null)
-                throw new PetBackendException("这个宠物已经线下审核通过");
+                throw new PetBackendException("这个宠物已经线下审核通过，预约人：" + reserveByPidAndAdopt.getU_id());
             if(reserveByPid2 == null)
                 throw new PetBackendException("这个宠物线上审核未通过");
         }
-        reservation = transReserveDTOtoDO(reservationDTO);
         reservation.setId(id);
         reservation.setState(null);
         reserveMapper.updateReserve(reservation);
@@ -167,17 +162,16 @@ public class ReserveServiceImpl implements ReserveService {
         if(reserveById == null) {
             throw new PetBackendException("预约不存在");
         }
-        ReservationDTO reservationDTO1 = transReserveDOtoDTO(reserveById);
-        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 201L))
-                .setData(reservationDTO1);
+        return new JsonResult<Reservation>().setMeta(new Meta("修改成功", 201L))
+                .setData(reserveById);
     }
 
-    private void validReserveAdd(ReservationDTO reservationDTO) {
-        if(reservationDTO.getP_id() == null)
+    private void validReserveAdd(Reservation reservation) {
+        if(reservation.getP_id() == null)
             throw new PetBackendException("宠物id为空");
-        if(reservationDTO.getU_id() == null)
+        if(reservation.getU_id() == null)
             throw new PetBackendException("领养人id为空");
-        if(reservationDTO.getTime() == null)
+        if(reservation.getTime() == null)
             throw new PetBackendException("预约时间为空");
     }
 

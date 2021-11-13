@@ -4,6 +4,7 @@ import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dto.ReservationDTO;
 import com.hodor.dto.UserAddDTO;
+import com.hodor.pojo.Reservation;
 import com.hodor.service.ReserveService;
 import com.hodor.service.UserService;
 import com.hodor.vo.reserve.ReserveUpdateVO;
@@ -25,13 +26,13 @@ public class ReserveController {
 
     /**
      * 添加预约信息
-     * @param reservationDTO
+     * @param reservation
      * @return
      */
     @PostMapping("/user/applies")
-    public JsonResult<ReservationDTO> addReserve(@RequestBody ReservationDTO reservationDTO) {
+    public JsonResult<Reservation> addReserve(@RequestBody Reservation reservation) {
         try {
-            JsonResult<ReservationDTO> reservationDTOJsonResult = reserveService.addReserve(reservationDTO);
+            JsonResult<Reservation> reservationDTOJsonResult = reserveService.addReserve(reservation);
             return reservationDTOJsonResult;
         } catch (Exception e) {
             return new JsonResult<ReservationDTO>().setMeta(new Meta("添加失败:" + e.getMessage(), 500L))
@@ -45,12 +46,12 @@ public class ReserveController {
      * @return
      */
     @GetMapping("/user/applies/{id}")
-    public JsonResult<ReservationDTO> getReserveByQuery(@PathVariable Long id) {
+    public JsonResult<Reservation> getReserveByQuery(@PathVariable Long id) {
         try {
-            JsonResult<ReservationDTO> reserveListById = reserveService.getReserveListById(id);
+            JsonResult<Reservation> reserveListById = reserveService.getReserveListById(id);
             return reserveListById;
         } catch (Exception e) {
-            return new JsonResult<ReservationDTO>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))
+            return new JsonResult<Reservation>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))
                     .setData(null);
         }
     }
@@ -58,13 +59,13 @@ public class ReserveController {
     /**
      * 更新预约信息
      * @param id
-     * @param reservationDTO
+     * @param reservation
      * @return
      */
     @PutMapping("/user/applies/{id}")
-    public JsonResult<ReservationDTO> updateReserveById(@PathVariable Long id, @RequestBody ReservationDTO reservationDTO) {
+    public JsonResult<Reservation> updateReserveById(@PathVariable Long id, @RequestBody Reservation reservation) {
         try {
-            JsonResult<ReservationDTO> reservationDTOJsonResult = reserveService.updateReserve(id, reservationDTO);
+            JsonResult<Reservation> reservationDTOJsonResult = reserveService.updateReserve(id, reservation);
             return reservationDTOJsonResult;
         } catch (Exception e) {
             return new JsonResult<ReservationDTO>().setMeta(new Meta("修改失败:" + e.getMessage(), 500L))
@@ -87,7 +88,7 @@ public class ReserveController {
             JsonResult<Map<String, Object>> reserveListByQuery = reserveService.getReserveListByQuery(query, pagenum, pagesize);
             return reserveListByQuery;
         } catch (Exception e) {
-            return new JsonResult<ReservationDTO>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))
+            return new JsonResult<Map<String, Object>>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))
                     .setData(null);
         }
     }
@@ -109,7 +110,7 @@ public class ReserveController {
     }
 
     @PutMapping("/user/applies/{id}/state/{state}")
-    public JsonResult updateUser(@PathVariable Long id, @PathVariable Boolean state) {
+    public JsonResult updateUser(@PathVariable Long id, @PathVariable Integer state) {
         try {
             JsonResult<ReserveUpdateVO> reserveUpdateVOJsonResult = reserveService.updateReserveState(id, state);
             return reserveUpdateVOJsonResult;

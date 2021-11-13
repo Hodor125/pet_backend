@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
             map.put("total", 0);
             map.put("pagenum", pageno);
             map.put("users", new ArrayList<>());
-            return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 400L)).setData(map);
+            return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 500L)).setData(map);
         }
         PageHelper.startPage(pageno, pagesize);
         List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, power);

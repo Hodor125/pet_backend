@@ -20,7 +20,7 @@
                 or (id = #{query}))
             </if>
         </where>
-        order by state desc
+        order by state desc,adopt desc
     </select>
 
     <select id="getReserveListByQuery" resultMap="ReservationMap">
