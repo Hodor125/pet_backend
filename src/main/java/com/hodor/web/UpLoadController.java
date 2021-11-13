@@ -8,6 +8,7 @@ import com.hodor.service.UserService;
 import com.hodor.vo.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -22,9 +23,15 @@ public class UpLoadController {
     private UploadService uploadService;
 
     @PostMapping("/image")
-    public JsonResult upload() {
+    public String upload(@RequestParam("file") MultipartFile file) {
 
-        JsonResult<Object> url = uploadService.upload("url");
-        return url;
+        String s = uploadService.uploadImg(file);
+        return s;
+    }
+
+    @DeleteMapping("/delete/image")
+    public Boolean deleteImage(String bucketName, String fileName) {
+        boolean b = uploadService.removeFile(bucketName, fileName);
+        return b;
     }
 }
