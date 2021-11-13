@@ -86,6 +86,12 @@ public class UserController {
         }
     }
 
+    /**
+     * 更新用户状态
+     * @param uId
+     * @param state
+     * @return
+     */
     @PutMapping("/user/users/{uId}/state/{state}")
     public JsonResult updateUser(@PathVariable Long uId, @PathVariable Boolean state) {
         try {

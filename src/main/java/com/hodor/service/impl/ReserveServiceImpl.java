@@ -34,6 +34,13 @@ public class ReserveServiceImpl implements ReserveService {
     private ReserveDao reserveMapper;
 
 
+    /**
+     * 查询预约列表信息
+     * @param query
+     * @param pageno
+     * @param pagesize
+     * @return
+     */
     @Override
     public JsonResult<Map<String, Object>> getReserveListByQuery(String query, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
@@ -55,6 +62,11 @@ public class ReserveServiceImpl implements ReserveService {
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
     }
 
+    /**
+     * 根据ID查询
+     * @param id
+     * @return
+     */
     @Override
     public JsonResult<ReservationDTO> getReserveListById(Long id) {
         Reservation reserveById = reserveMapper.getReserveById(id);
@@ -66,6 +78,11 @@ public class ReserveServiceImpl implements ReserveService {
         return new JsonResult<ReservationDTO>().setMeta(meta).setData(reservationDTO);
     }
 
+    /**
+     * 添加预约信息
+     * @param reservationDTO
+     * @return
+     */
     @Override
     public JsonResult<ReservationDTO> addReserve(ReservationDTO reservationDTO) {
         validReserveAdd(reservationDTO);
@@ -75,10 +92,16 @@ public class ReserveServiceImpl implements ReserveService {
             throw new PetBackendException("这个宠物已经被领养");
         reserveMapper.addReserve(reservation);
         ReservationDTO reservationDTO1 = transReserveDOtoDTO(reservation);
-        return new JsonResult<List<UserListVO>>().setMeta(new Meta("添加成功", 200L))
+        return new JsonResult<List<UserListVO>>().setMeta(new Meta("添加成功", 201L))
                 .setData(reservationDTO1);
     }
 
+    /**
+     * 更新预约信息
+     * @param id
+     * @param state
+     * @return
+     */
     @Override
     public JsonResult<ReserveUpdateVO> updateReserveState(Long id, Boolean state) {
         Reservation reserveById = reserveMapper.getReserveById(id);
@@ -90,14 +113,19 @@ public class ReserveServiceImpl implements ReserveService {
         }
         reserveById.setState(state ? 1 : 0);
         reserveMapper.updateReserve(reserveById);
-        return new JsonResult<ReserveUpdateVO>().setMeta(new Meta("修改成功", 200L))
+        return new JsonResult<ReserveUpdateVO>().setMeta(new Meta("修改成功", 201L))
                 .setData(new ReserveUpdateVO().setId(id).setState(state ? 1 : 0));
     }
 
+    /**
+     * 删除预约信息
+     * @param id
+     * @return
+     */
     @Override
     public JsonResult deleteById(Long id) {
         reserveMapper.deleteById(id);
-        return new JsonResult().setMeta(new Meta("删除成功", 200L)).setData(null);
+        return new JsonResult().setMeta(new Meta("删除成功", 204L)).setData(null);
     }
 
     @Override
@@ -116,7 +144,7 @@ public class ReserveServiceImpl implements ReserveService {
             throw new PetBackendException("用户不存在");
         }
         ReservationDTO reservationDTO1 = transReserveDOtoDTO(reserveById);
-        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 200L))
+        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 201L))
                 .setData(reservationDTO1);
     }
 

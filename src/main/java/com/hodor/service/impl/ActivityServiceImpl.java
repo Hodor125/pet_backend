@@ -71,14 +71,14 @@ public class ActivityServiceImpl implements ActivityService {
     public JsonResult<ActivityVO> addActivity(Activity activity) {
         validActivityAdd(activity);
         activityMapper.addActivity(activity);
-        return new JsonResult<Activity>().setMeta(new Meta("添加成功", 200L))
+        return new JsonResult<Activity>().setMeta(new Meta("添加成功", 201L))
                 .setData(new ActivityVO(activity.getId(), activity.getContent(), activity.getImg()));
     }
 
     @Override
     public JsonResult deleteById(Long id) {
         activityMapper.deleteById(id);
-        return new JsonResult().setMeta(new Meta("删除成功", 200L)).setData(null);
+        return new JsonResult().setMeta(new Meta("删除成功", 204L)).setData(null);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class ActivityServiceImpl implements ActivityService {
         if(activityById == null) {
             throw new PetBackendException("活动不存在");
         }
-        return new JsonResult<ActivityUpdateVO>().setMeta(new Meta("修改成功", 200L))
+        return new JsonResult<ActivityUpdateVO>().setMeta(new Meta("修改成功", 201L))
                 .setData(new ActivityUpdateVO(activity.getId(), activity.getState()));
     }
 

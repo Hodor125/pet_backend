@@ -32,6 +32,9 @@ public class Activity {
 
     private Integer num;
 
+    /**
+     * 0代表活动已结束，1活动未结束
+     */
     private Integer state;
 
     public Long getId() {

@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
         validUserAdd(userAddDTO);
         User user = transUserAddToUser(userAddDTO);
         Integer id = userMapper.addUser(user);
-        return new JsonResult<List<UserListVO>>().setMeta(new Meta("添加成功", 200L))
+        return new JsonResult<List<UserListVO>>().setMeta(new Meta("添加成功", 201L))
                 .setData(new UserAddVO(user.getId(), user.getNickName(), user.getAge(), user.getSex()));
     }
 
@@ -93,14 +93,14 @@ public class UserServiceImpl implements UserService {
         user.setId(id);
         user.setState(state ? 1 : 0);
         userMapper.updateUser(user);
-        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 200L))
+        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 201L))
                 .setData(new UserUpdateStateVO().setId(id).setState(state ? 1 : 0));
     }
 
     @Override
     public JsonResult deleteById(Long id) {
         Integer integer = userMapper.deleteById(id);
-        return new JsonResult().setMeta(new Meta("删除成功", 200L)).setData(null);
+        return new JsonResult().setMeta(new Meta("删除成功", 204L)).setData(null);
     }
 
     @Override

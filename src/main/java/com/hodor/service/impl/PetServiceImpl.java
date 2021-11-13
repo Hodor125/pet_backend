@@ -40,7 +40,7 @@ public class PetServiceImpl implements PetService {
             map.put("total", 0);
             map.put("pagenum", pageno);
             map.put("pets", new ArrayList<>());
-            return new JsonResult<List<Pet>>().setMeta(new Meta("获取失败", 400L)).setData(map);
+            return new JsonResult<List<Pet>>().setMeta(new Meta("获取失败", 500L)).setData(map);
         }
         PageHelper.startPage(pageno, pagesize);
         List<Pet> petListByQueryLimit = petMapper.getPetListByQueryLimit(query);
@@ -59,7 +59,7 @@ public class PetServiceImpl implements PetService {
     public JsonResult<PetAddVO> addPet(Pet pet) {
         validAddPet(pet);
         petMapper.addPet(pet);
-        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("添加成功", 200L))
+        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("添加成功", 201L))
                 .setData(new PetAddVO(pet.getId(), pet.getName(), pet.getImg()));
     }
 
@@ -84,14 +84,14 @@ public class PetServiceImpl implements PetService {
         if(petById == null) {
             throw new PetBackendException("宠物不存在");
         }
-        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 200L))
+        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 201L))
                 .setData(new PetUpdateVO(petById.getId(), petById.getState()));
     }
 
     @Override
     public JsonResult deleteById(Long id) {
         Integer integer = petMapper.deleteById(id);
-        return new JsonResult().setMeta(new Meta("删除成功", 200L)).setData(null);
+        return new JsonResult().setMeta(new Meta("删除成功", 204L)).setData(null);
     }
 
     private String validAddPet(Pet pet) {
