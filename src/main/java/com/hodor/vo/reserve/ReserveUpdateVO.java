@@ -1,9 +1,12 @@
 package com.hodor.vo.reserve;
 
+import lombok.Data;
+
 /**
  * @Author limingli006
  * @Date 2021/11/7
  */
+@Data
 public class ReserveUpdateVO {
 
     private Long id;

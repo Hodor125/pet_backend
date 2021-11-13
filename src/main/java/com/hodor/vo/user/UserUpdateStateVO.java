@@ -1,9 +1,12 @@
 package com.hodor.vo.user;
 
+import lombok.Data;
+
 /**
  * @Author limingli006
  * @Date 2021/10/24
  */
+@Data
 public class UserUpdateStateVO {
 
     private Long id;

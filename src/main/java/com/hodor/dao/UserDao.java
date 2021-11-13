@@ -27,6 +27,8 @@ public interface UserDao {
 
     Integer addUser(User user);
 
+    Integer register(User user);
+
     Integer updateUser(User user);
 
     Integer deleteById(Long id);

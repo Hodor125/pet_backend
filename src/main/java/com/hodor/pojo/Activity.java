@@ -1,6 +1,7 @@
 package com.hodor.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -8,6 +9,7 @@ import java.util.Date;
  * @Author limingli006
  * @Date 2021/11/6
  */
+@Data
 public class Activity {
 
     private Long id;
@@ -36,68 +38,4 @@ public class Activity {
      * 0代表活动已结束，1活动未结束， 2表示进行中
      */
     private Integer state;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public Date getStarttime() {
-        return starttime;
-    }
-
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
-    }
-
-    public Date getEndtime() {
-        return endtime;
-    }
-
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
-    }
 }

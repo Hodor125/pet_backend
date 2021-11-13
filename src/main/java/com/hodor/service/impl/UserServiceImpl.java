@@ -119,6 +119,17 @@ public class UserServiceImpl implements UserService {
                 .setData(new UserUpdateVO(id, userListById.getNickName()));
     }
 
+    @Override
+    public JsonResult<UserRegisterVO> register(String nick_name, String password) {
+        User user = new User();
+        user.setNickName(nick_name);
+        user.setPassword(password);
+        Integer res = userMapper.register(user);
+
+        return new JsonResult<UserRegisterVO>().setMeta(new Meta("注册成功", 201L))
+                .setData(new UserRegisterVO(user.getId(), 1L));
+    }
+
     private List<UserListVO> transUserToUserListVO(List<User> users) {
         List<UserListVO> userListVOS = new ArrayList<>();
         for (User user : users) {
@@ -126,8 +137,8 @@ public class UserServiceImpl implements UserService {
             userListVO.setId(user.getId());
             userListVO.setNick_name(user.getNickName());
             userListVO.setName(user.getName());
-            userListVO.setP_id(user.getpId());
-            userListVO.setP_img(user.getpImage());
+            userListVO.setP_id(user.getPId());
+            userListVO.setP_img(user.getPImage());
             userListVO.setTel(user.getTel());
             userListVO.setAddress(user.getAddress());
             userListVO.setAge(user.getAge());
@@ -146,15 +157,15 @@ public class UserServiceImpl implements UserService {
         user.setPower(0L);
         user.setEmail("");
         user.setTel(userAddDTO.getTel());
-        user.setpId(userAddDTO.getP_id());
-        user.setpImage(userAddDTO.getP_img());
+        user.setPId(userAddDTO.getP_id());
+        user.setPImage(userAddDTO.getP_img());
         user.setAddress(userAddDTO.getAddress());
         //设置年龄和性别
         Integer age = null;
         String gender = null;
         try {
-            age = IdCardUtils.getAge(user.getpId());
-            gender = IdCardUtils.getGender(user.getpId());
+            age = IdCardUtils.getAge(user.getPId());
+            gender = IdCardUtils.getGender(user.getPId());
         } catch (Exception e) {
             throw new PetBackendException("身份证信息错误");
         }
@@ -178,13 +189,13 @@ public class UserServiceImpl implements UserService {
             user.setTel(userAddDTO.getTel());
         }
         if(userAddDTO.getP_id() != null && !"".equals(userAddDTO.getP_id())) {
-            user.setpId(userAddDTO.getP_id());
+            user.setPId(userAddDTO.getP_id());
             //设置年龄和性别
             Integer age = null;
             String gender = null;
             try {
-                age = IdCardUtils.getAge(user.getpId());
-                gender = IdCardUtils.getGender(user.getpId());
+                age = IdCardUtils.getAge(user.getPId());
+                gender = IdCardUtils.getGender(user.getPId());
             } catch (Exception e) {
                 throw new PetBackendException("身份证信息错误");
             }
@@ -192,7 +203,7 @@ public class UserServiceImpl implements UserService {
             user.setSex(gender.equals("1") ? "男" : "女");
         }
         if(userAddDTO.getP_img() != null && !"".equals(userAddDTO.getP_img())) {
-            user.setpImage(userAddDTO.getP_img());
+            user.setPImage(userAddDTO.getP_img());
         }
         if(userAddDTO.getAddress() != null && !"".equals(userAddDTO.getAddress())) {
             user.setAddress(userAddDTO.getAddress());

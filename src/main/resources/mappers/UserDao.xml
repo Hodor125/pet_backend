@@ -55,6 +55,11 @@
         values (#{nickName},#{password},#{power},#{email},#{tel},#{pId},#{pImage},#{address},#{age},#{sex},#{name},#{state})
     </insert>
 
+    <insert id="register" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user(nick_name,`password`)
+        values (#{nickName},#{password})
+    </insert>
+
     <update id="updateUser">
         update t_user
         <set>

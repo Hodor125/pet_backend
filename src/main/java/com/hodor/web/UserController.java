@@ -134,4 +134,19 @@ public class UserController {
                     .setData(null);
         }
     }
+
+    /**
+     * 用户注册
+     * @return
+     */
+    @PostMapping("/user/register")
+    public JsonResult<UserRegisterVO> register(@RequestParam String nick_name, @RequestParam String password) {
+        try {
+            JsonResult<UserRegisterVO> res = userService.register(nick_name, password);
+            return res;
+        } catch (Exception e) {
+            return new JsonResult<UserRegisterVO>().setMeta(new Meta("注册失败:" + e.getMessage(), 500L))
+                    .setData(null);
+        }
+    }
 }

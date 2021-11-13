@@ -1,6 +1,7 @@
 package com.hodor.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -9,6 +10,7 @@ import java.util.Date;
  * @Author limingli006
  * @Date 2021/11/7
  */
+@Data
 public class Reservation {
 
     private Long id;
@@ -40,52 +42,4 @@ public class Reservation {
      * 0           1         2
      */
     private Integer adopt;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getP_id() {
-        return p_id;
-    }
-
-    public void setP_id(Long p_id) {
-        this.p_id = p_id;
-    }
-
-    public Long getU_id() {
-        return u_id;
-    }
-
-    public void setU_id(Long u_id) {
-        this.u_id = u_id;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
-    }
-
-    public Integer getAdopt() {
-        return adopt;
-    }
-
-    public void setAdopt(Integer adopt) {
-        this.adopt = adopt;
-    }
 }

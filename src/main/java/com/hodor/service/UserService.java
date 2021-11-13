@@ -27,4 +27,6 @@ public interface UserService {
     JsonResult deleteById(Long id);
 
     JsonResult<UserUpdateVO> updateUser(Long id, UserAddDTO userAddDTO);
+
+    JsonResult<UserRegisterVO> register(String nick_name, String password);
 }
