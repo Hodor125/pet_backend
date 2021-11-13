@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
         Integer res = userMapper.register(user);
 
         return new JsonResult<UserRegisterVO>().setMeta(new Meta("注册成功", 201L))
-                .setData(new UserRegisterVO(user.getId(), 1L));
+                .setData(new UserRegisterVO(user.getId(), 0L));
     }
 
     private List<UserListVO> transUserToUserListVO(List<User> users) {
