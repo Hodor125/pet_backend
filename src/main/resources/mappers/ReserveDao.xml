@@ -7,6 +7,7 @@
         <id property="u_id" column="u_id"/>
         <id property="time" column="time"/>
         <result property="state" column="state"/>
+        <result property="adopt" column="adopt"/>
     </resultMap>
 
 
@@ -19,6 +20,7 @@
                 or (id = #{query}))
             </if>
         </where>
+        order by state desc
     </select>
 
     <select id="getReserveListByQuery" resultMap="ReservationMap">
@@ -33,8 +35,8 @@
     </select>
 
     <insert id="addReserve" useGeneratedKeys="true" keyProperty="id">
-        insert into t_reservation(p_id,u_id,`time`,state)
-        values (#{p_id},#{u_id},#{time},#{state})
+        insert into t_reservation(p_id,u_id,`time`,state,adopt)
+        values (#{p_id},#{u_id},#{time},#{state},#{adopt})
     </insert>
 
     <update id="updateReserve">
@@ -52,6 +54,9 @@
             <if test="state != null">
                 state=#{state},
             </if>
+            <if test="adopt != null">
+                adopt=#{adopt},
+            </if>
         </set>
         where id=#{id}
     </update>
@@ -66,5 +71,9 @@
 
     <select id="getReserveByPid" resultMap="ReservationMap">
         select * from t_reservation where p_id=#{pId} and state=1
+    </select>
+
+    <select id="getReserveByPidAndAdopt" resultMap="ReservationMap">
+        select * from t_reservation where p_id=#{pId} and adopt=1
     </select>
 </mapper>

@@ -23,6 +23,8 @@ public interface ReserveDao {
 
     Reservation getReserveByPid(@Param("pId") Long pId);
 
+    Reservation getReserveByPidAndAdopt(@Param("pId") Long pId);
+
     Integer addReserve(Reservation reservation);
 
     Integer updateReserve(Reservation reservation);

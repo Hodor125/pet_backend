@@ -35,6 +35,12 @@ public class ReservationDTO {
      */
     private Boolean state;
 
+    /**
+     * false 不通过 true已通过 null待审核
+     * 0           1         2
+     */
+    private Boolean adopt;
+
     public Long getId() {
         return id;
     }
@@ -73,5 +79,13 @@ public class ReservationDTO {
 
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    public Boolean getAdopt() {
+        return adopt;
+    }
+
+    public void setAdopt(Boolean adopt) {
+        this.adopt = adopt;
     }
 }

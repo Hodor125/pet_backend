@@ -35,6 +35,12 @@ public class Reservation {
      */
     private Integer state;
 
+    /**
+     * false 不通过 true已通过 null待审核
+     * 0           1         2
+     */
+    private Integer adopt;
+
     public Long getId() {
         return id;
     }
@@ -73,5 +79,13 @@ public class Reservation {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public Integer getAdopt() {
+        return adopt;
+    }
+
+    public void setAdopt(Integer adopt) {
+        this.adopt = adopt;
     }
 }
