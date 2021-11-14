@@ -1,5 +1,7 @@
 package com.hodor.service.impl;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hodor.constants.JsonResult;
@@ -11,6 +13,7 @@ import com.hodor.pojo.User;
 import com.hodor.service.UserService;
 import com.hodor.util.IdCardUtils;
 import com.hodor.vo.user.*;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +35,8 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.getUserByUserNameAndPassWord(id, passWord);
         if(user != null) {
             Meta meta = new Meta("登陆成功", 200L);
-            UserLoginVO userLoginVO = new UserLoginVO(user.getId(), user.getPower(), user.getName(), "");
+            String token = getToken(user);
+            UserLoginVO userLoginVO = new UserLoginVO(user.getId(), user.getPower(), user.getName(), token);
             return new JsonResult<User>().setMeta(meta).setData(userLoginVO);
         }
         return null;
@@ -128,6 +132,17 @@ public class UserServiceImpl implements UserService {
 
         return new JsonResult<UserRegisterVO>().setMeta(new Meta("注册成功", 201L))
                 .setData(new UserRegisterVO(user.getId(), 0L));
+    }
+
+    @Override
+    public String getToken(User user) {
+        String token="";
+        //设置失效时间
+        long now = System.currentTimeMillis();//当前毫秒
+        long exp = now + 3600000;//加上配置文件中的过期时间(单位毫秒)
+        token= JWT.create().withAudience(String.valueOf(user.getId())).withExpiresAt(new Date(exp))
+                .sign(Algorithm.HMAC256(user.getPassword()));
+        return token;
     }
 
     private List<UserListVO> transUserToUserListVO(List<User> users) {
