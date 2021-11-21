@@ -20,6 +20,12 @@ public interface PetDao {
 
     List<Pet> getPetListByQuery(@Param("query") String query);
 
+    List<Pet> getPetListByQueryV2(@Param("query") String kind,
+                                  @Param("ageStart") Integer ageStart,
+                                  @Param("ageEnd")Integer ageEnd,
+                                  @Param("weightStart")Integer weightStart,
+                                  @Param("weightEnd")Integer weightEnd);
+
     Integer addPet(Pet pet);
 
     Integer updatePet(Pet pet);

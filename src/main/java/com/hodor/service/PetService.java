@@ -12,6 +12,8 @@ public interface PetService {
 
     JsonResult<Map<String, Object>> getPetListByQuery(String query, Integer pageno, Integer pagesize);
 
+    JsonResult<Map<String, Object>> getPetListByQueryV2(String query, String ages, String weights);
+
     JsonResult<PetAddVO> addPet(Pet pet);
 
     JsonResult<Pet> getPetById(Long id);

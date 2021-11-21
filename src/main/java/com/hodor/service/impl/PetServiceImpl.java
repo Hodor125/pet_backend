@@ -2,6 +2,7 @@ package com.hodor.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hodor.constants.Constans;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dao.PetDao;
@@ -52,6 +53,30 @@ public class PetServiceImpl implements PetService {
         map.put("total", pageRes.getTotal());
         map.put("pagenum", pageRes.getPageNum());
         map.put("pets", petListByQueryLimit);
+        return new JsonResult<List<Pet>>().setMeta(meta).setData(map);
+    }
+
+    @Override
+    public JsonResult<Map<String, Object>> getPetListByQueryV2(String query, String ages, String weights) {
+        Map<String, Object> map = new HashMap<>();
+        String[] ageList = ages.split("-");
+        if(ageList.length < 2)
+            throw new PetBackendException("年龄参数不正确");
+        String[] weightList = weights.split("-");
+        if(weightList.length < 2)
+            throw new PetBackendException("体重参数不正确");
+        if(Constans.DOG.equals(query))
+            query = Constans.DOG_ZH;
+        else if(Constans.CAT.equals(query))
+            query = Constans.CAT_ZH;
+        else
+            query = null;
+        List<Pet> petListByQueryV2 = petMapper.getPetListByQueryV2(query, Integer.parseInt(ageList[0]), Integer.parseInt(ageList[1]),
+                Integer.parseInt(weightList[0]), Integer.parseInt(weightList[1]));
+        map.put("total", petListByQueryV2.size());
+        map.put("pets", petListByQueryV2);
+
+        Meta meta = new Meta("获取成功", 200L);
         return new JsonResult<List<Pet>>().setMeta(meta).setData(map);
     }
 

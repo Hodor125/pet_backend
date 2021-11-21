@@ -31,6 +31,9 @@ public class Pet {
 
     private String character;
 
+    /**
+     * 0未领养 1已领养
+     */
     private Integer state;
 
     private String worm;

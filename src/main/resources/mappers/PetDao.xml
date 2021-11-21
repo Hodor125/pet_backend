@@ -38,6 +38,22 @@
         </where>
     </select>
 
+    <select id="getPetListByQueryV2" resultMap="PetMap">
+        select * from t_pet
+        <where>
+            <if test="query != null and query != ''">
+                and kind like concat('%', #{query}, '%')
+            </if>
+            <if test="ageStart != null and ageEnd != null">
+                and age between #{ageStart} and #{ageEnd}
+            </if>
+            <if test="weightStart != null and weightEnd != null">
+                and weight between #{weightStart} and #{weightEnd}
+            </if>
+        </where>
+        order by state asc
+    </select>
+
     <insert id="addPet" useGeneratedKeys="true" keyProperty="id">
         insert into t_pet(`name`,age,sex,weight,kind,img,immunity,healthy,`character`,state,worm)
         values (#{name},#{age},#{sex},#{weight},#{kind},#{img},#{immunity},#{healthy},#{character},#{state},#{worm})

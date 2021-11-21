@@ -47,6 +47,20 @@ public class PetController {
         }
     }
 
+
+    @GetMapping("/user/pets/{kind}/{age}/{weight}")
+    public JsonResult<Map<String, Object>> getUserListByQueryV2(@PathVariable String kind,
+                                                                @PathVariable String age,
+                                                                @PathVariable String weight) {
+        try {
+            JsonResult<Map<String, Object>> petListByQuery = petService.getPetListByQueryV2(kind, age, weight);
+            return petListByQuery;
+        } catch (Exception e) {
+            return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))
+                    .setData(null);
+        }
+    }
+
     /**
      * 添加宠物
      * @param pet
