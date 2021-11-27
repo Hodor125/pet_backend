@@ -3,6 +3,7 @@ package com.hodor.service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.hodor.constants.JsonResult;
+import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.pojo.User;
 import com.hodor.vo.user.*;
@@ -34,4 +35,6 @@ public interface UserService {
     JsonResult<UserRegisterVO> register(String nick_name, String password);
 
     String getToken(User user);
+
+    JsonResult<ChangePwdVO> changePwd(ChangePwdDTO changePwdDTO);
 }

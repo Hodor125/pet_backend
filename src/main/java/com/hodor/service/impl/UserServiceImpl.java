@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dao.UserDao;
+import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.exception.PetBackendException;
 import com.hodor.pojo.User;
@@ -16,6 +17,7 @@ import com.hodor.vo.user.*;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -143,6 +145,30 @@ public class UserServiceImpl implements UserService {
         token= JWT.create().withAudience(String.valueOf(user.getId())).withExpiresAt(new Date(exp))
                 .sign(Algorithm.HMAC256(user.getPassword()));
         return token;
+    }
+
+    /**
+     * 修改密码
+     * @param changePwdDTO
+     * @return
+     */
+    @Transactional
+    @Override
+    public JsonResult<ChangePwdVO> changePwd(ChangePwdDTO changePwdDTO) {
+        if(Objects.isNull(changePwdDTO.getPassword()) || Objects.isNull(changePwdDTO.getNewpassword()) || Objects.isNull(changePwdDTO.getConfirmpassword())) {
+            throw new PetBackendException("密码为空");
+        }
+        if(!Objects.equals(changePwdDTO.getConfirmpassword(), changePwdDTO.getNewpassword())) {
+            throw new PetBackendException("新旧密码不同");
+        }
+        User userByUserNameAndPassWord = userMapper.getUserByUserNameAndPassWord(changePwdDTO.getId(), changePwdDTO.getPassword());
+        if(Objects.isNull(userByUserNameAndPassWord)) {
+            throw new PetBackendException("旧密码不正确");
+        }
+        userByUserNameAndPassWord.setPassword(changePwdDTO.getNewpassword());
+        userMapper.updateUser(userByUserNameAndPassWord);
+        return new JsonResult<ChangePwdDTO>().setMeta(new Meta("修改成功", 201L))
+                .setData(new ChangePwdVO(userByUserNameAndPassWord.getId()));
     }
 
     private List<UserListVO> transUserToUserListVO(List<User> users) {

@@ -2,10 +2,12 @@ package com.hodor.web;
 
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
+import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.pojo.User;
 import com.hodor.service.UserService;
 import com.hodor.vo.user.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,7 @@ import java.util.Map;
  * @Author limingli006
  * @Date 2021/10/17
  */
+@Slf4j
 @RestController
 @CrossOrigin
 public class UserController {
@@ -146,6 +149,19 @@ public class UserController {
             return res;
         } catch (Exception e) {
             return new JsonResult<UserRegisterVO>().setMeta(new Meta("注册失败:" + e.getMessage(), 500L))
+                    .setData(null);
+        }
+    }
+
+    @PostMapping("/user/changepwd")
+    public JsonResult<ChangePwdVO> changePwd(@RequestBody ChangePwdDTO changePwdDTO) {
+        try {
+            JsonResult<ChangePwdVO> changePwdVOJsonResult = userService.changePwd(changePwdDTO);
+            return changePwdVOJsonResult;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            log.error(String.valueOf(e.getStackTrace()));
+            return new JsonResult<ChangePwdVO>().setMeta(new Meta("修改失败:" + e.getMessage(), 500L))
                     .setData(null);
         }
     }
