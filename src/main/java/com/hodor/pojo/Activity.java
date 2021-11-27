@@ -42,5 +42,5 @@ public class Activity {
 
     private Integer signed;
 
-    private List<ActicityPerson> person;
+    private List<ActivityPerson> person;
 }

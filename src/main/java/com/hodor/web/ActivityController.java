@@ -2,14 +2,17 @@ package com.hodor.web;
 
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
+import com.hodor.dao.ActivityPersonDao;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.pojo.Activity;
+import com.hodor.pojo.ActivityPerson;
 import com.hodor.service.ActivityService;
 import com.hodor.vo.activity.ActivityUpdateVO;
 import com.hodor.vo.activity.ActivityVO;
 import com.hodor.vo.user.UserListVO;
 import com.hodor.vo.user.UserUpdateStateVO;
 import com.hodor.vo.user.UserUpdateVO;
+import com.qiniu.util.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -107,6 +110,17 @@ public class ActivityController {
             return jsonResult;
         } catch (Exception e) {
             return new JsonResult().setMeta(new Meta("删除失败:" + e.getMessage(), 500L))
+                    .setData(null);
+        }
+    }
+
+    @PostMapping("/user/activities/{id}/{u_id}")
+    public JsonResult<ActivityPerson> signActivity(@PathVariable Long id, @PathVariable Long u_id) {
+        try {
+            JsonResult<ActivityPerson> activityPersonJsonResult = activityService.signActivity(id, u_id);
+            return activityPersonJsonResult;
+        } catch (Exception e) {
+            return new JsonResult().setMeta(new Meta("报名失败:" + e.getMessage(), 500L))
                     .setData(null);
         }
     }

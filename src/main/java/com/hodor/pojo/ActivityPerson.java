@@ -7,7 +7,7 @@ import lombok.Data;
  * @Date 2021/11/27
  */
 @Data
-public class ActicityPerson {
+public class ActivityPerson {
 
     private Long id;
 

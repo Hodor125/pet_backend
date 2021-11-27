@@ -2,6 +2,7 @@ package com.hodor.service;
 
 import com.hodor.constants.JsonResult;
 import com.hodor.pojo.Activity;
+import com.hodor.pojo.ActivityPerson;
 import com.hodor.vo.activity.ActivityUpdateVO;
 import com.hodor.vo.activity.ActivityVO;
 
@@ -20,4 +21,6 @@ public interface ActivityService {
     JsonResult deleteById(Long id);
 
     JsonResult<ActivityUpdateVO> updateActivity(Long id, Activity activity);
+
+    JsonResult<ActivityPerson> signActivity(Long id, Long u_id);
 }

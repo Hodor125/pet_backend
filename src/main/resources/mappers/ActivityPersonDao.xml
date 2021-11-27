@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hodor.dao.ActivityPersonDao">
+    <resultMap id="PersonMap" type="com.hodor.pojo.ActivityPerson">
+        <id property="id" column="id"/>
+        <id column="act_id" property="actId"/>
+        <id column="u_id" property="uId"/>
+        <id column="user_name" property="userName"/>
+    </resultMap>
+
+    <insert id="insertActivityPerson" useGeneratedKeys="true" keyProperty="id">
+        insert into t_activity_user(act_id,u_id,user_name) values (#{actId},#{uId},#{userName})
+        on duplicate key
+            update act_id=#{actId},u_id=#{uId},user_name=#{userName}
+    </insert>
+
+</mapper>

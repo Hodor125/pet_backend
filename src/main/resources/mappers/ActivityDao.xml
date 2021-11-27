@@ -10,7 +10,7 @@
         <id property="content" column="content"/>
         <id property="num" column="num"/>
         <result property="state" column="state"/>
-        <collection property="person" ofType="com.hodor.pojo.ActicityPerson">
+        <collection property="person" ofType="com.hodor.pojo.ActivityPerson">
             <id column="ap_id" property="id"/>
             <result column="act_id" property="actId"/>
             <result column="u_id" property="uId"/>

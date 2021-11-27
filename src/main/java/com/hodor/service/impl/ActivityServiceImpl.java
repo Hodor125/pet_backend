@@ -5,8 +5,12 @@ import com.github.pagehelper.PageInfo;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dao.ActivityDao;
+import com.hodor.dao.ActivityPersonDao;
+import com.hodor.dao.UserDao;
 import com.hodor.exception.PetBackendException;
 import com.hodor.pojo.Activity;
+import com.hodor.pojo.ActivityPerson;
+import com.hodor.pojo.User;
 import com.hodor.service.ActivityService;
 import com.hodor.vo.activity.ActivityUpdateVO;
 import com.hodor.vo.activity.ActivityVO;
@@ -26,6 +30,10 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Autowired
     private ActivityDao activityMapper;
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private ActivityPersonDao activityPersonDao;
 
 
     @Override
@@ -95,6 +103,25 @@ public class ActivityServiceImpl implements ActivityService {
         }
         return new JsonResult<ActivityUpdateVO>().setMeta(new Meta("修改成功", 201L))
                 .setData(new ActivityUpdateVO(activity.getId(), activity.getState()));
+    }
+
+    @Override
+    public JsonResult<ActivityPerson> signActivity(Long id, Long u_id) {
+        Activity activityById = activityMapper.getActivityById(id);
+        if(Objects.isNull(activityById)) {
+            throw new PetBackendException("活动不存在");
+        }
+        User userListById = userDao.getUserListById(u_id);
+        if(Objects.isNull(userListById)) {
+            throw new PetBackendException("用户不存在");
+        }
+        ActivityPerson activityPerson = new ActivityPerson();
+        activityPerson.setActId(id);
+        activityPerson.setUId(u_id);
+        activityPerson.setUserName(userListById.getName());
+        activityPersonDao.insertActivityPerson(activityPerson);
+        return new JsonResult<ActivityPerson>().setMeta(new Meta("报名成功", 201L))
+                .setData(activityPerson);
     }
 
     private void validActivityAdd(Activity activity) {
