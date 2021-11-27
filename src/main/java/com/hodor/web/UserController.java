@@ -9,8 +9,10 @@ import com.hodor.service.UserService;
 import com.hodor.vo.user.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +65,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/users/{id}")
-    public JsonResult<UserListVO> getUserListByQuery(@PathVariable Long id) {
+    public JsonResult<UserListVO> getUserListByQuery(@PathVariable Long id){
         try {
             JsonResult<UserListVO> userListById = userService.getUserListById(id);
             return userListById;
@@ -83,6 +85,9 @@ public class UserController {
         try {
             JsonResult<UserAddVO> userAddVOJsonResult = userService.addUser(userAddDTO);
             return userAddVOJsonResult;
+        } catch (DuplicateKeyException e) {
+            return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("手机号已经被注册", 500L))
+                    .setData(null);
         } catch (Exception e) {
             return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("添加失败:" + e.getMessage(), 500L))
                     .setData(null);
@@ -132,6 +137,9 @@ public class UserController {
         try {
             JsonResult<UserUpdateVO> userUpdateVOJsonResult = userService.updateUser(id, userUpdateDTO);
             return userUpdateVOJsonResult;
+        } catch (DuplicateKeyException e) {
+            return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("手机号已经被注册", 500L))
+                    .setData(null);
         } catch (Exception e) {
             return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改失败:" + e.getMessage(), 500L))
                     .setData(null);

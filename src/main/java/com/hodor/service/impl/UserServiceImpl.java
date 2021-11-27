@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
 
 /**
@@ -152,7 +153,7 @@ public class UserServiceImpl implements UserService {
      * @param changePwdDTO
      * @return
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public JsonResult<ChangePwdVO> changePwd(ChangePwdDTO changePwdDTO) {
         if(Objects.isNull(changePwdDTO.getPassword()) || Objects.isNull(changePwdDTO.getNewpassword()) || Objects.isNull(changePwdDTO.getConfirmpassword())) {
