@@ -36,10 +36,9 @@ public class ActivityController {
     @GetMapping("/user/activities")
     public JsonResult<Map<String, Object>> getUserListByQuery(@RequestParam(required = false) String query,
                                                               @RequestParam(required = false, defaultValue = "1") Integer pagenum,
-                                                              @RequestParam(required = false, defaultValue = "10") Integer pagesize,
-                                                              @RequestParam(required = false) String order) {
+                                                              @RequestParam(required = false, defaultValue = "10") Integer pagesize) {
         try {
-            JsonResult<Map<String, Object>> activityListByQuery = activityService.getActivityListByQuery(query, pagenum, pagesize, order);
+            JsonResult<Map<String, Object>> activityListByQuery = activityService.getActivityListByQuery(query, pagenum, pagesize);
             return activityListByQuery;
         } catch (Exception e) {
             return new JsonResult<Activity>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))
@@ -97,7 +96,7 @@ public class ActivityController {
     }
 
     /**
-     * 根据id删除用户
+     * 根据id删除活动
      * @param id
      * @return
      */

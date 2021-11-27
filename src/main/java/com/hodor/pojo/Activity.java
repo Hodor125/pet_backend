@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author limingli006
@@ -38,4 +39,8 @@ public class Activity {
      * 0代表活动已结束，1活动未结束， 2表示进行中
      */
     private Integer state;
+
+    private Integer signed;
+
+    private List<ActicityPerson> person;
 }

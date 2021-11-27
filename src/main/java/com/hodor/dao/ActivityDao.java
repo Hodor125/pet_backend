@@ -1,7 +1,6 @@
 package com.hodor.dao;
 
 import com.hodor.pojo.Activity;
-import com.hodor.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,8 +13,7 @@ import java.util.List;
 @Mapper
 public interface ActivityDao {
 
-    List<Activity> getActivityListByQueryLimit(@Param("query") String query,
-                           @Param("order") String order);
+    List<Activity> getActivityListByQueryLimit(@Param("query") String query);
 
     List<Activity> getActivityListByQuery(@Param("query") String query);
 

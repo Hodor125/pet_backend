@@ -29,7 +29,7 @@ public class ActivityServiceImpl implements ActivityService {
 
 
     @Override
-    public JsonResult<Map<String, Object>> getActivityListByQuery(String query, Integer pageno, Integer pagesize, String order) {
+    public JsonResult<Map<String, Object>> getActivityListByQuery(String query, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -38,9 +38,9 @@ public class ActivityServiceImpl implements ActivityService {
             return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 500L)).setData(map);
         }
         PageHelper.startPage(pageno, pagesize);
-        List<Activity> activityListByQueryLimit = activityMapper.getActivityListByQueryLimit(query, order);
+        List<Activity> activityListByQueryLimit = activityMapper.getActivityListByQueryLimit(query);
         PageInfo pageRes = new PageInfo(activityListByQueryLimit);
-        List<Activity> activityListByQuery = activityMapper.getActivityListByQuery(query);
+        activityListByQueryLimit.forEach(a -> a.setSigned(a.getPerson().size()));
         Meta meta = new Meta("获取成功", 200L);
         map.put("total", pageRes.getTotal());
         map.put("pagenum", pageRes.getPageNum());
@@ -63,6 +63,7 @@ public class ActivityServiceImpl implements ActivityService {
             throw new PetBackendException("活动不存在");
         }
         Meta meta = new Meta("获取成功", 200L);
+        activityById.setSigned(activityById.getPerson().size());
 
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(activityById);
     }

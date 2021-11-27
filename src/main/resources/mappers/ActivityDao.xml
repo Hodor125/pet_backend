@@ -10,24 +10,25 @@
         <id property="content" column="content"/>
         <id property="num" column="num"/>
         <result property="state" column="state"/>
+        <collection property="person" ofType="com.hodor.pojo.ActicityPerson">
+            <id column="ap_id" property="id"/>
+            <result column="act_id" property="actId"/>
+            <result column="u_id" property="uId"/>
+            <result column="user_name" property="userName"/>
+        </collection>
+
     </resultMap>
 
     <select id="getActivityListByQueryLimit" resultMap="ActivityMap">
-        select * from t_pet_activity
+        select tpa.*,tau.id ap_id,tau.act_id,tau.u_id,tau.user_name from t_pet_activity tpa
+            left join t_activity_user tau on tpa.id=tau.act_id
         <where>
             <if test="query != null and query != ''">
-                and (title like concat('%', #{query}, '%')
-                or content like concat('%', #{query}, '%'))
+                and (tpa.title like concat('%', #{query}, '%')
+                or tpa.content like concat('%', #{query}, '%'))
             </if>
         </where>
-        <if test="order != null and order != ''">
-            <if test="order == 'up'">
-                order by start_time asc
-            </if>
-            <if test="order == 'down'">
-                order by start_time desc
-            </if>
-        </if>
+        order by start_time desc
     </select>
 
     <select id="getActivityListByQuery" resultMap="ActivityMap">
@@ -78,6 +79,8 @@
     </delete>
 
     <select id="getActivityById" resultMap="ActivityMap">
-        select * from t_pet_activity where id=#{id}
+        select tpa.*,tau.id ap_id,tau.act_id,tau.u_id,tau.user_name from t_pet_activity tpa
+            left join t_activity_user tau on tpa.id=tau.act_id
+        where tpa.id=#{id}
     </select>
 </mapper>
