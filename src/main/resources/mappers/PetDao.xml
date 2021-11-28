@@ -15,6 +15,7 @@
         <result property="createTime" column="create_time"/>
         <result property="state" column="state"/>
         <result property="worm" column="worm"/>
+        <result property="userId" column="user_id"/>
     </resultMap>
 
 
@@ -104,6 +105,14 @@
 
     <select id="getPetById" resultMap="PetMap">
         select * from t_pet where id=#{id}
+    </select>
+
+    <select id="getPetByUserId" resultMap="PetMap">
+        select tp.*,tr.u_id user_id from t_pet tp left join t_reservation tr on tp.id=tr.p_id where tr.u_id in
+        <foreach collection="userIds" item="userId" separator="," open="(" close=")">
+            #{userId}
+        </foreach>
+        and tp.state = 1
     </select>
 
     <delete id="deleteById">

@@ -32,5 +32,7 @@ public interface PetDao {
 
     Pet getPetById(@Param("id") Long id);
 
+    List<Pet> getPetByUserId(@Param("userIds") List<Long> userIds);
+
     Integer deleteById(Long id);
 }

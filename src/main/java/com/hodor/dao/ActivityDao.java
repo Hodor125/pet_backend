@@ -19,6 +19,8 @@ public interface ActivityDao {
 
     Activity getActivityById(@Param("id") Long id);
 
+    List<Activity> getActivityByUserId(@Param("userIds") List<Long> userIds);
+
     Integer addActivity(Activity activity);
 
     Integer updateActivity(Activity activity);

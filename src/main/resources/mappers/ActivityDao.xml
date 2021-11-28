@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hodor.dao.ActivityDao">
-    <resultMap id="ActivityMap" type="com.hodor.pojo.Activity">
+    <resultMap id="ActivityPersonMap" type="com.hodor.pojo.Activity">
         <id property="id" column="id"/>
         <id property="title" column="title"/>
         <id property="img" column="img"/>
@@ -9,6 +9,7 @@
         <id property="endtime" column="end_time"/>
         <id property="content" column="content"/>
         <id property="num" column="num"/>
+        <id property="userId" column="user_id"/>
         <result property="state" column="state"/>
         <collection property="person" ofType="com.hodor.pojo.ActivityPerson">
             <id column="ap_id" property="id"/>
@@ -19,7 +20,7 @@
 
     </resultMap>
 
-    <select id="getActivityListByQueryLimit" resultMap="ActivityMap">
+    <select id="getActivityListByQueryLimit" resultMap="ActivityPersonMap">
         select tpa.*,tau.id ap_id,tau.act_id,tau.u_id,tau.user_name from t_pet_activity tpa
             left join t_activity_user tau on tpa.id=tau.act_id
         <where>
@@ -31,7 +32,7 @@
         order by start_time desc
     </select>
 
-    <select id="getActivityListByQuery" resultMap="ActivityMap">
+    <select id="getActivityListByQuery" resultMap="ActivityPersonMap">
         select id from t_pet_activity
         <where>
             <if test="query != null and query != ''">
@@ -78,9 +79,16 @@
         delete from t_pet_activity where id=#{id}
     </delete>
 
-    <select id="getActivityById" resultMap="ActivityMap">
+    <select id="getActivityById" resultMap="ActivityPersonMap">
         select tpa.*,tau.id ap_id,tau.act_id,tau.u_id,tau.user_name from t_pet_activity tpa
             left join t_activity_user tau on tpa.id=tau.act_id
         where tpa.id=#{id}
+    </select>
+
+    <select id="getActivityByUserId" resultMap="ActivityPersonMap">
+        select tpa.*,tau.u_id user_id from t_pet_activity tpa left join t_activity_user tau on tpa.id=tau.act_id where tau.u_id in
+        <foreach collection="userIds" item="userId" separator="," open="(" close=")">
+            #{userId}
+        </foreach>
     </select>
 </mapper>

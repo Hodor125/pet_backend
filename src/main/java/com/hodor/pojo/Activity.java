@@ -42,5 +42,7 @@ public class Activity {
 
     private Integer signed;
 
+    private Long userId;
+
     private List<ActivityPerson> person;
 }

@@ -6,11 +6,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
+import com.hodor.dao.ActivityDao;
+import com.hodor.dao.PetDao;
 import com.hodor.dao.UserDao;
 import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.exception.PetBackendException;
-import com.hodor.pojo.User;
+import com.hodor.pojo.*;
 import com.hodor.service.UserService;
 import com.hodor.util.IdCardUtils;
 import com.hodor.vo.user.*;
@@ -21,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 用户信息相关
@@ -32,6 +35,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userMapper;
+    @Autowired
+    private ActivityDao activityMapper;
+    @Autowired
+    private PetDao petMapper;
 
     @Override
     public JsonResult<UserLoginVO> getUserByUserNameAndPassWord(Long id, String passWord) {
@@ -65,13 +72,77 @@ public class UserServiceImpl implements UserService {
         List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, power);
         PageInfo pageRes = new PageInfo(userListByQueryLimit);
         Meta meta = new Meta("获取成功", 200L);
-        List<UserListVO> userListVOS = transUserToUserListVO(userListByQueryLimit);
+        List<ComplexPerson> complexPeople = addPetActivity(userListByQueryLimit);
+//        List<UserListVO> userListVOS = transUserToUserListVO(userListByQueryLimit);
         map.put("total", pageRes.getTotal());
         map.put("pagenum", pageRes.getPageNum());
-        map.put("users", userListVOS);
+        map.put("users", complexPeople);
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
     }
 
+    private List<ComplexPerson> addPetActivity(List<User> users) {
+        List<ComplexPerson> complexPeople = new ArrayList<>();
+        List<Long> userIds = users.stream().map(User::getId).collect(Collectors.toList());
+        Map<Long, List<Activity>> activityByUserIdList = getActivityByUserIdList(userIds);
+        Map<Long, List<Pet>> petListByUserId = getPetListByUserId(userIds);
+        for (User user : users) {
+            ComplexPerson complexPerson = new ComplexPerson();
+            complexPerson.setId(user.getId());
+            complexPerson.setNick_name(user.getNickName());
+            complexPerson.setName(user.getName());
+            complexPerson.setP_id(user.getPId());
+            complexPerson.setP_img(user.getPImage());
+            complexPerson.setTel(user.getTel());
+            complexPerson.setAddress(user.getAddress());
+            complexPerson.setAge(user.getAge());
+            complexPerson.setSex(user.getSex());
+            complexPeople.add(complexPerson);
+            complexPerson.setState(user.getState() == 0 ? false : true);
+
+            List<Pet> petByUserId = petListByUserId.get(user.getId());
+            List<SimplePet> petList = new ArrayList<>();
+            petByUserId.forEach(p -> {
+                SimplePet simplePet = new SimplePet();
+                simplePet.setId(p.getId());
+                simplePet.setKind(p.getKind());
+                simplePet.setName(p.getName());
+                petList.add(simplePet);
+            });
+            complexPerson.setPetList(petList);
+
+            List<Activity> activityByUserId = activityByUserIdList.get(user.getId());
+            List<SimpleActivity> activityList = new ArrayList<>();
+            activityByUserId.forEach(a -> {
+                SimpleActivity simpleActivity = new SimpleActivity();
+                simpleActivity.setId(a.getId());
+                simpleActivity.setContent(a.getContent());
+                activityList.add(simpleActivity);
+            });
+            complexPerson.setActivityList(activityList);
+        }
+        return complexPeople;
+    }
+
+    private Map<Long, List<Activity>> getActivityByUserIdList(List<Long> userIds) {
+        Map<Long, List<Activity>> map = new LinkedHashMap();
+        userIds.forEach(u -> map.put(u, new ArrayList<>()));
+        List<Activity> activityByUserId = activityMapper.getActivityByUserId(userIds);
+        for (Activity activity : activityByUserId) {
+            map.get(activity.getUserId()).add(activity);
+        }
+        return map;
+    }
+
+    private Map<Long, List<Pet>> getPetListByUserId(List<Long> userIds) {
+        Map<Long, List<Pet>> map = new LinkedHashMap<>();
+
+        userIds.forEach(u -> map.put(u, new ArrayList<>()));
+        List<Pet> petByUserId = petMapper.getPetByUserId(userIds);
+        for (Pet pet : petByUserId) {
+            map.get(pet.getUserId()).add(pet);
+        }
+        return map;
+    }
 
 
     @Override
@@ -81,8 +152,9 @@ public class UserServiceImpl implements UserService {
             throw new PetBackendException("用户不存在");
         }
         Meta meta = new Meta("获取成功", 200L);
-        List<UserListVO> userListVOS = transUserToUserListVO(Arrays.asList(userListById));
-        return new JsonResult<List<UserListVO>>().setMeta(meta).setData(userListVOS.get(0));
+        List<ComplexPerson> complexPeople = addPetActivity(Arrays.asList(userListById));
+//        List<UserListVO> userListVOS = transUserToUserListVO(Arrays.asList(userListById));
+        return new JsonResult<List<UserListVO>>().setMeta(meta).setData(complexPeople.get(0));
     }
 
     @Override

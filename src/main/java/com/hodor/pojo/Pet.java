@@ -39,4 +39,6 @@ public class Pet {
     private String worm;
 
     private Date createTime;
+
+    private Long userId;
 }
