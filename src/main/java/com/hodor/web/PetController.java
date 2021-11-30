@@ -14,6 +14,7 @@ import com.hodor.vo.user.UserUpdateStateVO;
 import com.hodor.vo.user.UserUpdateVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -122,6 +123,18 @@ public class PetController {
             return jsonResult;
         } catch (Exception e) {
             return new JsonResult<Pet>().setMeta(new Meta("删除失败:" + e.getMessage(), 500L))
+                    .setData(null);
+        }
+    }
+
+    @PostMapping("/user/pet/upload")
+    public JsonResult<String> uploadPetImg(@RequestParam Long id, @RequestParam("file") MultipartFile file){
+        try {
+            String imgUrl = petService.uploadImg(id, file);
+            JsonResult jsonResult = new JsonResult<String>().setMeta(new Meta("上传成功", 200L)).setData(imgUrl);
+            return jsonResult;
+        } catch (Exception e) {
+            return new JsonResult<Object>().setMeta(new Meta("上传失败" + e.getMessage(), 500L))
                     .setData(null);
         }
     }

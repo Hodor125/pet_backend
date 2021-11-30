@@ -12,13 +12,18 @@ import com.hodor.exception.PetBackendException;
 import com.hodor.pojo.Pet;
 import com.hodor.pojo.User;
 import com.hodor.service.PetService;
+import com.hodor.service.UploadService;
 import com.hodor.service.UserService;
 import com.hodor.util.IdCardUtils;
+import com.hodor.util.StringUtil;
 import com.hodor.vo.pet.PetAddVO;
 import com.hodor.vo.pet.PetUpdateVO;
 import com.hodor.vo.user.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -32,6 +37,8 @@ public class PetServiceImpl implements PetService {
 
     @Autowired
     private PetDao petMapper;
+    @Autowired
+    private UploadService uploadService;
 
 
     @Override
@@ -46,9 +53,14 @@ public class PetServiceImpl implements PetService {
         PageHelper.startPage(pageno, pagesize);
         List<Pet> petListByQueryLimit = petMapper.getPetListByQueryLimit(query);
         PageInfo pageRes = new PageInfo(petListByQueryLimit);
-        List<Pet> petListByQuery = petMapper.getPetListByQuery(query);
 
         Meta meta = new Meta("获取成功", 200L);
+
+        petListByQueryLimit.forEach(pet -> {
+            if(StringUtils.isNotBlank(pet.getImg())) {
+                pet.setImg(uploadService.getPrivateFile(pet.getImg()));
+            }
+        });
 
         map.put("total", pageRes.getTotal());
         map.put("pagenum", pageRes.getPageNum());
@@ -73,6 +85,11 @@ public class PetServiceImpl implements PetService {
             query = null;
         List<Pet> petListByQueryV2 = petMapper.getPetListByQueryV2(query, Integer.parseInt(ageList[0]), Integer.parseInt(ageList[1]),
                 Integer.parseInt(weightList[0]), Integer.parseInt(weightList[1]));
+        petListByQueryV2.forEach(pet -> {
+            if(StringUtils.isNotBlank(pet.getImg())) {
+                pet.setImg(uploadService.getPrivateFile(pet.getImg()));
+            }
+        });
         map.put("total", petListByQueryV2.size());
         map.put("pets", petListByQueryV2);
 
@@ -93,6 +110,9 @@ public class PetServiceImpl implements PetService {
         Pet petById = petMapper.getPetById(id);
         if(petById == null) {
             throw new PetBackendException("宠物不存在");
+        }
+        if(StringUtils.isNotBlank(petById.getImg())) {
+            petById.setImg(uploadService.getPrivateFile(petById.getImg()));
         }
         Meta meta = new Meta("获取成功", 200L);
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(petById);
@@ -117,6 +137,26 @@ public class PetServiceImpl implements PetService {
     public JsonResult deleteById(Long id) {
         Integer integer = petMapper.deleteById(id);
         return new JsonResult().setMeta(new Meta("删除成功", 204L)).setData(null);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public String uploadImg(Long id, MultipartFile file) {
+        Pet petById = petMapper.getPetById(id);
+        if(Objects.isNull(petById)) {
+            throw new PetBackendException("该宠物不存在");
+        }
+        //上传得到fileKey
+        String fileKey = uploadService.uploadImg(file);
+        String imgUrl = uploadService.getPrivateFile(fileKey);
+        if(StringUtils.isNoneBlank(petById.getImg())) {
+            uploadService.removeFile(petById.getImg());
+        }
+        Pet pet = new Pet();
+        pet.setId(id);
+        pet.setImg(fileKey);
+        petMapper.updatePet(pet);
+        return imgUrl;
     }
 
     private String validAddPet(Pet pet) {

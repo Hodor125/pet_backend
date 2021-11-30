@@ -118,4 +118,14 @@ public class UploadServiceImpl implements UploadService {
         }
         return true;
     }
+
+    @Override
+    public boolean removeFile(String fileKey) {
+        try {
+            bucketManager.delete(this.qiNiuYunConfig.getBucketName(), fileKey);
+        } catch (QiniuException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 }

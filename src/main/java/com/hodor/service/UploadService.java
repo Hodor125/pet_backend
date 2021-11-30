@@ -14,5 +14,7 @@ public interface UploadService {
     String getPrivateFile(String fileKey);
 
     boolean removeFile(String bucketName, String fileKey);
+
+    boolean removeFile(String fileKey);
 }
 
