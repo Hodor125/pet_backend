@@ -28,6 +28,12 @@ public class UpLoadController {
         return privateFile;
     }
 
+    /**
+     * 删除图片
+     * @param bucketName
+     * @param fileName
+     * @return
+     */
     @DeleteMapping("/delete/image")
     public Boolean deleteImage(String bucketName, String fileName) {
         boolean b = uploadService.removeFile(bucketName, fileName);
