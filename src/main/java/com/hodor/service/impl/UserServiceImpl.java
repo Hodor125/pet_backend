@@ -194,7 +194,7 @@ public class UserServiceImpl implements UserService {
         if(userListById == null) {
             throw new PetBackendException("用户不存在");
         }
-        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 200L))
+        return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("修改成功", 201L))
                 .setData(new UserUpdateVO(id, userListById.getNickName()));
     }
 

@@ -19,7 +19,8 @@ public class UpLoadController {
     public String upload(@RequestParam("file") MultipartFile file) {
 
         String s = uploadService.uploadImg(file);
-        return s;
+        String privateFile = uploadService.getPrivateFile(s);
+        return privateFile;
     }
 
     @DeleteMapping("/delete/image")

@@ -54,6 +54,11 @@ public class UploadServiceImpl implements UploadService {
     }
 
 
+    /**
+     * 返回fileKey
+     * @param file
+     * @return
+     */
     @Override
     public String uploadImg(MultipartFile file) {
         try {
@@ -73,7 +78,8 @@ public class UploadServiceImpl implements UploadService {
             DefaultPutRet putRet = new Gson().fromJson(res.bodyString(), DefaultPutRet.class);
 
             // 直接返回外链地址
-            return getPrivateFile(imgName);
+//            return getPrivateFile(imgName);
+            return imgName;
         } catch (QiniuException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -83,7 +89,7 @@ public class UploadServiceImpl implements UploadService {
     }
 
     /**
-     * 获取私有空间文件
+     * 获取私有空间文件，即获取图片链接
      *
      * @param fileKey
      * @return
