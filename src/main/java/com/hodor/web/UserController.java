@@ -54,6 +54,7 @@ public class UserController {
             JsonResult<Map<String, Object>> userListByQuery = userService.getUserListByQuery(query, power, pagenum, pagesize);
             return userListByQuery;
         } catch (Exception e) {
+            e.printStackTrace();
             return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))
                     .setData(null);
         }

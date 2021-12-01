@@ -25,7 +25,6 @@
     <select id="getUserListByQueryLimit" resultMap="UserMap">
         select * from t_user
         <where>
-            (
             <if test="query != null and query != ''">
                 and (nick_name like concat('%', #{query}, '%' )
                 or name like concat('%', #{query}, '%' ))
@@ -33,7 +32,6 @@
             <if test="power != null">
                 and power=#{power}
             </if>
-            )
         </where>
         order by state asc,id desc
     </select>

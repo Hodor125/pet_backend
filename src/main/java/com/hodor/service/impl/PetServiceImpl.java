@@ -152,10 +152,12 @@ public class PetServiceImpl implements PetService {
         if(StringUtils.isNoneBlank(petById.getImg())) {
             uploadService.removeFile(petById.getImg());
         }
-        Pet pet = new Pet();
-        pet.setId(id);
-        pet.setImg(fileKey);
-        petMapper.updatePet(pet);
+        if(StringUtils.isNotBlank(fileKey)) {
+            Pet pet = new Pet();
+            pet.setId(id);
+            pet.setImg(fileKey);
+            petMapper.updatePet(pet);
+        }
         return imgUrl;
     }
 
