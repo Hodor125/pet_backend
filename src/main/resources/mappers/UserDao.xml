@@ -11,6 +11,8 @@
         <result property="createTime" column="create_time"/>
         <result property="pId" column="p_id"/>
         <result property="pImage" column="p_img"/>
+        <result property="pImg0" column="p_img0"/>
+        <result property="pImg1" column="p_img1"/>
         <result property="address" column="address"/>
         <result property="age" column="age"/>
         <result property="sex" column="sex"/>
@@ -51,8 +53,8 @@
     </select>
 
     <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
-        insert into t_user(nick_name,`password`,power,email,tel,p_id,p_img,address,age,sex,`name`,state)
-        values (#{nickName},#{password},#{power},#{email},#{tel},#{pId},#{pImage},#{address},#{age},#{sex},#{name},#{state})
+        insert into t_user(nick_name,`password`,power,email,tel,p_id,address,age,sex,`name`,state)
+        values (#{nickName},#{password},#{power},#{email},#{tel},#{pId},#{address},#{age},#{sex},#{name},#{state})
     </insert>
 
     <insert id="register" useGeneratedKeys="true" keyProperty="id">

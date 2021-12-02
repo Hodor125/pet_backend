@@ -33,6 +33,16 @@ public class User {
 
     private String pImage;
 
+    /**
+     * 身份证反面
+     */
+    private String pImg0;
+
+    /**
+     * 身份证正面
+     */
+    private String pImg1;
+
     private String address;
 
     private Integer age;

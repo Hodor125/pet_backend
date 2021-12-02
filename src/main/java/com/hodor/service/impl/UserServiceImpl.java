@@ -96,6 +96,8 @@ public class UserServiceImpl implements UserService {
             complexPerson.setAddress(user.getAddress());
             complexPerson.setAge(user.getAge());
             complexPerson.setSex(user.getSex());
+            complexPerson.setP_img0(user.getPImg0());
+            complexPerson.setP_img1(user.getPImg1());
             complexPeople.add(complexPerson);
             complexPerson.setState(user.getState() == 0 ? false : true);
 

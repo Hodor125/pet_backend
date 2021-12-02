@@ -23,6 +23,10 @@ public class UserListVO {
 
     private String p_img;
 
+    private String p_img0;
+
+    private String p_img1;
+
     private String tel;
 
     private String address;
