@@ -13,13 +13,16 @@ import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.exception.PetBackendException;
 import com.hodor.pojo.*;
+import com.hodor.service.UploadService;
 import com.hodor.service.UserService;
 import com.hodor.util.IdCardUtils;
 import com.hodor.vo.user.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
@@ -39,6 +42,8 @@ public class UserServiceImpl implements UserService {
     private ActivityDao activityMapper;
     @Autowired
     private PetDao petMapper;
+    @Autowired
+    private UploadService uploadService;
 
     @Override
     public JsonResult<UserLoginVO> getUserByUserNameAndPassWord(Long id, String passWord) {
@@ -70,6 +75,16 @@ public class UserServiceImpl implements UserService {
         }
         PageHelper.startPage(pageno, pagesize);
         List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, power);
+
+        userListByQueryLimit.forEach(user -> {
+            if(StringUtils.isNotBlank(user.getPImg0())) {
+                user.setPImg0(uploadService.getPrivateFile(user.getPImg0()));
+            }
+            if(StringUtils.isNotBlank(user.getPImg1())) {
+                user.setPImg1(uploadService.getPrivateFile(user.getPImg1()));
+            }
+        });
+
         PageInfo pageRes = new PageInfo(userListByQueryLimit);
         Meta meta = new Meta("获取成功", 200L);
         List<ComplexPerson> complexPeople = addPetActivity(userListByQueryLimit);
@@ -151,6 +166,12 @@ public class UserServiceImpl implements UserService {
         User userListById = userMapper.getUserListById(id);
         if(userListById == null) {
             throw new PetBackendException("用户不存在");
+        }
+        if(StringUtils.isNotBlank(userListById.getPImg0())) {
+            userListById.setPImg0(uploadService.getPrivateFile(userListById.getPImg0()));
+        }
+        if(StringUtils.isNotBlank(userListById.getPImg1())) {
+            userListById.setPImg1(uploadService.getPrivateFile(userListById.getPImg1()));
         }
         Meta meta = new Meta("获取成功", 200L);
         List<ComplexPerson> complexPeople = addPetActivity(Arrays.asList(userListById));
@@ -243,6 +264,39 @@ public class UserServiceImpl implements UserService {
         userMapper.updateUser(userByUserNameAndPassWord);
         return new JsonResult<ChangePwdDTO>().setMeta(new Meta("修改成功", 201L))
                 .setData(new ChangePwdVO(userByUserNameAndPassWord.getId()));
+    }
+
+    @Override
+    public String uploadUserPImg(Long id, Integer type, MultipartFile file) {
+        User userListById = userMapper.getUserListById(id);
+        //上传得到fileKey
+        String fileKey = uploadService.uploadImg(file);
+        String imgUrl = uploadService.getPrivateFile(fileKey);
+        if(1 == type) {
+            String pImg1 = userListById.getPImg1();
+            if(StringUtils.isNoneBlank(pImg1)) {
+                uploadService.removeFile(userListById.getPImg1());
+            }
+            if(StringUtils.isNotBlank(fileKey)) {
+                User user = new User();
+                user.setId(id);
+                user.setPImg1(fileKey);
+                userMapper.updateUser(user);
+            }
+        } else if (0 == type) {
+            String pImg0 = userListById.getPImg0();
+            if(StringUtils.isNoneBlank(pImg0)) {
+                uploadService.removeFile(userListById.getPImg0());
+            }
+            if(StringUtils.isNotBlank(fileKey)) {
+                User user = new User();
+                user.setId(id);
+                user.setPImg0(fileKey);
+                userMapper.updateUser(user);
+            }
+        }
+
+        return imgUrl;
     }
 
     private List<UserListVO> transUserToUserListVO(List<User> users) {

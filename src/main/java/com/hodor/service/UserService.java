@@ -7,6 +7,7 @@ import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.pojo.User;
 import com.hodor.vo.user.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -37,4 +38,6 @@ public interface UserService {
     String getToken(User user);
 
     JsonResult<ChangePwdVO> changePwd(ChangePwdDTO changePwdDTO);
+
+    String uploadUserPImg(Long id, Integer type, MultipartFile file);
 }

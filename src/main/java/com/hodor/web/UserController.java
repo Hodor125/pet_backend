@@ -5,12 +5,14 @@ import com.hodor.constants.Meta;
 import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.pojo.User;
+import com.hodor.service.UploadService;
 import com.hodor.service.UserService;
 import com.hodor.vo.user.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
@@ -26,6 +28,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UploadService uploadService;
 
     @PostMapping("/user/login")
     public JsonResult<UserLoginVO> login(@RequestParam Long id, @RequestParam String password) {
@@ -171,6 +175,19 @@ public class UserController {
             log.error(e.getMessage());
             log.error(String.valueOf(e.getStackTrace()));
             return new JsonResult<ChangePwdVO>().setMeta(new Meta("修改失败:" + e.getMessage(), 500L))
+                    .setData(null);
+        }
+    }
+
+    @PostMapping("/user/upload")
+    public JsonResult uploadUserPImg(@RequestParam Long id, @RequestParam Integer type, @RequestParam("file") MultipartFile file) {
+        try {
+            String imgUrl = userService.uploadUserPImg(id, type, file);
+            JsonResult jsonResult = new JsonResult<String>().setMeta(new Meta("上传成功", 200L)).setData(imgUrl);
+            return jsonResult;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult<Object>().setMeta(new Meta("上传失败" + e.getMessage(), 500L))
                     .setData(null);
         }
     }
