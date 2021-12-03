@@ -10,7 +10,6 @@
         <result property="email" column="email"/>
         <result property="createTime" column="create_time"/>
         <result property="pId" column="p_id"/>
-        <result property="pImage" column="p_img"/>
         <result property="pImg0" column="p_img0"/>
         <result property="pImg1" column="p_img1"/>
         <result property="address" column="address"/>
@@ -83,8 +82,11 @@
             <if test="pId != null and pId != ''">
                 p_id=#{pId},
             </if>
-            <if test="pImage != null and pImage != ''">
-                p_img=#{pImage},
+            <if test="pImg0 != null and pImg0 != ''">
+                p_img0=#{pImg0},
+            </if>
+            <if test="pImg1 != null and pImg1 != ''">
+                p_img1=#{pImg1},
             </if>
             <if test="address != null and address != ''">
                 address=#{address},

@@ -21,8 +21,6 @@ public class UserAddDTO {
 
     private String p_id;
 
-    private String p_img;
-
     private String address;
 
     public UserAddDTO() {

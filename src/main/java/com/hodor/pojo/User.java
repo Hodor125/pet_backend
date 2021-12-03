@@ -31,8 +31,6 @@ public class User {
 
     private String pId;
 
-    private String pImage;
-
     /**
      * 身份证反面
      */

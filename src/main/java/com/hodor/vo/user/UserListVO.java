@@ -21,8 +21,6 @@ public class UserListVO {
 
     private String p_id;
 
-    private String p_img;
-
     private String p_img0;
 
     private String p_img1;

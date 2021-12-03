@@ -91,7 +91,6 @@ public class UserServiceImpl implements UserService {
             complexPerson.setNick_name(user.getNickName());
             complexPerson.setName(user.getName());
             complexPerson.setP_id(user.getPId());
-            complexPerson.setP_img(user.getPImage());
             complexPerson.setTel(user.getTel());
             complexPerson.setAddress(user.getAddress());
             complexPerson.setAge(user.getAge());
@@ -254,11 +253,12 @@ public class UserServiceImpl implements UserService {
             userListVO.setNick_name(user.getNickName());
             userListVO.setName(user.getName());
             userListVO.setP_id(user.getPId());
-            userListVO.setP_img(user.getPImage());
             userListVO.setTel(user.getTel());
             userListVO.setAddress(user.getAddress());
             userListVO.setAge(user.getAge());
             userListVO.setSex(user.getSex());
+            userListVO.setP_img0(user.getPImg0());
+            userListVO.setP_img1(user.getPImg1());
             userListVOS.add(userListVO);
             userListVO.setState(user.getState() == 0 ? false : true);
         }
@@ -274,7 +274,6 @@ public class UserServiceImpl implements UserService {
         user.setEmail("");
         user.setTel(userAddDTO.getTel());
         user.setPId(userAddDTO.getP_id());
-        user.setPImage(userAddDTO.getP_img());
         user.setAddress(userAddDTO.getAddress());
         //设置年龄和性别
         Integer age = null;
@@ -317,9 +316,6 @@ public class UserServiceImpl implements UserService {
             }
             user.setAge(age);
             user.setSex(gender.equals("1") ? "男" : "女");
-        }
-        if(userAddDTO.getP_img() != null && !"".equals(userAddDTO.getP_img())) {
-            user.setPImage(userAddDTO.getP_img());
         }
         if(userAddDTO.getAddress() != null && !"".equals(userAddDTO.getAddress())) {
             user.setAddress(userAddDTO.getAddress());
