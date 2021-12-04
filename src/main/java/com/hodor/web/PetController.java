@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,9 +53,10 @@ public class PetController {
     @GetMapping("/user/pets/{kind}/{age}/{weight}")
     public JsonResult<Map<String, Object>> getUserListByQueryV2(@PathVariable String kind,
                                                                 @PathVariable String age,
-                                                                @PathVariable String weight) {
+                                                                @PathVariable String weight,
+                                                                @RequestParam String breed) {
         try {
-            JsonResult<Map<String, Object>> petListByQuery = petService.getPetListByQueryV2(kind, age, weight);
+            JsonResult<Map<String, Object>> petListByQuery = petService.getPetListByQueryV2(kind, age, weight, breed);
             return petListByQuery;
         } catch (Exception e) {
             return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))
@@ -135,6 +137,19 @@ public class PetController {
             return jsonResult;
         } catch (Exception e) {
             return new JsonResult<Object>().setMeta(new Meta("上传失败" + e.getMessage(), 500L))
+                    .setData(null);
+        }
+    }
+
+    @PostMapping("/user/pets/breeds")
+    public JsonResult<List<String>> getAllBreeds() {
+        try {
+            List<String> allBreeds = petService.getAllBreeds();
+            JsonResult jsonResult = new JsonResult<List<String>>().setMeta(new Meta("上传成功", 200L)).setData(allBreeds);
+            return jsonResult;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult<Object>().setMeta(new Meta("获取失败o n g" + e.getMessage(), 500L))
                     .setData(null);
         }
     }

@@ -24,7 +24,8 @@ public interface PetDao {
                                   @Param("ageStart") Integer ageStart,
                                   @Param("ageEnd")Integer ageEnd,
                                   @Param("weightStart")Integer weightStart,
-                                  @Param("weightEnd")Integer weightEnd);
+                                  @Param("weightEnd")Integer weightEnd,
+                                  @Param("breed") String breed);
 
     Integer addPet(Pet pet);
 

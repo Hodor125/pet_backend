@@ -26,6 +26,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 用户信息相关
@@ -69,7 +71,7 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public JsonResult<Map<String, Object>> getPetListByQueryV2(String query, String ages, String weights) {
+    public JsonResult<Map<String, Object>> getPetListByQueryV2(String query, String ages, String weights, String breed) {
         Map<String, Object> map = new HashMap<>();
         String[] ageList = ages.split("-");
         if(ageList.length < 2)
@@ -84,7 +86,7 @@ public class PetServiceImpl implements PetService {
         else
             query = null;
         List<Pet> petListByQueryV2 = petMapper.getPetListByQueryV2(query, Integer.parseInt(ageList[0]), Integer.parseInt(ageList[1]),
-                Integer.parseInt(weightList[0]), Integer.parseInt(weightList[1]));
+                Integer.parseInt(weightList[0]), Integer.parseInt(weightList[1]), breed);
         petListByQueryV2.forEach(pet -> {
             if(StringUtils.isNotBlank(pet.getImg())) {
                 pet.setImg(uploadService.getPrivateFile(pet.getImg()));
@@ -159,6 +161,13 @@ public class PetServiceImpl implements PetService {
             petMapper.updatePet(pet);
         }
         return imgUrl;
+    }
+
+    @Override
+    public List<String> getAllBreeds() {
+        List<Pet> petListByQueryLimit = petMapper.getPetListByQueryLimit(null);
+        List<String> breeds = petListByQueryLimit.stream().map(Pet::getKind).distinct().collect(Collectors.toList());
+        return breeds;
     }
 
     private String validAddPet(Pet pet) {

@@ -51,6 +51,9 @@
             <if test="weightStart != null and weightEnd != null">
                 and weight between #{weightStart} and #{weightEnd}
             </if>
+            <if test="breed != null and breed != ''">
+                and kind like concat('%', #{breed}, '%')
+            </if>
         </where>
         order by state asc
     </select>
