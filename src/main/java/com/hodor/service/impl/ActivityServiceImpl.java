@@ -36,6 +36,13 @@ public class ActivityServiceImpl implements ActivityService {
     private ActivityPersonDao activityPersonDao;
 
 
+    /**
+     * 获取宠物列表
+     * @param query 搜索关键词
+     * @param pageno 页码
+     * @param pagesize 页大小
+     * @return
+     */
     @Override
     public JsonResult<Map<String, Object>> getActivityListByQuery(String query, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
@@ -56,6 +63,11 @@ public class ActivityServiceImpl implements ActivityService {
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
     }
 
+    /**
+     * 根据id查询
+     * @param id 宠物id
+     * @return
+     */
     @Override
     public JsonResult<Activity> getActivityById(Long id) {
         Activity activityById = activityMapper.getActivityById(id);
@@ -76,6 +88,11 @@ public class ActivityServiceImpl implements ActivityService {
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(activityById);
     }
 
+    /**
+     * 添加活动
+     * @param activity
+     * @return
+     */
     @Override
     public JsonResult<ActivityVO> addActivity(Activity activity) {
         validActivityAdd(activity);
@@ -84,12 +101,23 @@ public class ActivityServiceImpl implements ActivityService {
                 .setData(new ActivityVO(activity.getId(), activity.getContent(), activity.getImg()));
     }
 
+    /**
+     * 删除活动
+     * @param id 活动id
+     * @return
+     */
     @Override
     public JsonResult deleteById(Long id) {
         activityMapper.deleteById(id);
         return new JsonResult().setMeta(new Meta("删除成功", 204L)).setData(null);
     }
 
+    /**
+     * 更新活动
+     * @param id 活动id
+     * @param activity
+     * @return
+     */
     @Override
     public JsonResult<ActivityUpdateVO> updateActivity(Long id, Activity activity) {
         if(id == null) {
@@ -105,6 +133,12 @@ public class ActivityServiceImpl implements ActivityService {
                 .setData(new ActivityUpdateVO(activity.getId(), activity.getState()));
     }
 
+    /**
+     * 报名活动
+     * @param id 活动id
+     * @param u_id 用户id
+     * @return
+     */
     @Override
     public JsonResult<ActivityPerson> signActivity(Long id, Long u_id) {
         Activity activityById = activityMapper.getActivityById(id);

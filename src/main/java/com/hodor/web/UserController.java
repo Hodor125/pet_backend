@@ -166,6 +166,11 @@ public class UserController {
         }
     }
 
+    /**
+     * 修改密码
+     * @param changePwdDTO
+     * @return
+     */
     @PostMapping("/user/changepwd")
     public JsonResult<ChangePwdVO> changePwd(@RequestBody ChangePwdDTO changePwdDTO) {
         try {

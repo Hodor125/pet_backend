@@ -45,6 +45,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UploadService uploadService;
 
+    /**
+     * 根据id和密码查询
+     * @param id 用户id
+     * @param passWord 密码
+     * @return
+     */
     @Override
     public JsonResult<UserLoginVO> getUserByUserNameAndPassWord(Long id, String passWord) {
         User user = userMapper.getUserByUserNameAndPassWord(id, passWord);
@@ -59,9 +65,9 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 查询用户列表
-     * @param query
-     * @param pageno
-     * @param pagesize
+     * @param query 搜索词
+     * @param pageno 页码
+     * @param pagesize 页大小
      * @return
      */
     @Override
@@ -95,6 +101,11 @@ public class UserServiceImpl implements UserService {
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
     }
 
+    /**
+     * 查询的用户列表添加领养的宠物和参加的活动
+     * @param users
+     * @return
+     */
     private List<ComplexPerson> addPetActivity(List<User> users) {
         List<ComplexPerson> complexPeople = new ArrayList<>();
         List<Long> userIds = users.stream().map(User::getId).collect(Collectors.toList());
@@ -139,6 +150,11 @@ public class UserServiceImpl implements UserService {
         return complexPeople;
     }
 
+    /**
+     * 获取用户参加的活动
+     * @param userIds
+     * @return
+     */
     private Map<Long, List<Activity>> getActivityByUserIdList(List<Long> userIds) {
         Map<Long, List<Activity>> map = new LinkedHashMap();
         userIds.forEach(u -> map.put(u, new ArrayList<>()));
@@ -149,6 +165,11 @@ public class UserServiceImpl implements UserService {
         return map;
     }
 
+    /**
+     * 获取用户领养的宠物
+     * @param userIds
+     * @return
+     */
     private Map<Long, List<Pet>> getPetListByUserId(List<Long> userIds) {
         Map<Long, List<Pet>> map = new LinkedHashMap<>();
 

@@ -77,7 +77,7 @@ public class UploadServiceImpl implements UploadService {
             // 解析上传成功的结果
             DefaultPutRet putRet = new Gson().fromJson(res.bodyString(), DefaultPutRet.class);
 
-            // 直接返回外链地址
+            // 直接返回fileKey
 //            return getPrivateFile(imgName);
             return imgName;
         } catch (QiniuException e) {

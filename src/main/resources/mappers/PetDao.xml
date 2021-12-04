@@ -115,7 +115,7 @@
         <foreach collection="userIds" item="userId" separator="," open="(" close=")">
             #{userId}
         </foreach>
-        and tp.state = 1
+        and tp.state = 1 and tr.adopt=1
     </select>
 
     <delete id="deleteById">

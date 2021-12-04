@@ -37,9 +37,9 @@ public class ReserveServiceImpl implements ReserveService {
 
     /**
      * 查询预约列表信息
-     * @param query
-     * @param pageno
-     * @param pagesize
+     * @param query 搜索词
+     * @param pageno 页码
+     * @param pagesize 页大小
      * @return
      */
     @Override
@@ -63,7 +63,7 @@ public class ReserveServiceImpl implements ReserveService {
 
     /**
      * 根据ID查询
-     * @param id
+     * @param id 预约id
      * @return
      */
     @Override
@@ -78,7 +78,7 @@ public class ReserveServiceImpl implements ReserveService {
 
     /**
      * 添加预约信息
-     * @param reservation
+     * @param reservation 预约信息
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
@@ -98,8 +98,8 @@ public class ReserveServiceImpl implements ReserveService {
 
     /**
      * 更新预约信息
-     * @param id
-     * @param state
+     * @param id 预约id
+     * @param state 线上预约状态
      * @return
      */
     @Override
@@ -119,7 +119,7 @@ public class ReserveServiceImpl implements ReserveService {
 
     /**
      * 删除预约信息
-     * @param id
+     * @param id 预约id
      * @return
      */
     @Override
@@ -128,6 +128,12 @@ public class ReserveServiceImpl implements ReserveService {
         return new JsonResult().setMeta(new Meta("删除成功", 204L)).setData(null);
     }
 
+    /**
+     * 更新预约信息
+     * @param id 预约id
+     * @param reservation 预约信息
+     * @return
+     */
     @Transactional(rollbackFor = Exception.class)
     @Override
     public JsonResult<Reservation> updateReserve(Long id, Reservation reservation) {

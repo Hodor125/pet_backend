@@ -33,6 +33,13 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private UserDao userMapper;
 
+    /**
+     * 评论列表
+     * @param query 搜索词
+     * @param pageno 页码
+     * @param pagesize 页大小
+     * @return
+     */
     @Override
     public JsonResult<Map<String, Object>> getCommentByQuery(String query, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
@@ -52,6 +59,11 @@ public class CommentServiceImpl implements CommentService {
         return new JsonResult<Map<String, Object>>().setMeta(meta).setData(map);
     }
 
+    /**
+     * 添加评论
+     * @param comment
+     * @return
+     */
     @Override
     public JsonResult<Comment> addComment(Comment comment) {
         valideComment(comment);
@@ -60,6 +72,11 @@ public class CommentServiceImpl implements CommentService {
         return new JsonResult<Comment>().setMeta(meta).setData(comment);
     }
 
+    /**
+     * 删除评论
+     * @param id
+     * @return
+     */
     @Override
     public JsonResult deleteComment(Long id) {
         Integer integer = commentMapper.deleteComment(id);
@@ -67,6 +84,11 @@ public class CommentServiceImpl implements CommentService {
         return new JsonResult<Comment>().setMeta(meta).setData(id);
     }
 
+    /**
+     * 更新评论
+     * @param comment
+     * @return
+     */
     @Override
     public JsonResult<Comment> updateComment(Comment comment) {
         if(Objects.isNull(comment.getId())) {

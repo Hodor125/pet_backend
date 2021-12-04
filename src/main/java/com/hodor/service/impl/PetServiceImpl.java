@@ -43,6 +43,13 @@ public class PetServiceImpl implements PetService {
     private UploadService uploadService;
 
 
+    /**
+     * 宠物列表
+     * @param query 搜索词
+     * @param pageno 页码
+     * @param pagesize 页大小
+     * @return
+     */
     @Override
     public JsonResult<Map<String, Object>> getPetListByQuery(String query, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
@@ -70,6 +77,14 @@ public class PetServiceImpl implements PetService {
         return new JsonResult<List<Pet>>().setMeta(meta).setData(map);
     }
 
+    /**
+     * 宠物列表按分类展示
+     * @param query 搜索词
+     * @param ages 年龄范围
+     * @param weights 重量单位
+     * @param breed 品种
+     * @return
+     */
     @Override
     public JsonResult<Map<String, Object>> getPetListByQueryV2(String query, String ages, String weights, String breed) {
         Map<String, Object> map = new HashMap<>();
@@ -99,6 +114,11 @@ public class PetServiceImpl implements PetService {
         return new JsonResult<List<Pet>>().setMeta(meta).setData(map);
     }
 
+    /**
+     * 添加宠物
+     * @param pet 宠物信息
+     * @return
+     */
     @Override
     public JsonResult<PetAddVO> addPet(Pet pet) {
         validAddPet(pet);
@@ -107,6 +127,11 @@ public class PetServiceImpl implements PetService {
                 .setData(new PetAddVO(pet.getId(), pet.getName(), pet.getImg()));
     }
 
+    /**
+     * 根据id查询
+     * @param id 宠物id
+     * @return
+     */
     @Override
     public JsonResult<Pet> getPetById(Long id) {
         Pet petById = petMapper.getPetById(id);
@@ -120,6 +145,12 @@ public class PetServiceImpl implements PetService {
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(petById);
     }
 
+    /**
+     * 更新宠物
+     * @param id 宠物id
+     * @param pet 宠物信息
+     * @return
+     */
     @Override
     public JsonResult<Pet> updatePet(Long id, Pet pet) {
         if(id == null) {
@@ -135,12 +166,23 @@ public class PetServiceImpl implements PetService {
                 .setData(new PetUpdateVO(petById.getId(), petById.getState()));
     }
 
+    /**
+     * 删除宠物
+     * @param id 宠物id
+     * @return
+     */
     @Override
     public JsonResult deleteById(Long id) {
         Integer integer = petMapper.deleteById(id);
         return new JsonResult().setMeta(new Meta("删除成功", 204L)).setData(null);
     }
 
+    /**
+     * 上传图片
+     * @param id 宠物id
+     * @param file 文件流
+     * @return
+     */
     @Transactional(rollbackFor = Exception.class)
     @Override
     public String uploadImg(Long id, MultipartFile file) {
@@ -163,6 +205,10 @@ public class PetServiceImpl implements PetService {
         return imgUrl;
     }
 
+    /**
+     * 获取所有品种
+     * @return
+     */
     @Override
     public List<String> getAllBreeds() {
         List<Pet> petListByQueryLimit = petMapper.getPetListByQueryLimit(null);
