@@ -240,7 +240,6 @@ public class PetServiceImpl implements PetService {
 
     private void deleteImg(String fileKey) {
         uploadService.removeFile(fileKey);
-        int i = 0;
     }
 
     /**

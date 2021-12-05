@@ -17,6 +17,7 @@ import com.hodor.service.UploadService;
 import com.hodor.service.UserService;
 import com.hodor.util.IdCardUtils;
 import com.hodor.vo.user.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -34,6 +38,7 @@ import java.util.stream.Collectors;
  * @Date 2021/10/17
  */
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -44,6 +49,26 @@ public class UserServiceImpl implements UserService {
     private PetDao petMapper;
     @Autowired
     private UploadService uploadService;
+
+    private static Integer MAX_POOL_SIZE = 10;
+
+    /**
+     * 线程池
+     */
+    static final ThreadPoolExecutor DELETE_IMG_THREAD_POOL = new ThreadPoolExecutor(10, MAX_POOL_SIZE,
+            60 * 5L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<Runnable>(MAX_POOL_SIZE) {
+                @Override
+                public boolean offer(Runnable runnable) {
+                    try {
+                        super.put(runnable);
+                    } catch (Exception e) {
+                        log.error("计算线程池put()方法异常-error", e);
+                    }
+                    return true;
+                }
+            }
+            , new ThreadPoolExecutor.CallerRunsPolicy());
 
     /**
      * 根据id和密码查询
@@ -294,30 +319,38 @@ public class UserServiceImpl implements UserService {
         String fileKey = uploadService.uploadImg(file);
         String imgUrl = uploadService.getPrivateFile(fileKey);
         if(1 == type) {
-            String pImg1 = userListById.getPImg1();
-            if(StringUtils.isNoneBlank(pImg1)) {
-                uploadService.removeFile(userListById.getPImg1());
-            }
             if(StringUtils.isNotBlank(fileKey)) {
                 User user = new User();
                 user.setId(id);
                 user.setPImg1(fileKey);
                 userMapper.updateUser(user);
             }
-        } else if (0 == type) {
-            String pImg0 = userListById.getPImg0();
-            if(StringUtils.isNoneBlank(pImg0)) {
-                uploadService.removeFile(userListById.getPImg0());
+            String pImg1 = userListById.getPImg1();
+            if(StringUtils.isNoneBlank(pImg1)) {
+                deleteImgAsync(pImg1);
             }
+        } else if (0 == type) {
             if(StringUtils.isNotBlank(fileKey)) {
                 User user = new User();
                 user.setId(id);
                 user.setPImg0(fileKey);
                 userMapper.updateUser(user);
             }
+            String pImg0 = userListById.getPImg0();
+            if(StringUtils.isNoneBlank(pImg0)) {
+                deleteImgAsync(pImg0);
+            }
         }
 
         return imgUrl;
+    }
+
+    private void deleteImgAsync(String fileKey) {
+        DELETE_IMG_THREAD_POOL.submit(() -> deleteImgAsync(fileKey));
+    }
+
+    private void deleteImg(String fileKey) {
+        uploadService.removeFile(fileKey);
     }
 
     private List<UserListVO> transUserToUserListVO(List<User> users) {
