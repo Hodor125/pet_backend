@@ -19,13 +19,19 @@ import com.hodor.util.StringUtil;
 import com.hodor.vo.pet.PetAddVO;
 import com.hodor.vo.pet.PetUpdateVO;
 import com.hodor.vo.user.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,12 +41,33 @@ import java.util.stream.Stream;
  * @Date 2021/10/17
  */
 @Service
+@Slf4j
 public class PetServiceImpl implements PetService {
 
     @Autowired
     private PetDao petMapper;
     @Autowired
     private UploadService uploadService;
+
+    private static Integer MAX_POOL_SIZE = 10;
+
+    /**
+     * 线程池
+     */
+    static final ThreadPoolExecutor DELETE_IMG_THREAD_POOL = new ThreadPoolExecutor(10, MAX_POOL_SIZE,
+            60 * 5L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<Runnable>(MAX_POOL_SIZE) {
+                @Override
+                public boolean offer(Runnable runnable) {
+                    try {
+                        super.put(runnable);
+                    } catch (Exception e) {
+                        log.error("计算线程池put()方法异常-error", e);
+                    }
+                    return true;
+                }
+            }
+            , new ThreadPoolExecutor.CallerRunsPolicy());
 
 
     /**
@@ -183,7 +210,6 @@ public class PetServiceImpl implements PetService {
      * @param file 文件流
      * @return
      */
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public String uploadImg(Long id, MultipartFile file) {
         Pet petById = petMapper.getPetById(id);
@@ -193,16 +219,28 @@ public class PetServiceImpl implements PetService {
         //上传得到fileKey
         String fileKey = uploadService.uploadImg(file);
         String imgUrl = uploadService.getPrivateFile(fileKey);
-        if(StringUtils.isNoneBlank(petById.getImg())) {
-            uploadService.removeFile(petById.getImg());
-        }
         if(StringUtils.isNotBlank(fileKey)) {
             Pet pet = new Pet();
             pet.setId(id);
             pet.setImg(fileKey);
             petMapper.updatePet(pet);
         }
+        if(StringUtils.isNoneBlank(petById.getImg())) {
+            deleteImgAsync(petById.getImg());
+        }
         return imgUrl;
+    }
+
+    /**
+     * 异步删除图片
+     */
+    private void deleteImgAsync(String fileKey) {
+        DELETE_IMG_THREAD_POOL.submit(() -> deleteImg(fileKey));
+    }
+
+    private void deleteImg(String fileKey) {
+        uploadService.removeFile(fileKey);
+        int i = 0;
     }
 
     /**
