@@ -57,8 +57,8 @@
     </insert>
 
     <insert id="register" useGeneratedKeys="true" keyProperty="id">
-        insert into t_user(nick_name,`password`)
-        values (#{nickName},#{password})
+        insert into t_user(nick_name,`password`,name,tel,p_id)
+        values (#{nickName},#{password},#{name},#{tel},#{pId})
     </insert>
 
     <update id="updateUser">

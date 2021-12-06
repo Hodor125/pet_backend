@@ -11,6 +11,7 @@ import com.hodor.dao.PetDao;
 import com.hodor.dao.UserDao;
 import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
+import com.hodor.dto.UserRegisterDTO;
 import com.hodor.exception.PetBackendException;
 import com.hodor.pojo.*;
 import com.hodor.service.UploadService;
@@ -267,14 +268,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JsonResult<UserRegisterVO> register(String nick_name, String password) {
+    public JsonResult<UserRegisterVO> register(UserRegisterDTO userRegisterDTO) {
+        validate(userRegisterDTO);
         User user = new User();
-        user.setNickName(nick_name);
-        user.setPassword(password);
+        user.setNickName(userRegisterDTO.getNick_name());
+        user.setPassword(userRegisterDTO.getPassword());
+        user.setName(userRegisterDTO.getName());
+        user.setTel(userRegisterDTO.getTel());
+        user.setPId(userRegisterDTO.getP_id());
+
         Integer res = userMapper.register(user);
 
         return new JsonResult<UserRegisterVO>().setMeta(new Meta("注册成功", 201L))
                 .setData(new UserRegisterVO(user.getId(), 0L));
+    }
+
+    private void validate(UserRegisterDTO userRegisterDTO) {
+        if(StringUtils.isBlank(userRegisterDTO.getName()))
+            throw new PetBackendException("姓名为空");
+        if(StringUtils.isBlank(userRegisterDTO.getNick_name()))
+            throw new PetBackendException("昵称为空");
+        if(StringUtils.isBlank(userRegisterDTO.getTel()))
+            throw new PetBackendException("手机号为空");
+        if(StringUtils.isBlank(userRegisterDTO.getPassword()))
+            throw new PetBackendException("密码为空");
+        if(StringUtils.isBlank(userRegisterDTO.getP_id()))
+            throw new PetBackendException("身份证为空");
     }
 
     @Override

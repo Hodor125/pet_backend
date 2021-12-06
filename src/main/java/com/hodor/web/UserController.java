@@ -4,6 +4,7 @@ import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
+import com.hodor.dto.UserRegisterDTO;
 import com.hodor.pojo.User;
 import com.hodor.service.UploadService;
 import com.hodor.service.UserService;
@@ -156,10 +157,13 @@ public class UserController {
      * @return
      */
     @PostMapping("/user/register")
-    public JsonResult<UserRegisterVO> register(@RequestParam String nick_name, @RequestParam String password) {
+    public JsonResult<UserRegisterVO> register(@RequestBody UserRegisterDTO userRegisterDTO) {
         try {
-            JsonResult<UserRegisterVO> res = userService.register(nick_name, password);
+            JsonResult<UserRegisterVO> res = userService.register(userRegisterDTO);
             return res;
+        } catch (DuplicateKeyException e) {
+            return new JsonResult<UserUpdateStateVO>().setMeta(new Meta("手机号已经被注册", 500L))
+                    .setData(null);
         } catch (Exception e) {
             return new JsonResult<UserRegisterVO>().setMeta(new Meta("注册失败:" + e.getMessage(), 500L))
                     .setData(null);

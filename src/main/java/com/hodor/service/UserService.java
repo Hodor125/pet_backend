@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.hodor.constants.JsonResult;
 import com.hodor.dto.ChangePwdDTO;
 import com.hodor.dto.UserAddDTO;
+import com.hodor.dto.UserRegisterDTO;
 import com.hodor.pojo.User;
 import com.hodor.vo.user.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +34,7 @@ public interface UserService {
 
     JsonResult<UserUpdateVO> updateUser(Long id, UserAddDTO userAddDTO);
 
-    JsonResult<UserRegisterVO> register(String nick_name, String password);
+    JsonResult<UserRegisterVO> register(UserRegisterDTO userRegisterDTO);
 
     String getToken(User user);
 

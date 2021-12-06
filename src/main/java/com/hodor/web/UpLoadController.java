@@ -30,13 +30,12 @@ public class UpLoadController {
 
     /**
      * 删除图片
-     * @param bucketName
      * @param fileName
      * @return
      */
     @DeleteMapping("/delete/image")
-    public Boolean deleteImage(String bucketName, String fileName) {
-        boolean b = uploadService.removeFile(bucketName, fileName);
+    public Boolean deleteImage(@RequestParam String fileName) {
+        boolean b = uploadService.removeFile(fileName);
         return b;
     }
 }
