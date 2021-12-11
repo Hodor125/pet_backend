@@ -38,8 +38,8 @@ public class Reservation {
     private Integer state;
 
     /**
-     * false 不通过 true已通过 null待审核
-     * 0           1         2
+     * 取消预约 false 不通过 true已通过 null待审核
+     *   -1        0           1         2
      */
     private Integer adopt;
 }

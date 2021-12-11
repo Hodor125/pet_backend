@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
+import com.hodor.dao.PetDao;
 import com.hodor.dao.ReserveDao;
 import com.hodor.dao.UserDao;
 import com.hodor.dto.ReservationDTO;
@@ -33,6 +34,8 @@ public class ReserveServiceImpl implements ReserveService {
 
     @Autowired
     private ReserveDao reserveMapper;
+    @Autowired
+    private PetDao petMapper;
 
 
     /**
@@ -142,6 +145,12 @@ public class ReserveServiceImpl implements ReserveService {
         };
         reservation.setId(id);
         reserveMapper.updateReserve(reservation);
+        if(Objects.equals(reservation.getAdopt(), 1)) {
+            Pet pet = new Pet();
+            pet.setId(reservation.getP_id());
+            pet.setState(1);
+            petMapper.updatePet(pet);
+        }
         return new JsonResult<Reservation>().setMeta(new Meta("修改成功", 201L))
                 .setData(reservation);
     }
