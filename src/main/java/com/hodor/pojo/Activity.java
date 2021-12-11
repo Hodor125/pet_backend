@@ -34,7 +34,7 @@ public class Activity {
     private Integer num;
 
     /**
-     * 0代表活动已结束，1活动未结束， 2表示进行中
+     * 0代表活动已结束，1活动待开始， 2表示进行中
      */
     private Integer state;
 

@@ -135,6 +135,7 @@ public class UserServiceImpl implements UserService {
     private List<ComplexPerson> addPetActivity(List<User> users) {
         List<ComplexPerson> complexPeople = new ArrayList<>();
         List<Long> userIds = users.stream().map(User::getId).collect(Collectors.toList());
+        //一次性查用户所有的参加活动和宠物，放在map，key为userId
         Map<Long, List<Activity>> activityByUserIdList = getActivityByUserIdList(userIds);
         Map<Long, List<Pet>> petListByUserId = getPetListByUserId(userIds);
         for (User user : users) {
@@ -164,6 +165,7 @@ public class UserServiceImpl implements UserService {
             });
             complexPerson.setPetList(petList);
 
+            Date now = new Date();
             List<Activity> activityByUserId = activityByUserIdList.get(user.getId());
             List<SimpleActivity> activityList = new ArrayList<>();
             activityByUserId.forEach(a -> {
@@ -172,6 +174,14 @@ public class UserServiceImpl implements UserService {
                 simpleActivity.setContent(a.getContent());
                 simpleActivity.setStarttime(a.getStarttime());
                 simpleActivity.setEndtime(a.getEndtime());
+
+                if(now.before(a.getStarttime())) {
+                    a.setState(1);
+                } else if (now.after(a.getEndtime())) {
+                    a.setState(0);
+                } else {
+                    a.setState(2);
+                }
                 simpleActivity.setState(a.getState());
                 activityList.add(simpleActivity);
             });

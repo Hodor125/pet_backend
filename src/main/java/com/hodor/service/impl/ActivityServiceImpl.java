@@ -59,6 +59,7 @@ public class ActivityServiceImpl implements ActivityService {
         } catch (ParseException e) {
             throw new PetBackendException("时间格式错误");
         }
+
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -70,7 +71,19 @@ public class ActivityServiceImpl implements ActivityService {
         List<Activity> activityListByQueryLimit = activityMapper.getActivityListByQueryLimit(query, startTime, endTime);
         PageInfo pageRes = new PageInfo(activityListByQueryLimit);
         addUser(activityListByQueryLimit);
-        activityListByQueryLimit.forEach(a -> a.setSigned(a.getPerson().size()));
+
+        //参加人数和活动有效性
+        Date now = new Date();
+        activityListByQueryLimit.forEach(a -> {
+            a.setSigned(a.getPerson().size());
+            if(now.before(a.getStarttime())) {
+                a.setState(1);
+            } else if (now.after(a.getEndtime())) {
+                a.setState(0);
+            } else {
+                a.setState(2);
+            }
+        });
         Meta meta = new Meta("获取成功", 200L);
         map.put("total", pageRes.getTotal());
         map.put("pagenum", pageRes.getPageNum());
@@ -118,6 +131,14 @@ public class ActivityServiceImpl implements ActivityService {
         }
         if(activityById == null) {
             throw new PetBackendException("活动不存在");
+        }
+
+        if(now.before(activityById.getStarttime())) {
+            activityById.setState(1);
+        } else if (now.after(activityById.getEndtime())) {
+            activityById.setState(0);
+        } else {
+            activityById.setState(2);
         }
         Meta meta = new Meta("获取成功", 200L);
         activityById.setSigned(activityById.getPerson().size());
