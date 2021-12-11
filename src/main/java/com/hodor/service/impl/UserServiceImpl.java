@@ -159,6 +159,7 @@ public class UserServiceImpl implements UserService {
                 simplePet.setId(p.getId());
                 simplePet.setKind(p.getKind());
                 simplePet.setName(p.getName());
+                simplePet.setImg(uploadService.getPrivateFile(p.getImg()));
                 petList.add(simplePet);
             });
             complexPerson.setPetList(petList);
@@ -169,6 +170,9 @@ public class UserServiceImpl implements UserService {
                 SimpleActivity simpleActivity = new SimpleActivity();
                 simpleActivity.setId(a.getId());
                 simpleActivity.setContent(a.getContent());
+                simpleActivity.setStarttime(a.getStarttime());
+                simpleActivity.setEndtime(a.getEndtime());
+                simpleActivity.setState(a.getState());
                 activityList.add(simpleActivity);
             });
             complexPerson.setActivityList(activityList);

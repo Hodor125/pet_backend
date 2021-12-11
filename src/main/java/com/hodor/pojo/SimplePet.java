@@ -14,4 +14,6 @@ public class SimplePet {
     private String name;
 
     private String kind;
+
+    private String img;
 }
