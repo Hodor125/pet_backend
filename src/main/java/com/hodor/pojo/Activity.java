@@ -20,14 +20,12 @@ public class Activity {
     private String img;
 
     @JsonFormat(
-            pattern = "yyyy-MM-dd HH:mm:ss",
-            timezone = "GMT+8"
+            pattern = "yyyy-MM-dd HH:mm:ss"
     )
     private Date starttime;
 
     @JsonFormat(
-            pattern = "yyyy-MM-dd HH:mm:ss",
-            timezone = "GMT+8"
+            pattern = "yyyy-MM-dd HH:mm:ss"
     )
     private Date endtime;
 

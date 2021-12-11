@@ -6,11 +6,12 @@ import com.hodor.pojo.ActivityPerson;
 import com.hodor.vo.activity.ActivityUpdateVO;
 import com.hodor.vo.activity.ActivityVO;
 
+import java.util.Date;
 import java.util.Map;
 
 public interface ActivityService {
 
-    JsonResult<Map<String, Object>> getActivityListByQuery(String query, Integer pageno, Integer pagesize);
+    JsonResult<Map<String, Object>> getActivityListByQuery(String query, String startTime, String endTime, Integer pageno, Integer pagesize);
 
     JsonResult<Activity> getActivityById(Long id);
 

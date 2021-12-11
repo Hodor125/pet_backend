@@ -16,6 +16,7 @@ import com.qiniu.util.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -38,12 +39,15 @@ public class ActivityController {
      */
     @GetMapping("/user/activities")
     public JsonResult<Map<String, Object>> getUserListByQuery(@RequestParam(required = false) String query,
+                                                              @RequestParam(required = false) String time0,
+                                                              @RequestParam(required = false) String time1,
                                                               @RequestParam(required = false, defaultValue = "1") Integer pagenum,
                                                               @RequestParam(required = false, defaultValue = "10") Integer pagesize) {
         try {
-            JsonResult<Map<String, Object>> activityListByQuery = activityService.getActivityListByQuery(query, pagenum, pagesize);
+            JsonResult<Map<String, Object>> activityListByQuery = activityService.getActivityListByQuery(query, time0, time1, pagenum, pagesize);
             return activityListByQuery;
         } catch (Exception e) {
+            e.printStackTrace();
             return new JsonResult<Activity>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))
                     .setData(null);
         }

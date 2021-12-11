@@ -26,8 +26,7 @@ public class Reservation {
     private Long u_id;
 
     @JsonFormat(
-            pattern = "yyyy-MM-dd HH:mm:ss",
-            timezone = "GMT+8"
+            pattern = "yyyy-MM-dd HH:mm:ss"
     )
     private Date time;
 

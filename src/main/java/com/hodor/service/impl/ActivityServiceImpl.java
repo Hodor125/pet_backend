@@ -18,7 +18,10 @@ import com.hodor.vo.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 活动信息相关
@@ -44,7 +47,18 @@ public class ActivityServiceImpl implements ActivityService {
      * @return
      */
     @Override
-    public JsonResult<Map<String, Object>> getActivityListByQuery(String query, Integer pageno, Integer pagesize) {
+    public JsonResult<Map<String, Object>> getActivityListByQuery(String query, String startTime, String endTime, Integer pageno, Integer pagesize) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date start = null;
+        Date end = null;
+        try {
+            if(!Objects.isNull(startTime))
+                start = simpleDateFormat.parse(startTime);
+            if(!Objects.isNull(endTime))
+                end = simpleDateFormat.parse(endTime);
+        } catch (ParseException e) {
+            throw new PetBackendException("时间格式错误");
+        }
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -53,14 +67,37 @@ public class ActivityServiceImpl implements ActivityService {
             return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 500L)).setData(map);
         }
         PageHelper.startPage(pageno, pagesize);
-        List<Activity> activityListByQueryLimit = activityMapper.getActivityListByQueryLimit(query);
+        List<Activity> activityListByQueryLimit = activityMapper.getActivityListByQueryLimit(query, startTime, endTime);
         PageInfo pageRes = new PageInfo(activityListByQueryLimit);
+        addUser(activityListByQueryLimit);
         activityListByQueryLimit.forEach(a -> a.setSigned(a.getPerson().size()));
         Meta meta = new Meta("获取成功", 200L);
         map.put("total", pageRes.getTotal());
         map.put("pagenum", pageRes.getPageNum());
         map.put("activities", activityListByQueryLimit);
         return new JsonResult<List<UserListVO>>().setMeta(meta).setData(map);
+    }
+
+    public void addUser(List<Activity> activityList) {
+        List<Long> actIds = activityList.stream().map(Activity::getId).collect(Collectors.toList());
+
+        Map<Long, List<ActivityPerson>> map = getActivityUserByActIds(actIds);
+        for (Activity activity : activityList) {
+            activity.setPerson(map.get(activity.getId()));
+        }
+    }
+
+    public Map<Long, List<ActivityPerson>> getActivityUserByActIds(List<Long> actIds) {
+        Map<Long, List<ActivityPerson>> map = new LinkedHashMap<>();
+        actIds.forEach(a -> map.put(a, new ArrayList<>()));
+
+        List<ActivityPerson> personByActIds = activityMapper.getPersonByActIds(actIds);
+        if(!Objects.isNull(personByActIds)) {
+            for (ActivityPerson personByActId : personByActIds) {
+                map.get(personByActId.getActId()).add(personByActId);
+            }
+        }
+        return map;
     }
 
     /**

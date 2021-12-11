@@ -20,19 +20,43 @@
 
     </resultMap>
 
-    <select id="getActivityListByQueryLimit" resultMap="ActivityPersonMap">
-        select tpa.*,tau.id ap_id,tau.act_id,tau.u_id,tau.user_name from t_pet_activity tpa
-            left join t_activity_user tau on tpa.id=tau.act_id
+    <resultMap id="ActivityMap" type="com.hodor.pojo.Activity">
+        <id property="id" column="id"/>
+        <id property="title" column="title"/>
+        <id property="img" column="img"/>
+        <id property="starttime" column="start_time"/>
+        <id property="endtime" column="end_time"/>
+        <id property="content" column="content"/>
+        <id property="num" column="num"/>
+        <id property="userId" column="user_id"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <resultMap id="PersonMap" type="com.hodor.pojo.ActivityPerson">
+        <id column="ap_id" property="id"/>
+        <result column="act_id" property="actId"/>
+        <result column="u_id" property="uId"/>
+        <result column="user_name" property="userName"/>
+    </resultMap>
+
+    <select id="getActivityListByQueryLimit" resultMap="ActivityMap">
+        select * from t_pet_activity
         <where>
             <if test="query != null and query != ''">
-                and (tpa.title like concat('%', #{query}, '%')
-                or tpa.content like concat('%', #{query}, '%'))
+                and (title like concat('%', #{query}, '%')
+                or content like concat('%', #{query}, '%'))
+            </if>
+            <if test="startTime != null and startTime !=''">
+                and `start_time` >= DATE_FORMAT(#{startTime},'%Y-%m-%d %H:%i:%S')
+            </if>
+            <if test="endTime != null and endTime != ''">
+                and `end_time` &lt; DATE_FORMAT(#{endTime},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
         order by start_time desc
     </select>
 
-    <select id="getActivityListByQuery" resultMap="ActivityPersonMap">
+    <select id="getActivityListByQuery" resultMap="ActivityMap">
         select id from t_pet_activity
         <where>
             <if test="query != null and query != ''">
@@ -89,6 +113,14 @@
         select tpa.*,tau.u_id user_id from t_pet_activity tpa left join t_activity_user tau on tpa.id=tau.act_id where tau.u_id in
         <foreach collection="userIds" item="userId" separator="," open="(" close=")">
             #{userId}
+        </foreach>
+    </select>
+
+    <select id="getPersonByActIds" resultMap="PersonMap">
+        select * from t_activity_user
+        where act_id in
+        <foreach collection="actIds" item="actId" separator="," open="(" close=")">
+            #{actId}
         </foreach>
     </select>
 </mapper>
