@@ -52,9 +52,9 @@ public class ActivityServiceImpl implements ActivityService {
         Date start = null;
         Date end = null;
         try {
-            if(!Objects.isNull(startTime))
+            if(!Objects.isNull(startTime) && !"".equals(startTime))
                 start = simpleDateFormat.parse(startTime);
-            if(!Objects.isNull(endTime))
+            if(!Objects.isNull(endTime) && !"".equals(startTime))
                 end = simpleDateFormat.parse(endTime);
         } catch (ParseException e) {
             throw new PetBackendException("时间格式错误");
