@@ -22,4 +22,6 @@ public interface ReserveService {
     JsonResult deleteById(Long id);
 
     JsonResult<Reservation> updateReserve(Long id, Reservation reservation);
+
+    void cancelReserve(Long id, Integer state);
 }

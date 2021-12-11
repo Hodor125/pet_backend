@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -154,6 +155,32 @@ public class ReserveServiceImpl implements ReserveService {
         return new JsonResult<Reservation>().setMeta(new Meta("修改成功", 201L))
                 .setData(reservation);
     }
+
+    @Override
+    public void cancelReserve(Long id, Integer state) {
+        Reservation reserveByPid = reserveMapper.getReserveById(id);
+        if(Objects.isNull(reserveByPid)) {
+            throw new PetBackendException("审批不存在");
+        }
+
+        if(reserveByPid.getState().equals(-1)) {
+            //在某一个时间点上加两小时的写法
+            Calendar calendar = Calendar.getInstance();
+            //此处setTime为Date类型
+            calendar.setTime(reserveByPid.getTime());
+            //加上两小时
+            calendar.add(Calendar.HOUR, -2);//时
+            //进行时间格式化
+            Date newTime = calendar.getTime();
+            Date now = new Date();
+            if(!now.before(newTime)) {
+                throw new PetBackendException("活动开始前两小时内不能取消");
+            }
+        }
+        Reservation reservation = new Reservation();
+        reservation.setId(id);
+        reservation.setState(state);
+        reserveMapper.updateReserve(reservation); }
 
     private void validReserveAdd(Reservation reservation) {
         if(reservation.getP_id() == null)

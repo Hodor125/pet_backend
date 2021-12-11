@@ -3,6 +3,7 @@ package com.hodor.web;
 import com.hodor.constants.JsonResult;
 import com.hodor.constants.Meta;
 import com.hodor.dto.ReservationDTO;
+import com.hodor.dto.ReserveUpdateDTO;
 import com.hodor.dto.UserAddDTO;
 import com.hodor.pojo.Reservation;
 import com.hodor.service.ReserveService;
@@ -116,6 +117,19 @@ public class ReserveController {
             return reserveUpdateVOJsonResult;
         } catch (Exception e) {
             return new JsonResult<ReserveUpdateVO>().setMeta(new Meta("修改失败:" + e.getMessage(), 500L)).setData(new ReserveUpdateVO());
+        }
+    }
+
+    @PostMapping("/user/applies/cancel")
+    public JsonResult<ReserveUpdateDTO> cancelReserve(@RequestParam Long id, @RequestParam Integer state) {
+        try {
+            reserveService.cancelReserve(id, state);
+            return new JsonResult<ReserveUpdateDTO>().setMeta(new Meta("取消成功", 201L))
+                    .setData(new ReserveUpdateDTO(id, state));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult<ReserveUpdateDTO>().setMeta(new Meta("取消失败" + e.getMessage(), 500L))
+                    .setData(null);
         }
     }
 }
