@@ -23,6 +23,8 @@ public class UserAddDTO {
 
     private String address;
 
+    private Long power;
+
     public UserAddDTO() {
     }
 }

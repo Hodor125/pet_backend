@@ -149,6 +149,12 @@ public class ActivityServiceImpl implements ActivityService {
         if(Objects.isNull(userListById)) {
             throw new PetBackendException("用户不存在");
         }
+
+        //是否已经报名过
+        ActivityPerson byAidAndUid = activityPersonDao.getByAidAndUid(id, u_id);
+        if(!Objects.isNull(byAidAndUid))
+            throw new PetBackendException("已经报名过这个活动");
+
         ActivityPerson activityPerson = new ActivityPerson();
         activityPerson.setActId(id);
         activityPerson.setUId(u_id);

@@ -101,7 +101,7 @@ public class UploadServiceImpl implements UploadService {
         try {
             encodedFileName = URLEncoder.encode(fileKey, "utf-8").replace("+", "%20");
             String publicUrl = String.format("%s/%s", this.qiNiuYunConfig.getUrl(), encodedFileName);
-            long expireInSeconds = 3600;//1小时，可以自定义链接过期时间
+            long expireInSeconds = 86400;//1小时，可以自定义链接过期时间
             finalUrl = auth.privateDownloadUrl(publicUrl, expireInSeconds);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

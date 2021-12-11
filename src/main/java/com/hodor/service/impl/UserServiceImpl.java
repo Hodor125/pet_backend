@@ -397,7 +397,6 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setNickName(userAddDTO.getNick_name());
         user.setPassword(userAddDTO.getPassword());
-        user.setPower(0L);
         user.setEmail("");
         user.setTel(userAddDTO.getTel());
         user.setPId(userAddDTO.getP_id());
@@ -415,6 +414,11 @@ public class UserServiceImpl implements UserService {
         user.setSex(gender.equals("1") ? "男" : "女");
         user.setName(userAddDTO.getName());
         user.setState(0);
+        if(!Objects.isNull(userAddDTO.getPower())) {
+            user.setPower(userAddDTO.getPower());
+        } else {
+            user.setPower(0L);
+        }
         return user;
     }
 

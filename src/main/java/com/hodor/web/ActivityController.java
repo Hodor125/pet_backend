@@ -114,6 +114,11 @@ public class ActivityController {
         }
     }
 
+    /**
+     * 报名
+     * @param id 活动id
+     * @param u_id 用户id
+     */
     @PostMapping("/user/activities/{id}/{u_id}")
     public JsonResult<ActivityPerson> signActivity(@PathVariable Long id, @PathVariable Long u_id) {
         try {

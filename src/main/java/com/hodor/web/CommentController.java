@@ -21,10 +21,10 @@ public class CommentController {
 
     @GetMapping ("/user/msgs")
     public JsonResult getCommentByQuery(@RequestParam String query,
-                                        @RequestParam(required = false, defaultValue = "1") Integer pageno,
+                                        @RequestParam(required = false, defaultValue = "1") Integer pagenum,
                                         @RequestParam(required = false, defaultValue = "10") Integer pagesize) {
         try {
-            JsonResult<Map<String, Object>> commentByQuery = commentService.getCommentByQuery(query, pageno, pagesize);
+            JsonResult<Map<String, Object>> commentByQuery = commentService.getCommentByQuery(query, pagenum, pagesize);
             return commentByQuery;
         } catch (Exception e) {
             e.printStackTrace();

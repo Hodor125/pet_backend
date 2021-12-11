@@ -14,4 +14,8 @@
             update act_id=#{actId},u_id=#{uId},user_name=#{userName}
     </insert>
 
+    <select id="getByAidAndUid" resultMap="PersonMap">
+        select * from t_activity_user where act_id=#{aId} and u_id=#{uId}
+    </select>
+
 </mapper>
