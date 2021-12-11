@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Integer pageno, Integer pagesize) {
+    public JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Integer state, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
             return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 500L)).setData(map);
         }
         PageHelper.startPage(pageno, pagesize);
-        List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, power);
+        List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, power, state);
 
         userListByQueryLimit.forEach(user -> {
             if(StringUtils.isNotBlank(user.getPImg0())) {

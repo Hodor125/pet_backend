@@ -11,7 +11,7 @@ import java.util.Map;
 
 public interface ReserveService {
 
-    JsonResult<Map<String, Object>> getReserveListByQuery(String query, Integer pageno, Integer pagesize);
+    JsonResult<Map<String, Object>> getReserveListByQuery(String query, Integer state, Integer pageno, Integer pagesize);
 
     JsonResult<Reservation> getReserveListById(Long id);
 

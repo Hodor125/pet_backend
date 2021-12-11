@@ -33,6 +33,9 @@
             <if test="power != null">
                 and power=#{power}
             </if>
+            <if test="state != null">
+                and state=#{state}
+            </if>
         </where>
         order by state asc,id desc
     </select>

@@ -83,10 +83,11 @@ public class ReserveController {
      */
     @GetMapping("/user/applies")
     public JsonResult<Map<String, Object>> getUserListByQuery(@RequestParam(required = false) String query,
+                                                              @RequestParam(required = false) Integer state,
                                                               @RequestParam(required = false, defaultValue = "1") Integer pagenum,
                                                               @RequestParam(required = false, defaultValue = "10") Integer pagesize) {
         try {
-            JsonResult<Map<String, Object>> reserveListByQuery = reserveService.getReserveListByQuery(query, pagenum, pagesize);
+            JsonResult<Map<String, Object>> reserveListByQuery = reserveService.getReserveListByQuery(query, state, pagenum, pagesize);
             return reserveListByQuery;
         } catch (Exception e) {
             return new JsonResult<Map<String, Object>>().setMeta(new Meta("获取失败:" + e.getMessage(), 500L))

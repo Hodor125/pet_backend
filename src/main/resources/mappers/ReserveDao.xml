@@ -19,6 +19,9 @@
                 or (u_id = #{query})
                 or (id = #{query}))
             </if>
+            <if test="state != null">
+                state=#{state}
+            </if>
         </where>
         order by state desc,adopt desc
     </select>

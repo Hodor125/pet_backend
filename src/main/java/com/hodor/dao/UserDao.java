@@ -19,7 +19,8 @@ public interface UserDao {
     User getUserByUserNameAndPassWord(Long id, String passWord);
 
     List<User> getUserListByQueryLimit(@Param("query") String query,
-                                       @Param("power") Long power);
+                                       @Param("power") Long power,
+                                       @Param("state") Integer state);
 
     List<User> getUserListByQuery(@Param("query") String query,
                                   @Param("power") Long power);

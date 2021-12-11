@@ -47,7 +47,7 @@ public class ReserveServiceImpl implements ReserveService {
      * @return
      */
     @Override
-    public JsonResult<Map<String, Object>> getReserveListByQuery(String query, Integer pageno, Integer pagesize) {
+    public JsonResult<Map<String, Object>> getReserveListByQuery(String query, Integer state, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
         if(pageno < 1) {
             map.put("total", 0);
@@ -56,7 +56,7 @@ public class ReserveServiceImpl implements ReserveService {
             return new JsonResult<Map<String, Object>>().setMeta(new Meta("获取失败", 500L)).setData(map);
         }
         PageHelper.startPage(pageno, pagesize);
-        List<Reservation> reserveListByQueryLimit = reserveMapper.getReserveListByQueryLimit(query);
+        List<Reservation> reserveListByQueryLimit = reserveMapper.getReserveListByQueryLimit(query, state);
         PageInfo pageRes = new PageInfo(reserveListByQueryLimit);
         Meta meta = new Meta("获取成功", 200L);
         map.put("total", pageRes.getTotal());
