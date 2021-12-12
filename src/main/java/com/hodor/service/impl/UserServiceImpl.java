@@ -99,15 +99,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public JsonResult<Map<String, Object>> getUserListByQuery(String query, Long power, Integer state, Integer pageno, Integer pagesize) {
         Map<String, Object> map = new HashMap<>();
+        //分页参数校验
         if(pageno < 1) {
             map.put("total", 0);
             map.put("pagenum", pageno);
             map.put("users", new ArrayList<>());
             return new JsonResult<List<UserListVO>>().setMeta(new Meta("获取失败", 500L)).setData(map);
         }
+        //PageHelper分页
         PageHelper.startPage(pageno, pagesize);
         List<User> userListByQueryLimit = userMapper.getUserListByQueryLimit(query, power, state);
 
+        //获取身份证链接
         userListByQueryLimit.forEach(user -> {
             if(StringUtils.isNotBlank(user.getPImg0())) {
                 user.setPImg0(uploadService.getPrivateFile(user.getPImg0()));
@@ -119,6 +122,7 @@ public class UserServiceImpl implements UserService {
 
         PageInfo pageRes = new PageInfo(userListByQueryLimit);
         Meta meta = new Meta("获取成功", 200L);
+        //每个用户添加宠物和活动信息
         List<ComplexPerson> complexPeople = addPetActivity(userListByQueryLimit);
 //        List<UserListVO> userListVOS = transUserToUserListVO(userListByQueryLimit);
         map.put("total", pageRes.getTotal());
@@ -128,7 +132,7 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 查询的用户列表添加领养的宠物和参加的活动
+     * 查询的用户列表添加每个用户领养的宠物和参加的活动
      * @param users
      * @return
      */
@@ -138,6 +142,7 @@ public class UserServiceImpl implements UserService {
         //一次性查用户所有的参加活动和宠物，放在map，key为userId
         Map<Long, List<Activity>> activityByUserIdList = getActivityByUserIdList(userIds);
         Map<Long, List<Pet>> petListByUserId = getPetListByUserId(userIds);
+        //每个用户领养的宠物和参加的活动
         for (User user : users) {
             ComplexPerson complexPerson = new ComplexPerson();
             complexPerson.setId(user.getId());
@@ -163,6 +168,7 @@ public class UserServiceImpl implements UserService {
                 simplePet.setImg(uploadService.getPrivateFile(p.getImg()));
                 petList.add(simplePet);
             });
+            //添加宠物
             complexPerson.setPetList(petList);
 
             Date now = new Date();
@@ -175,6 +181,7 @@ public class UserServiceImpl implements UserService {
                 simpleActivity.setStarttime(a.getStarttime());
                 simpleActivity.setEndtime(a.getEndtime());
 
+                //设置活动是否过期
                 if(now.before(a.getStarttime())) {
                     a.setState(1);
                 } else if (now.after(a.getEndtime())) {
@@ -185,6 +192,7 @@ public class UserServiceImpl implements UserService {
                 simpleActivity.setState(a.getState());
                 activityList.add(simpleActivity);
             });
+            //添加活动
             complexPerson.setActivityList(activityList);
         }
         return complexPeople;
