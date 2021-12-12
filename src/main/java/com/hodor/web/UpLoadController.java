@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
+ * 七牛云上传图片
  * @Author limingli006
  * @Date 2021/10/17
  */
