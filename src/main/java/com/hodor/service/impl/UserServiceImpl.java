@@ -192,6 +192,11 @@ public class UserServiceImpl implements UserService {
                 simpleActivity.setState(a.getState());
                 activityList.add(simpleActivity);
             });
+            activityByUserId.sort((o1, o2) -> {
+                if(o1.getStarttime().after(o2.getStarttime()))
+                    return 1;
+                return 0;
+            });
             //添加活动
             complexPerson.setActivityList(activityList);
         }
