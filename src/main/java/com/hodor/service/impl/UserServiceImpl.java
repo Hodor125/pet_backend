@@ -194,9 +194,9 @@ public class UserServiceImpl implements UserService {
             });
             activityList.sort((o1, o2) -> {
                 if(o1.getStarttime().after(o2.getStarttime()))
-                    return 1;
-                else
                     return -1;
+                else
+                    return 1;
             });
             //添加活动
             complexPerson.setActivityList(activityList);
