@@ -41,4 +41,6 @@ public class Reservation {
      *   -1        0           1         2
      */
     private Integer adopt;
+
+    private Integer nowState;
 }
